@@ -50,5 +50,5 @@ dependencies {
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
     //volley
-    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.android.volley:volley:1.1.1'
 }

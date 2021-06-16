@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,6 +25,13 @@ import android.view.Surface;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
 import com.google.android.gms.common.util.JsonUtils;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,13 +50,19 @@ import com.otaliastudios.cameraview.controls.Mode;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
+    String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
 
 
     @Override
@@ -64,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPictureTaken(@NonNull PictureResult result) {
                 super.onPictureTaken(result);
                 rotationAfterCrop = result.getRotation();
-                 result.toBitmap(new BitmapCallback() {
+                result.toBitmap(new BitmapCallback() {
                     @Override
                     public void onBitmapReady(@Nullable Bitmap bitmap) {
                         Log.i("bla", Integer.toString(result.getRotation()));
@@ -80,9 +94,19 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.btnTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activityMainBinding.scannedText.setVisibility(View.VISIBLE);
+                activityMainBinding.decodedText.setVisibility(View.GONE);
                 takePhoto();
             }
         });
+
+//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                activityMainBinding.scannedText.setVisibility(View.GONE);
+//                activityMainBinding.decodedText.setVisibility(View.VISIBLE);
+//            }
+//        });
     }
 
     private int getImageRotation(int rotation) {
@@ -92,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "val", null);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "yourimage", null);
         return Uri.parse(path);
     }
 
@@ -103,7 +127,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(@NonNull Text text) {
                 Log.i("bla", text.getText());
-                Toast.makeText(MainActivity.this, text.getText(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, text.getText(), Toast.LENGTH_SHORT).show();
+                activityMainBinding.scannedText.setText(text.getText());
+                activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String editedOrFinal = activityMainBinding.scannedText.getText().toString();
+                        activityMainBinding.scannedText.setVisibility(View.GONE);
+                        activityMainBinding.decodedText.setVisibility(View.VISIBLE);
+
+                        try {
+                            decodeCipher(editedOrFinal);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -125,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         CropImage.activity(uri)
                 .start(this);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -148,6 +189,36 @@ public class MainActivity extends AppCompatActivity {
         processBitmap(imageAfterCrop, rotationAfterCrop);
     }
 
+    private void decodeCipher(String text) throws JSONException {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("data", text);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("decoded_data");
+                    String finalDecodedText ="";
+                    for(int i=0;i<jsonArray.length();i++){
+                        finalDecodedText+=jsonArray.getString(i)+"\n";
+                    }
+                    activityMainBinding.decodedText.setText(finalDecodedText);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                activityMainBinding.decodedText.setText("error");
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
 }
