@@ -24,6 +24,7 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+
+
 
         //camera listener, listens the activity of camera
         activityMainBinding.cameraView.addCameraListener(new CameraListener() {
@@ -260,7 +263,11 @@ public class MainActivity extends AppCompatActivity {
                     for(int i=0;i<jsonArray.length();i++){
                         finalDecodedText+=jsonArray.getString(i)+"\n";
                     }
+
+                    String title = jsonArray.getString(jsonArray.length()-1);
                     activityMainBinding.decodedText.setText(finalDecodedText);
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
