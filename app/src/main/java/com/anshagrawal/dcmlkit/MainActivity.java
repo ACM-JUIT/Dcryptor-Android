@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
-
+    Uri absolutePath=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         View view = activityMainBinding.getRoot();
         setContentView(view);
 
-
+        //camera listener, listens the activity of camera
         activityMainBinding.cameraView.addCameraListener(new CameraListener() {
             @Override
             public void onPictureTaken(@NonNull PictureResult result) {
@@ -82,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onBitmapReady(@Nullable Bitmap bitmap) {
                         Log.i("bla", Integer.toString(result.getRotation()));
-                        cropImage(bitmap);
+                        try {
+                            cropImage(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 //                        processBitmap(bitmap, result.getRotation());
                     }
                 });
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding.cameraView.setLifecycleOwner(this);
 
+        //take photo button click listener
         activityMainBinding.btnTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,12 +119,20 @@ public class MainActivity extends AppCompatActivity {
         return rotation;
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+    //convert bitmap to uri which is required for crop image library
+    public Uri getImageUri(Context inContext, Bitmap inImage) throws IOException {
+        String filename = "ii";
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "yourimage", null);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, filename, "blehhh");
+        Log.i("wah", path);
+        absolutePath=Uri.parse(path);
+        bytes.close();
+        
         return Uri.parse(path);
+
     }
+
 
     private void processBitmap(Bitmap bitmap, int rot) {
         InputImage img = InputImage.fromBitmap(bitmap, rot);
@@ -160,10 +174,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void cropImage(Bitmap bitmap) {
+    private void cropImage(Bitmap bitmap) throws IOException {
         Uri uri = getImageUri(this, bitmap);
+
+//        File file = new File(uri.getPath());
+        Log.i("kl", uri.getPath());
         CropImage.activity(uri)
                 .start(this);
+
+
+    }
+
+    private void deleteImageAfterGettingUri(Uri uri) {
+        Log.i("hg", getRealPathFromURI(MainActivity.this, absolutePath));
+        File del= new File(getRealPathFromURI(MainActivity.this, absolutePath));
+        if(del.exists()){
+            Log.i("hg", "file exists, attempting to delete");
+            if(del.delete()){
+                Log.i("hg", "del");
+            }
+            else{
+                Log.i("hg", "no del");
+            }
+        }
     }
 
     @Override
@@ -172,21 +205,41 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+
+//                Log.i("vcvc", getRealPathFromURI(MainActivity.this, absolutePath));
+//                deleteImageAfterGettingUri(absolutePath);
                 Uri resultUri = result.getUri();
                 Bitmap imageAfterCrop = null;
                 try {
                     imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+
                     ocr(imageAfterCrop, rotationAfterCrop);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 activityMainBinding.cropImageView.setImageBitmap(imageAfterCrop);
+
+            }
+        }
+    }
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
     }
 
     private void ocr(Bitmap imageAfterCrop, int rotationAfterCrop) {
         processBitmap(imageAfterCrop, rotationAfterCrop);
+//        deleteImageAfterGettingUri(absolutePath);
     }
 
     private void decodeCipher(String text) throws JSONException {
@@ -220,5 +273,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+        Log.i("hg", "decodeCipher: ");
+        deleteImageAfterGettingUri(absolutePath);
     }
 }
