@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.app.Activity;
 import android.app.VoiceInteractor;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -58,6 +60,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
-    Uri absolutePath=null;
+    String absolutePath=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onBitmapReady(@Nullable Bitmap bitmap) {
                         Log.i("bla", Integer.toString(result.getRotation()));
                         try {
+                            saveBitmapToCache(bitmap);
                             cropImage(bitmap);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -118,6 +123,35 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+    //Saves the bitmap to external cache directory so that the image does not get stored in the device
+    // storage and return Uri for the image cropping library
+
+    private Uri saveBitmapToCache(Bitmap bitmap) {
+        //get cache directory
+        File cachePath = new File(getExternalCacheDir(), "my_images/");
+        cachePath.mkdirs();
+        File file = new File(cachePath, "Image_123.png");
+        FileOutputStream fileOutputStream;
+        try
+        {
+            fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        //get file uri
+        Uri myImageFileUri =  FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", file);
+        return myImageFileUri;
+    }
+
+
     private int getImageRotation(int rotation) {
         return rotation;
     }
@@ -129,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, filename, "blehhh");
         Log.i("wah", path);
-        absolutePath=Uri.parse(path);
+        absolutePath = path;
         bytes.close();
-        
+
         return Uri.parse(path);
 
     }
@@ -178,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cropImage(Bitmap bitmap) throws IOException {
-        Uri uri = getImageUri(this, bitmap);
-
+//        Uri uri = getImageUri(this, bitmap);
+            Uri uri = saveBitmapToCache(bitmap);
 //        File file = new File(uri.getPath());
         Log.i("kl", uri.getPath());
         CropImage.activity(uri)
@@ -189,17 +223,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteImageAfterGettingUri(Uri uri) {
-        Log.i("hg", getRealPathFromURI(MainActivity.this, absolutePath));
-        File del= new File(getRealPathFromURI(MainActivity.this, absolutePath));
-        if(del.exists()){
-            Log.i("hg", "file exists, attempting to delete");
-            if(del.delete()){
-                Log.i("hg", "del");
-            }
-            else{
-                Log.i("hg", "no del");
-            }
-        }
+//        Log.i("hg", getRealPathFromURI(MainActivity.this, absolutePath));
+//        File del= new File(getPath);
+//        Log.i("tag", del.exists()+"");
+//        Log.i("tag", del.getAbsolutePath()+"");
+//        Log.i("tag", del.getPath()+"");
+//        Log.i("tag", del.isDirectory()+"");
+//        Log.i("tag", del.isFile()+"");
+//        Log.i("tag", del.delete()+"");
+
+
+        ContentResolver contentResolver = getContentResolver();
+        contentResolver.delete(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                MediaStore.Images.ImageColumns.DATA + "=?" , new String[]{ absolutePath});
+
+
+//        if(del.exists()){
+//            Log.i("hg", "file exists, attempting to delete");
+//            if(del.delete()){
+//                Log.i("hg", "del");
+//            }
+//            else{
+//                Log.i("hg", "no del");
+//            }
+//        }
     }
 
     @Override
@@ -281,6 +328,5 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
         Log.i("hg", "decodeCipher: ");
-        deleteImageAfterGettingUri(absolutePath);
     }
 }
