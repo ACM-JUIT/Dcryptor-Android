@@ -35,15 +35,14 @@
         android:textColor="@color/black"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDecode"
-        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDecode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
         android:layout_marginBottom="260dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/share_tech"
@@ -51,26 +50,42 @@
         android:textColor="@color/black"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/decodedText"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="100dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginBottom="60dp"
         android:background="@color/white"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/share_tech"
+        android:gravity="center_horizontal"
+        android:padding="1dp"
         android:scrollbars="vertical"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ListView
+        android:id="@+id/myListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:listitem="@layout/activity_listview"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTake" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
@@ -84,17 +99,20 @@
 
     <EditText
         android:id="@+id/scannedText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="188dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/share_tech"
-        android:hint="Scanned text or manually enter here"
+        android:hint="@string/edittext"
+        android:inputType="text"
+        android:padding="1dp"
+        android:scrollbars="vertical"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTake" />
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,6 +35,8 @@ import android.view.Surface;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,21 +77,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     String absolutePath = null;
-
+    ArrayAdapter<String> arrayAdapter;
+    ArrayList<String> grocery ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+
+        grocery=new ArrayList<>();
+         arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, grocery);
+        activityMainBinding.myListView.setAdapter(arrayAdapter);
+
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
 
@@ -101,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
         //makes the TextView scrollable
         activityMainBinding.decodedText.setMovementMethod(new ScrollingMovementMethod());
+        activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
 
-        activityMainBinding.cropImageView.setVisibility(View.GONE);
 
         //camera listener, listens the activity of camera
         activityMainBinding.cameraView.addCameraListener(new CameraListener() {
@@ -132,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String editedFinal = activityMainBinding.scannedText.getText().toString();
-                activityMainBinding.scannedText.setVisibility(View.GONE);
-                activityMainBinding.decodedText.setVisibility(View.VISIBLE);
 
                 try {
                     decodeCipher(editedFinal);
@@ -149,8 +158,6 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.btnTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityMainBinding.scannedText.setVisibility(View.VISIBLE);
-                activityMainBinding.decodedText.setVisibility(View.GONE);
                 takePhoto();
             }
         });
@@ -246,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final int[] length = new int[1];
+
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("data", text);
@@ -257,8 +266,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
+                    length[0] =jsonArray.length();
                     String finalDecodedText = "";
                     for (int i = 0; i < jsonArray.length(); i++) {
+                        String s = jsonArray.getString(i);
+                        Log.i("frfr", s);
+                        grocery.add(s);
+                        Log.i("jsononj", jsonArray.getString(0));
                         if (i < (jsonArray.length() - 1)) {
                             finalDecodedText += jsonArray.getString(i) + "\n";
                         } else {
@@ -266,9 +280,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    String title = jsonArray.getString(jsonArray.length() - 1);
                     activityMainBinding.decodedText.setText(finalDecodedText);
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -282,5 +294,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+        arrayAdapter.notifyDataSetChanged();
+//        String[] array = grocery.toArray(new String[grocery.size()]);
+//        Log.i("listviewdis", array[0]);
+
+//        Log.i("frfr", grocery.get(0));
+        Log.i("frfr", grocery.size()+"");
     }
 }
