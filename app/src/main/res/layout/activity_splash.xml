@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_ui_background"
+    tools:context=".SplashActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:weightSum="8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/D"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeMinTextSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/C"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/R"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/Y"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/P"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewT"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/T"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewO"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/O"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewR1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/R"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="69sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">dcmlkit</string>
+    <string name="D">D</string>
+    <string name="C">C</string>
+    <string name="R">R</string>
+    <string name="Y">Y</string>
+    <string name="P">P</string>
+    <string name="T">T</string>
+    <string name="O">O</string>
+    <string name="takePhoto">Take Photo</string>
+    <string name="decodeText">Decode!</string>
+    <string name="edittext">Scanned text or manually enter here</string>
+</resources>
