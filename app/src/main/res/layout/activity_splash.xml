@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_ui_background"
+    tools:context=".SplashActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="635dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/D"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/C"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/R"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/Y"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/P"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/T"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/O"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+
+        <TextView
+            android:id="@+id/textViewR1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="@string/R"
+            android:textColor="@color/white"
+            android:textSize="100sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
