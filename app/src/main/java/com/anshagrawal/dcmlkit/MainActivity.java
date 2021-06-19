@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
-    String absolutePath = null;
+
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery ;
     @Override
