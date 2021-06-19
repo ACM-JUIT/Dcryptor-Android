@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     private int checkedItem;
     private String selected;
 
-
     private final String CHECKEDITEM = "checked_item";
 
     ArrayList<String> decodes;
