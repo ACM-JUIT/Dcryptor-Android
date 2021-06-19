@@ -10,6 +10,8 @@ import androidx.core.content.FileProvider;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.VoiceInteractor;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +37,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -104,11 +107,10 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.scannedText.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.scannedText.setClipToOutline(true);
 
-        activityMainBinding.decodedText.setBackgroundResource(R.drawable.rounded_corner);
-        activityMainBinding.decodedText.setClipToOutline(true);
+        activityMainBinding.myListView.setBackgroundResource(R.drawable.rounded_corner);
+        activityMainBinding.myListView.setClipToOutline(true);
 
         //makes the TextView scrollable
-        activityMainBinding.decodedText.setMovementMethod(new ScrollingMovementMethod());
         activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
 
 
@@ -132,7 +134,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String text =((TextView) view).getText().toString();
+                ClipboardManager clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
+            }
+        });
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
 
         activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
@@ -277,8 +288,6 @@ public class MainActivity extends AppCompatActivity {
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
 
-                    activityMainBinding.decodedText.setText(finalDecodedText.toString());
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -287,9 +296,10 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                activityMainBinding.decodedText.setText("error");
+                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(jsonObjectRequest);
     }
+
 }
