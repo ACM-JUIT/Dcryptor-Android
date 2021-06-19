@@ -10,6 +10,13 @@
     <string name="takePhoto">Take Photo</string>
     <string name="decodeText">Decode!</string>
     <string name="edittext">Scanned text or manually enter here</string>
+    <string-array name="theme">
+        <item>System Default</item>
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+=======
     <string name="empty_decode_something">Empty! Decode Something!</string>
     <string name="display_to_clear_the_contrnts_of_listview">Display to clear the contrnts of listview</string>
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
 </resources>
