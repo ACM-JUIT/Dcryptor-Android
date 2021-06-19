@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         grocery=new ArrayList<>();
-         arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, grocery);
-        activityMainBinding.myListView.setAdapter(arrayAdapter);
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -124,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 result.toBitmap(new BitmapCallback() {
                     @Override
                     public void onBitmapReady(@Nullable Bitmap bitmap) {
-                        Log.i("bla", Integer.toString(result.getRotation()));
                         try {
                             cropImage(bitmap);
                         } catch (IOException e) {
@@ -204,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.i("bla", e.getMessage());
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -217,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void cropImage(Bitmap bitmap) throws IOException {
         Uri uri = saveBitmapToCache(bitmap);
-        Log.i("kl", uri.getPath());
         CropImage.activity(uri)
                 .start(this);
     }
@@ -266,21 +261,24 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
-                    length[0] =jsonArray.length();
-                    String finalDecodedText = "";
+                    StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
-                        Log.i("frfr", s);
                         grocery.add(s);
-                        Log.i("jsononj", jsonArray.getString(0));
                         if (i < (jsonArray.length() - 1)) {
-                            finalDecodedText += jsonArray.getString(i) + "\n";
+                            finalDecodedText.append(jsonArray.getString(i)).append("\n");
                         } else {
-                            finalDecodedText += jsonArray.getString(i);
+                            finalDecodedText.append(jsonArray.getString(i));
                         }
                     }
+                    String[] strArray = new String[grocery.size()];
+                    for(int i=0;i<grocery.size();i++) {
+                        strArray[i] = grocery.get(i);
+                    }
+                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
+                    activityMainBinding.myListView.setAdapter(arrayAdapter);
 
-                    activityMainBinding.decodedText.setText(finalDecodedText);
+                    activityMainBinding.decodedText.setText(finalDecodedText.toString());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -294,11 +292,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-        arrayAdapter.notifyDataSetChanged();
-//        String[] array = grocery.toArray(new String[grocery.size()]);
-//        Log.i("listviewdis", array[0]);
-
-//        Log.i("frfr", grocery.get(0));
-        Log.i("frfr", grocery.size()+"");
     }
 }
