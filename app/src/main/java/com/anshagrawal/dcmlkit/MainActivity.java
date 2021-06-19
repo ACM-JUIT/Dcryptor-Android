@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+
+
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
@@ -113,13 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding.empty.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.empty.setClipToOutline(true);
-
-//        if(activityMainBinding.myListView.getAdapter()==null){
-//            activityMainBinding.trash.setVisibility(View.GONE);
-//        }
-//        if(activityMainBinding.myListView.getAdapter()!=null){
-//            activityMainBinding.trash.setVisibility(View.VISIBLE);
-//        }
 
         activityMainBinding.myListView.setEmptyView(activityMainBinding.empty);
 
