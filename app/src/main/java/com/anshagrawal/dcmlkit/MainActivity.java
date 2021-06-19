@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> grocery ;
+    ArrayList<String> decodes ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         View view = activityMainBinding.getRoot();
         setContentView(view);
 
-        grocery=new ArrayList<>();
+        decodes=new ArrayList<>();
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         //makes the TextView scrollable
         activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
+
 
 
         //camera listener, listens the activity of camera
@@ -274,18 +275,18 @@ public class MainActivity extends AppCompatActivity {
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
-                        grocery.add(s);
+                        decodes.add(s);
                         if (i < (jsonArray.length() - 1)) {
                             finalDecodedText.append(jsonArray.getString(i)).append("\n");
                         } else {
                             finalDecodedText.append(jsonArray.getString(i));
                         }
                     }
-                    String[] strArray = new String[grocery.size()];
-                    for(int i=0;i<grocery.size();i++) {
-                        strArray[i] = grocery.get(i);
+                    String[] strArray = new String[decodes.size()];
+                    for(int i=0;i<decodes.size();i++) {
+                        strArray[i] = decodes.get(i);
                     }
-                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
+                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
 
                 } catch (JSONException e) {

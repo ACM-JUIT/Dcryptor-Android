@@ -7,6 +7,7 @@
     android:background="@color/app_ui_background"
     tools:context=".MainActivity">
 
+
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraView"
         android:layout_width="413dp"
@@ -17,12 +18,13 @@
         app:cameraGrid="draw3x3"
         app:cameraMode="picture"
         app:cameraPictureFormat="jpeg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004"
         app:layout_drawOnPictureSnapshot="true" />
-
 
     <Button
         android:id="@+id/btnTake"
@@ -77,15 +79,15 @@
 
     <ListView
         android:id="@+id/myListView"
-        android:layout_width="375dp"
-        android:layout_height="162dp"
+        android:layout_width="372dp"
+        android:layout_height="150dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cameraView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/activity_listview" />
+        app:layout_constraintTop_toBottomOf="@+id/scannedText" />
+
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
@@ -94,8 +96,9 @@
         android:layout_marginBottom="344dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraView" />
 
     <EditText
         android:id="@+id/scannedText"
@@ -112,7 +115,9 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cropImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
