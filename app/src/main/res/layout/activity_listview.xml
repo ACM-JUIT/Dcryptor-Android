@@ -8,11 +8,9 @@
     android:padding="10dp"
     android:textSize="20sp"
     android:textStyle="bold"
-<<<<<<< HEAD
+
     android:scrollIndicators="right"
     android:textColor="@color/textColor"
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android" />
-=======
-    android:textColor="@color/black"/>
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
+

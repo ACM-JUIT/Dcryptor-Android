@@ -4,12 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:background="@color/white"
-=======
-    android:background="@color/app_ui_background"
     android:scrollbarSize="10dp"
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
+
     tools:context=".MainActivity">
 
 
@@ -91,18 +88,12 @@
         android:id="@+id/myListView"
         android:layout_width="372dp"
         android:layout_height="150dp"
-        android:background="@color/white"
         android:backgroundTint="@color/white"
         android:fadeScrollbars="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.5"
-        android:background="@drawable/edittext_listview"
-=======
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scannedText" />
+        android:background="@drawable/edittext_listview"/>
 
     <TextView
         android:id="@+id/empty"
@@ -148,11 +139,8 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginBottom="188dp"
-<<<<<<< HEAD
-=======
         android:autofillHints=""
         android:backgroundTint="@color/white"
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
         android:fontFamily="@font/share_tech"
         android:background="@drawable/edittext_back"
         android:hint="@string/edittext"
@@ -161,11 +149,8 @@
         android:scrollbars="vertical"
         android:textAlignment="center"
         android:textSize="23sp"
-<<<<<<< HEAD
         android:textColor="@color/textColor"
-=======
         android:textStyle="bold"
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
