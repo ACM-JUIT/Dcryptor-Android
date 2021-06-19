@@ -10,7 +10,6 @@
     <string name="takePhoto">Take Photo</string>
     <string name="decodeText">Decode!</string>
     <string name="edittext">Scanned text or manually enter here</string>
-<<<<<<< HEAD
     <string-array name="theme">
         <item>System Default</item>
         <item>Dark</item>
