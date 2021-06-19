@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@color/white"
+=======
+    android:background="@color/app_ui_background"
+    android:scrollbarSize="10dp"
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
     tools:context=".MainActivity">
+
 
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraView"
@@ -17,12 +23,13 @@
         app:cameraGrid="draw3x3"
         app:cameraMode="picture"
         app:cameraPictureFormat="jpeg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:layout_drawOnPictureSnapshot="true" />
-
 
     <Button
         android:id="@+id/btnTake"
@@ -33,6 +40,8 @@
         android:fontFamily="@font/share_tech"
         android:text="@string/takePhoto"
         android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +57,8 @@
         android:fontFamily="@font/share_tech"
         android:text="@string/decodeText"
         android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,17 +87,50 @@
 
 
     <ListView
+
         android:id="@+id/myListView"
-        android:layout_width="375dp"
-        android:layout_height="162dp"
+        android:layout_width="372dp"
+        android:layout_height="150dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:fadeScrollbars="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.5"
         android:background="@drawable/edittext_listview"
+=======
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cameraView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/activity_listview" />
+        app:layout_constraintTop_toBottomOf="@+id/scannedText" />
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="372dp"
+        android:layout_height="150dp"
+        android:background="#fff"
+        android:backgroundTint="#fff"
+        android:fontFamily="@font/share_tech"
+        android:gravity="center"
+        android:text="@string/empty_decode_something"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/myListView"
+        app:layout_constraintEnd_toEndOf="@+id/myListView"
+        app:layout_constraintStart_toStartOf="@+id/myListView"
+        app:layout_constraintTop_toTopOf="@+id/myListView" />
+
+    <ImageView
+        android:id="@+id/trash"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/display_to_clear_the_contrnts_of_listview"
+        android:src="@drawable/trash_icon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/myListView"
+        app:layout_constraintEnd_toEndOf="@+id/myListView" />
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
@@ -95,14 +139,20 @@
         android:layout_marginBottom="344dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraView" />
 
     <EditText
         android:id="@+id/scannedText"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginBottom="188dp"
+<<<<<<< HEAD
+=======
+        android:autofillHints=""
+        android:backgroundTint="@color/white"
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
         android:fontFamily="@font/share_tech"
         android:background="@drawable/edittext_back"
         android:hint="@string/edittext"
@@ -111,10 +161,16 @@
         android:scrollbars="vertical"
         android:textAlignment="center"
         android:textSize="23sp"
+<<<<<<< HEAD
         android:textColor="@color/textColor"
+=======
+        android:textStyle="bold"
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cropImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

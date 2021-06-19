@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?><!--  Single List Item Design -->
-<TextView
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/label"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:fontFamily="@font/montserrat"
     android:padding="10dp"
-    android:textSize="16sp"
+    android:textSize="20sp"
     android:textStyle="bold"
+<<<<<<< HEAD
     android:scrollIndicators="right"
     android:textColor="@color/textColor"
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android" />
+=======
+    android:textColor="@color/black"/>
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95

@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
+<<<<<<< HEAD
     ArrayList<String> grocery;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -104,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final String CHECKEDITEM = "checked_item";
+=======
+    ArrayList<String> decodes;
+
+>>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -129,7 +134,28 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        grocery=new ArrayList<>();
+        decodes = new ArrayList<>();
+
+        activityMainBinding.trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityMainBinding.myListView.setAdapter(null);
+                decodes.clear();
+                activityMainBinding.trash.setVisibility(View.GONE);
+            }
+        });
+
+        activityMainBinding.empty.setBackgroundResource(R.drawable.rounded_corner);
+        activityMainBinding.empty.setClipToOutline(true);
+
+//        if(activityMainBinding.myListView.getAdapter()==null){
+//            activityMainBinding.trash.setVisibility(View.GONE);
+//        }
+//        if(activityMainBinding.myListView.getAdapter()!=null){
+//            activityMainBinding.trash.setVisibility(View.VISIBLE);
+//        }
+
+        activityMainBinding.myListView.setEmptyView(activityMainBinding.empty);
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -167,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text =((TextView) view).getText().toString();
-                ClipboardManager clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                String text = ((TextView) view).getText().toString();
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
                 clipboardManager.setPrimaryClip(clipData);
                 Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
@@ -322,17 +348,19 @@ public class MainActivity extends AppCompatActivity {
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
-                        grocery.add(s);
+                        decodes.add(s);
                         if (i < (jsonArray.length() - 1)) {
                             finalDecodedText.append(jsonArray.getString(i)).append("\n");
                         } else {
                             finalDecodedText.append(jsonArray.getString(i));
                         }
                     }
-                    String[] strArray = new String[grocery.size()];
-                    for(int i=0;i<grocery.size();i++) {
-                        strArray[i] = grocery.get(i);
+                    String[] strArray = new String[decodes.size()];
+                    for (int i = 0; i < decodes.size(); i++) {
+                        strArray[i] = decodes.get(i);
                     }
+                    activityMainBinding.trash.setVisibility(View.VISIBLE);
+
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
 
