@@ -55,36 +55,37 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <TextView
-        android:id="@+id/decodedText"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/share_tech"
-        android:gravity="center_horizontal"
-        android:padding="1dp"
-        android:scrollbars="vertical"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/decodedText"-->
+    <!--        android:layout_width="350dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginBottom="60dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:gravity="center_horizontal"-->
+    <!--        android:padding="1dp"-->
+    <!--        android:scrollbars="vertical"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="30sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.508"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
     <ListView
         android:id="@+id/myListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        tools:listitem="@layout/activity_listview"
+        android:layout_width="408dp"
+        android:layout_height="167dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/cameraView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/activity_listview" />
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
