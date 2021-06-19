@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> decodes ;
+    ArrayList<String> decodes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,7 +100,28 @@ public class MainActivity extends AppCompatActivity {
         View view = activityMainBinding.getRoot();
         setContentView(view);
 
-        decodes=new ArrayList<>();
+        decodes = new ArrayList<>();
+
+        activityMainBinding.trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityMainBinding.myListView.setAdapter(null);
+                decodes.clear();
+                activityMainBinding.trash.setVisibility(View.GONE);
+            }
+        });
+
+        activityMainBinding.empty.setBackgroundResource(R.drawable.rounded_corner);
+        activityMainBinding.empty.setClipToOutline(true);
+
+//        if(activityMainBinding.myListView.getAdapter()==null){
+//            activityMainBinding.trash.setVisibility(View.GONE);
+//        }
+//        if(activityMainBinding.myListView.getAdapter()!=null){
+//            activityMainBinding.trash.setVisibility(View.VISIBLE);
+//        }
+
+        activityMainBinding.myListView.setEmptyView(activityMainBinding.empty);
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -112,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         //makes the TextView scrollable
         activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
-
 
 
         //camera listener, listens the activity of camera
@@ -138,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text =((TextView) view).getText().toString();
-                ClipboardManager clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                String text = ((TextView) view).getText().toString();
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
                 clipboardManager.setPrimaryClip(clipData);
                 Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
@@ -283,10 +304,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     String[] strArray = new String[decodes.size()];
-                    for(int i=0;i<decodes.size();i++) {
+                    for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
                     }
-                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, strArray);
+                    activityMainBinding.trash.setVisibility(View.VISIBLE);
+
+                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
 
                 } catch (JSONException e) {
