@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
-<<<<<<< HEAD
+
     ArrayList<String> grocery;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -105,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final String CHECKEDITEM = "checked_item";
-=======
+
     ArrayList<String> decodes;
 
->>>>>>> 6136268fb60bc20dd997400e45822d57393b8c95
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

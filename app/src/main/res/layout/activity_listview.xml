@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--  Single List Item Design -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/label"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -8,9 +9,8 @@
     android:padding="10dp"
     android:textSize="20sp"
     android:textStyle="bold"
-
     android:scrollIndicators="right"
     android:textColor="@color/textColor"
     android:background="@color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+   />
 
