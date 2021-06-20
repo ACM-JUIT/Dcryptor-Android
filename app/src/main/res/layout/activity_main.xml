@@ -8,7 +8,6 @@
     android:scrollbarSize="10dp"
     tools:context=".MainActivity">
 
-
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraView"
         android:layout_width="match_parent"

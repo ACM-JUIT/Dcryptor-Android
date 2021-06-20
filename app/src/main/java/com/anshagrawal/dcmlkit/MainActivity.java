@@ -21,6 +21,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -41,6 +44,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-       // getSupportActionBar().hide();
+        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
 
@@ -124,13 +128,21 @@ public class MainActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
 
-        //real time text detector
-//        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
-//            @Override
-//            public void process(@NonNull Frame frame) {
-//                processImage(getInputImageFromFrame(frame));
-//            }
-//        });
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+        paint.setStrokeWidth(10);
+
+        Canvas canvas = new Canvas();
+        canvas.drawRect(100, 100, 100, 100, paint);
+
+
+//        real time text detector
+        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
+            @Override
+            public void process(@NonNull Frame frame) {
+                processImage(getInputImageFromFrame(frame));
+            }
+        });
 
         switch (getCheckedItem()) {
             case 0:
@@ -145,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
         }
+
 
         decodes = new ArrayList<>();
 
@@ -232,31 +245,49 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //real time text detection
-
-//    private void processImage(InputImage inputImageFromFrame) {
-//        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-//        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
-//            @Override
-//            public void onSuccess(@NonNull Text text) {
-////                Log.d("poop", text.getText());
-//                activityMainBinding.scannedText.setText("");
-//                activityMainBinding.scannedText.setText(text.getText());
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d("poop", "onFailure: ");
-//            }
-//        });
-//    }
+//    real time text detection
 
 
-    //real time text detector
-//    private InputImage getInputImageFromFrame(Frame frame) {
-//        byte[] data=frame.getData();
-//        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
-//    }
+    private void processImage(InputImage inputImageFromFrame) {
+
+        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
+            @Override
+            public void onSuccess(@NonNull Text text) {
+                activityMainBinding.scannedText.setText("");
+                activityMainBinding.scannedText.setText(text.getText());
+                for (Text.TextBlock block : text.getTextBlocks()) {
+                    String blockText = block.getText();
+                    Point[] blockCornerPoints = block.getCornerPoints();
+                    Rect blockFrame = block.getBoundingBox();
+                    for (Text.Line line : block.getLines()) {
+                        String lineText = line.getText();
+                        Point[] lineCornerPoints = line.getCornerPoints();
+                        Log.i("olif", lineCornerPoints.length + "");
+                        Rect lineFrame = line.getBoundingBox();
+                        for (Text.Element element : line.getElements()) {
+                            String elementText = element.getText();
+                            Point[] elementCornerPoints = element.getCornerPoints();
+                            Rect elementFrame = element.getBoundingBox();
+                        }
+                    }
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("poop", "onFailure: ");
+            }
+        });
+    }
+
+
+    //    real time text detector
+    private InputImage getInputImageFromFrame(Frame frame) {
+        byte[] data = frame.getData();
+        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
+    }
 
 
     //Saves the bitmap to external cache directory so that the image does not get stored in the device
@@ -303,6 +334,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -316,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
 
-        if (id == R.id.themes){
+        if (id == R.id.themes) {
             showDialog();
         }
         return super.onOptionsItemSelected(item);
@@ -409,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
+
     private void showDialog() {
 
         String[] themes = this.getResources().getStringArray(R.array.theme);
