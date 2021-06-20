@@ -141,6 +141,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cameraView" />
+
     <EditText
         android:id="@+id/scannedText"
         android:layout_width="match_parent"
