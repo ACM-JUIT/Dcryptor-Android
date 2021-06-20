@@ -122,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
+            @Override
+            public void process(@NonNull Frame frame) {
+                processImage(getInputImageFromFrame(frame));
+            }
+        });
+
         switch (getCheckedItem()) {
             case 0:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -219,6 +226,28 @@ public class MainActivity extends AppCompatActivity {
                 takePhoto();
             }
         });
+    }
+
+    private void processImage(InputImage inputImageFromFrame) {
+        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
+            @Override
+            public void onSuccess(@NonNull Text text) {
+//                Log.d("poop", text.getText());
+                activityMainBinding.scannedText.setText("");
+                activityMainBinding.scannedText.setText(text.getText());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("poop", "onFailure: ");
+            }
+        });
+    }
+
+    private InputImage getInputImageFromFrame(Frame frame) {
+        byte[] data=frame.getData();
+        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
     }
 
 
