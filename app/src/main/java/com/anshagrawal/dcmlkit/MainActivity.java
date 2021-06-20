@@ -123,12 +123,14 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
-            @Override
-            public void process(@NonNull Frame frame) {
-                processImage(getInputImageFromFrame(frame));
-            }
-        });
+
+        //real time text detector
+//        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
+//            @Override
+//            public void process(@NonNull Frame frame) {
+//                processImage(getInputImageFromFrame(frame));
+//            }
+//        });
 
         switch (getCheckedItem()) {
             case 0:
@@ -204,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
+        activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
         activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,27 +232,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void processImage(InputImage inputImageFromFrame) {
-        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
-            @Override
-            public void onSuccess(@NonNull Text text) {
-//                Log.d("poop", text.getText());
-                activityMainBinding.scannedText.setText("");
-                activityMainBinding.scannedText.setText(text.getText());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("poop", "onFailure: ");
-            }
-        });
-    }
+    //real time text detection
 
-    private InputImage getInputImageFromFrame(Frame frame) {
-        byte[] data=frame.getData();
-        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
-    }
+//    private void processImage(InputImage inputImageFromFrame) {
+//        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+//        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
+//            @Override
+//            public void onSuccess(@NonNull Text text) {
+////                Log.d("poop", text.getText());
+//                activityMainBinding.scannedText.setText("");
+//                activityMainBinding.scannedText.setText(text.getText());
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.d("poop", "onFailure: ");
+//            }
+//        });
+//    }
+
+
+    //real time text detector
+//    private InputImage getInputImageFromFrame(Frame frame) {
+//        byte[] data=frame.getData();
+//        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
+//    }
 
 
     //Saves the bitmap to external cache directory so that the image does not get stored in the device
