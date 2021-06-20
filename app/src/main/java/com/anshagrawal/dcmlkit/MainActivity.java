@@ -11,7 +11,6 @@ import androidx.core.content.FileProvider;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -107,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
     private final String CHECKEDITEM = "checked_item";
 
     ArrayList<String> decodes;
-    ProgressDialog dialog;
-
 
 
     @Override
@@ -116,13 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+
+
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
-
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("We are processing your result.\nPlease Wait...");
-        dialog.setCancelable(false);
         sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -335,17 +330,14 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
-            dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -365,7 +357,6 @@ public class MainActivity extends AppCompatActivity {
 
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
-                    dialog.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -439,9 +430,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+
 }

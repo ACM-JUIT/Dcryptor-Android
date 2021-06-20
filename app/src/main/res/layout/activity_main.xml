@@ -141,7 +141,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cameraView" />
-
     <EditText
         android:id="@+id/scannedText"
         android:layout_width="match_parent"
@@ -168,11 +167,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:backgroundTint="@color/white"
-        android:background="@drawable/image_button_rounded_corner"
         android:layout_width="wrap_content"
-        android:src="@drawable/ic_baseline_more_vert_24"
         android:layout_height="wrap_content"
+        android:background="@drawable/image_button_rounded_corner"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintBottom_toBottomOf="@+id/scannedText"
         app:layout_constraintEnd_toEndOf="@+id/scannedText"
         app:layout_constraintTop_toTopOf="@+id/scannedText" />
