@@ -3,6 +3,7 @@ package com.anshagrawal.dcmlkit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -21,12 +22,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,6 +76,8 @@ import com.otaliastudios.cameraview.FileCallback;
 import com.otaliastudios.cameraview.PictureResult;
 import com.otaliastudios.cameraview.controls.Grid;
 import com.otaliastudios.cameraview.controls.Mode;
+import com.otaliastudios.cameraview.frame.Frame;
+import com.otaliastudios.cameraview.frame.FrameProcessor;
 import com.otaliastudios.cameraview.gesture.Gesture;
 import com.otaliastudios.cameraview.gesture.GestureAction;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -106,12 +111,8 @@ public class MainActivity extends AppCompatActivity {
     private final String CHECKEDITEM = "checked_item";
 
     ArrayList<String> decodes;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
 
@@ -246,6 +247,8 @@ public class MainActivity extends AppCompatActivity {
         Uri myImageFileUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", file);
         return myImageFileUri;
     }
+
+
 
 
     private void processBitmap(Bitmap bitmap, int rotation) {
