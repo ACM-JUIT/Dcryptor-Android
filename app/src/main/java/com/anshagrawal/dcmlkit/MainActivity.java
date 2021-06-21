@@ -11,6 +11,7 @@ import androidx.core.content.FileProvider;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -108,24 +109,28 @@ public class MainActivity extends AppCompatActivity {
 //    private int checkedItem;
 //    private String selected;
 
-//    private final String CHECKEDITEM = "checked_item";
+    //    private final String CHECKEDITEM = "checked_item";
     Canvas canvas = new Canvas();
 
     Paint paint = new Paint();
 
     ArrayList<String> decodes;
+    ProgressDialog dialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-         getSupportActionBar().hide();
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
 
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("We are processing your result. \n Please Wait...");
+        dialog.setCancelable(false);
         //for dark mode
 //        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
 //        editor = sharedPreferences.edit();
@@ -319,11 +324,14 @@ public class MainActivity extends AppCompatActivity {
         recognizer.process(img).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
             public void onSuccess(@NonNull Text text) {
+
                 activityMainBinding.scannedText.setText(text.getText());
+                dialog.show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                dialog.dismiss();
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -394,14 +402,17 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
+            dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
+            dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -412,15 +423,19 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             finalDecodedText.append(jsonArray.getString(i));
                         }
+
                     }
+                    //dialog.dismiss();
                     String[] strArray = new String[decodes.size()];
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
                     }
-                    activityMainBinding.trash.setVisibility(View.VISIBLE);
 
+                    activityMainBinding.trash.setVisibility(View.VISIBLE);
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
+                    dialog.dismiss();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -430,6 +445,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
