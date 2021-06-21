@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding activityMainBinding;
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
-
     ArrayList<String> grocery;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -110,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
     private String selected;
 
     private final String CHECKEDITEM = "checked_item";
+    Canvas canvas = new Canvas();
+
+    Paint paint = new Paint();
 
     ArrayList<String> decodes;
 
@@ -126,14 +128,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
-        paint.setStrokeWidth(10);
-
-        Canvas canvas = new Canvas();
-        canvas.drawRect(100, 100, 100, 100, paint);
 
 
 //        real time text detector
@@ -263,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
                     for (Text.Line line : block.getLines()) {
                         String lineText = line.getText();
                         Point[] lineCornerPoints = line.getCornerPoints();
-                        Log.i("olif", lineCornerPoints.length + "");
                         Rect lineFrame = line.getBoundingBox();
                         for (Text.Element element : line.getElements()) {
                             String elementText = element.getText();
@@ -498,8 +491,6 @@ public class MainActivity extends AppCompatActivity {
     private void setCheckedItem(int i) {
         editor.putInt(CHECKEDITEM, i);
         editor.apply();
-
     }
-
 
 }
