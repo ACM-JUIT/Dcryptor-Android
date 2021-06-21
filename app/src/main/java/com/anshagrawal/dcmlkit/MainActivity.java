@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
     String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-    private int checkedItem;
-    private String selected;
+//    private SharedPreferences sharedPreferences;
+//    private SharedPreferences.Editor editor;
+//    private int checkedItem;
+//    private String selected;
 
-    private final String CHECKEDITEM = "checked_item";
+//    private final String CHECKEDITEM = "checked_item";
     Canvas canvas = new Canvas();
 
     Paint paint = new Paint();
@@ -119,15 +119,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // getSupportActionBar().hide();
+         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
 
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
-        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        //for dark mode
+//        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
 
 
 //        real time text detector
@@ -137,20 +138,20 @@ public class MainActivity extends AppCompatActivity {
                 processImage(getInputImageFromFrame(frame));
             }
         });
-
-        switch (getCheckedItem()) {
-            case 0:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
-
-            case 1:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-
-            case 2:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-        }
+        //for dark mode
+//        switch (getCheckedItem()) {
+//            case 0:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+//                break;
+//
+//            case 1:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                break;
+//
+//            case 2:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                break;
+//        }
 
 
         decodes = new ArrayList<>();
@@ -328,24 +329,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-
-        if (id == R.id.themes) {
-            showDialog();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//
+//
+//        if (id == R.id.themes) {
+//            showDialog();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
     private void takePhoto() {
@@ -435,62 +436,62 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void showDialog() {
-
-        String[] themes = this.getResources().getStringArray(R.array.theme);
-
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-        builder.setTitle("Select Theme");
-        builder.setSingleChoiceItems(R.array.theme, getCheckedItem(), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                selected = themes[which];
-                checkedItem = which;
-            }
-        });
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (selected == null) {
-                    selected = themes[which];
-                    checkedItem = which;
-                }
-
-                switch (selected) {
-                    case "System Default":
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                        break;
-
-                    case "Dark":
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        break;
-
-                    case "Light":
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                        break;
-                }
-                setCheckedItem(checkedItem);
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-    }
-
-    private int getCheckedItem() {
-        return sharedPreferences.getInt(CHECKEDITEM, 0);
-    }
-
-    private void setCheckedItem(int i) {
-        editor.putInt(CHECKEDITEM, i);
-        editor.apply();
-    }
+//    private void showDialog() {
+//
+//        String[] themes = this.getResources().getStringArray(R.array.theme);
+//
+//        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+//        builder.setTitle("Select Theme");
+//        builder.setSingleChoiceItems(R.array.theme, getCheckedItem(), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                selected = themes[which];
+//                checkedItem = which;
+//            }
+//        });
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                if (selected == null) {
+//                    selected = themes[which];
+//                    checkedItem = which;
+//                }
+//
+//                switch (selected) {
+//                    case "System Default":
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+//                        break;
+//
+//                    case "Dark":
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                        break;
+//
+//                    case "Light":
+//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                        break;
+//                }
+//                setCheckedItem(checkedItem);
+//            }
+//        });
+//
+//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//
+//    }
+//
+//    private int getCheckedItem() {
+//        return sharedPreferences.getInt(CHECKEDITEM, 0);
+//    }
+//
+//    private void setCheckedItem(int i) {
+//        editor.putInt(CHECKEDITEM, i);
+//        editor.apply();
+//    }
 
 }
