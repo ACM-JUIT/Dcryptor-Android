@@ -112,10 +112,6 @@ public class MainActivity extends AppCompatActivity {
 //    private String selected;
 
     //    private final String CHECKEDITEM = "checked_item";
-    Canvas canvas = new Canvas();
-
-    Paint paint = new Paint();
-
     ArrayList<String> decodes;
     ProgressDialog dialog;
 
@@ -130,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+//        Intent intent = new Intent(this, CameraActivity.class);
+//        startActivity(intent);
         dialog = new ProgressDialog(this);
         dialog.setMessage("We are processing your result. \n Please Wait...");
         dialog.setCancelable(false);
