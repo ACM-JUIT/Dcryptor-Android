@@ -103,7 +103,6 @@ import java.util.Properties;
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
-//    String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
     String url= BuildConfig.URL_LINK;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
