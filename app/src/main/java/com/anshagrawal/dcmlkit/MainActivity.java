@@ -82,6 +82,7 @@ import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 import com.otaliastudios.cameraview.gesture.Gesture;
 import com.otaliastudios.cameraview.gesture.GestureAction;
+import com.otaliastudios.cameraview.overlay.OverlayLayout;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -97,11 +98,13 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
-    String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
+//    String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
+    String url= BuildConfig.URL_LINK;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
 //    private SharedPreferences sharedPreferences;
@@ -137,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        real time text detector
-        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
-            @Override
-            public void process(@NonNull Frame frame) {
-                processImage(getInputImageFromFrame(frame));
-            }
-        });
+//        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
+//            @Override
+//            public void process(@NonNull Frame frame) {
+//                processImage(getInputImageFromFrame(frame));
+//            }
+//        });
         //for dark mode
 //        switch (getCheckedItem()) {
 //            case 0:
@@ -248,45 +251,45 @@ public class MainActivity extends AppCompatActivity {
 //    real time text detection
 
 
-    private void processImage(InputImage inputImageFromFrame) {
-
-        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
-        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
-            @Override
-            public void onSuccess(@NonNull Text text) {
-                activityMainBinding.scannedText.setText("");
-                activityMainBinding.scannedText.setText(text.getText());
-                for (Text.TextBlock block : text.getTextBlocks()) {
-                    String blockText = block.getText();
-                    Point[] blockCornerPoints = block.getCornerPoints();
-                    Rect blockFrame = block.getBoundingBox();
-                    for (Text.Line line : block.getLines()) {
-                        String lineText = line.getText();
-                        Point[] lineCornerPoints = line.getCornerPoints();
-                        Rect lineFrame = line.getBoundingBox();
-                        for (Text.Element element : line.getElements()) {
-                            String elementText = element.getText();
-                            Point[] elementCornerPoints = element.getCornerPoints();
-                            Rect elementFrame = element.getBoundingBox();
-                        }
-                    }
-                }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("poop", "onFailure: ");
-            }
-        });
-    }
+//    private void processImage(InputImage inputImageFromFrame) {
+//
+//        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+//        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
+//            @Override
+//            public void onSuccess(@NonNull Text text) {
+//                activityMainBinding.scannedText.setText("");
+//                activityMainBinding.scannedText.setText(text.getText());
+//                for (Text.TextBlock block : text.getTextBlocks()) {
+//                    String blockText = block.getText();
+//                    Point[] blockCornerPoints = block.getCornerPoints();
+//                    Rect blockFrame = block.getBoundingBox();
+//                    for (Text.Line line : block.getLines()) {
+//                        String lineText = line.getText();
+//                        Point[] lineCornerPoints = line.getCornerPoints();
+//                        Rect lineFrame = line.getBoundingBox();
+//                        for (Text.Element element : line.getElements()) {
+//                            String elementText = element.getText();
+//                            Point[] elementCornerPoints = element.getCornerPoints();
+//                            Rect elementFrame = element.getBoundingBox();
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.d("poop", "onFailure: ");
+//            }
+//        });
+//    }
 
 
     //    real time text detector
-    private InputImage getInputImageFromFrame(Frame frame) {
-        byte[] data = frame.getData();
-        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
-    }
+//    private InputImage getInputImageFromFrame(Frame frame) {
+//        byte[] data = frame.getData();
+//        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
+//    }
 
 
     //Saves the bitmap to external cache directory so that the image does not get stored in the device
@@ -326,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(@NonNull Text text) {
 
                 activityMainBinding.scannedText.setText(text.getText());
-                dialog.show();
+//                dialog.show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

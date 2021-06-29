@@ -1,21 +1,23 @@
+
 plugins {
     id 'com.android.application'
 }
-
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file('local.properties')))
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-    viewBinding{
-        enabled=true
-    }
+    viewBinding {
+        enabled = true
 
+    }
     defaultConfig {
         applicationId "com.anshagrawal.dcmlkit"
+        buildConfigField 'String', 'URL_LINK', localProperties.getProperty('link')
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,6 +25,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'URL_LINK', localProperties.getProperty('link')
         }
     }
     compileOptions {
@@ -55,5 +58,7 @@ dependencies {
 
     //expandedView library
     compile 'com.github.iammert:ExpandableLayout:1.3'
+
+
 
 }
