@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.anshagrawal.dcmlkit.Dao.DcryptorDao;
-import com.anshagrawal.dcmlkit.Database.CypherDatabase;
+import com.anshagrawal.dcmlkit.Database.DcryptorDatabase;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class DcryptorRepository {
     public LiveData<List<Dcryptor>> getallCyphers;
 
     public DcryptorRepository(Application application){
-        CypherDatabase database = CypherDatabase.getDatabaseInstance(application);
+        DcryptorDatabase database = DcryptorDatabase.getDatabaseInstance(application);
         dcryptorDao = database.dcryptorDao();
         getallCyphers = dcryptorDao.getallCyphers();
     }
