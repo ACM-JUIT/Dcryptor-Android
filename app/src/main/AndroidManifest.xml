@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".Activities.DashboardActivity"></activity>
+        <activity android:name=".Activities.CameraActivity" />
+        <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +25,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:name=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" /> <!-- File Provider -->

@@ -1,15 +1,16 @@
-package com.anshagrawal.dcmlkit;
+package com.anshagrawal.dcmlkit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CameraActivity extends AppCompatActivity {
+import com.anshagrawal.dcmlkit.R;
+
+public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
+        setContentView(R.layout.activity_dashboard);
     }
 }

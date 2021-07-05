@@ -1,14 +1,10 @@
-package com.anshagrawal.dcmlkit;
+package com.anshagrawal.dcmlkit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
