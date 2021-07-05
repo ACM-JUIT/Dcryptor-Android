@@ -39,14 +39,14 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <ImageView-->
-<!--        android:id="@+id/trash"-->
-<!--        android:layout_width="6dp"-->
-<!--        android:layout_height="8dp"-->
-<!--        android:contentDescription="@string/display_to_clear_the_contrnts_of_listview"-->
-<!--        android:src="@drawable/trash_icon"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/empty"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/empty" />-->
+    <ImageView
+        android:id="@+id/trash"
+        android:layout_width="6dp"
+        android:layout_height="8dp"
+        android:contentDescription="@string/display_to_clear_the_contrnts_of_listview"
+        android:src="@drawable/trash_icon"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/empty"
+        app:layout_constraintEnd_toEndOf="@+id/empty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

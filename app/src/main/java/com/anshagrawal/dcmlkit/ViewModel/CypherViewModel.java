@@ -15,6 +15,7 @@ public class CypherViewModel extends AndroidViewModel {
 
     public DcryptorRepository repository;
     public LiveData<List<Dcryptor>> getallCyphers;
+
     public CypherViewModel(@NonNull Application application) {
         super(application);
 
@@ -23,15 +24,15 @@ public class CypherViewModel extends AndroidViewModel {
 
     }
 
-    public void insertCypher(Dcryptor dcryptor){
+    public void insertCypher(Dcryptor dcryptor) {
         repository.insertCyphers(dcryptor);
     }
 
-    public void deleteCypher(int id){
+    public void deleteCypher(int id) {
         repository.deleteCyphers(id);
     }
 
-    public void updateCypher(Dcryptor dcryptor){
+    public void updateCypher(Dcryptor dcryptor) {
         repository.updateCyphers(dcryptor);
     }
 }

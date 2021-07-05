@@ -61,7 +61,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
-    String url= BuildConfig.URL_LINK;
+    String url = BuildConfig.URL_LINK;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
     String cypher_title;
@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         decodes = new ArrayList<>();
-
 
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
@@ -195,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         cypherViewModel = ViewModelProviders.of(this).get(CypherViewModel.class);
-        
+
         cypher_title = activityMainBinding.scannedText.getText().toString();
 
 //        activityMainBinding.btnaddtoDashboard.setOnClickListener(new View.OnClickListener() {
@@ -207,6 +206,22 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        });
+
+        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cypher_title = activityMainBinding.scannedText.getText().toString();
+//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+                CreateCypher(cypher_title);
+                String text=activityMainBinding.scannedText.getText().toString();
+                Intent i =new Intent(MainActivity.this, DecodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("scannedText", text);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+
 
 //        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -220,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void CreateCypher(String cypher_title) {
         Date date = new Date();
-        CharSequence sequence  = DateFormat.format("MMM d, yyyy", date.getTime());
+        CharSequence sequence = DateFormat.format("MMM d, yyyy", date.getTime());
 
         Dcryptor dcryptor1 = new Dcryptor();
         dcryptor1.cypherTitle = cypher_title;
@@ -229,7 +244,10 @@ public class MainActivity extends AppCompatActivity {
         cypherViewModel.insertCypher(dcryptor1);
         Toast.makeText(this, "Cypher added.", Toast.LENGTH_SHORT).show();
 
+//        startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+
         finish();
+
     }
 
 //    real time text detection
@@ -261,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        }).addOnFailureListener(new OnFailureListener() {
+//        }).addOnFailureListener(new OnFailureListener() {
 //            @Override
 //            public void onFailure(@NonNull Exception e) {
 //                Log.d("poop", "onFailure: ");
@@ -278,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Saves the bitmap to external cache directory so that the image does not get stored in the device
     // storage and return Uri for the image cropping library
-
+//realtime
 
     private Uri saveBitmapToCache(Bitmap bitmap) {
         //get cache directory
@@ -323,8 +342,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     private void takePhoto() {
@@ -421,10 +438,6 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
-
-
-
-
 
 
 }

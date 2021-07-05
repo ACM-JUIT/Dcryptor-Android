@@ -104,9 +104,6 @@
         app:layout_constraintTop_toBottomOf="@+id/scannedText" />
 
 
-
-
-
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
         android:layout_width="match_parent"
