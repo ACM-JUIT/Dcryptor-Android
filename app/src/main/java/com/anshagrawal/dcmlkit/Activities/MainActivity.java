@@ -200,8 +200,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 cypher_title = activityMainBinding.scannedText.getText().toString();
                 CreateCypher(cypher_title);
-                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
 
+
+            }
+        });
+
+        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
             }
         });
 
