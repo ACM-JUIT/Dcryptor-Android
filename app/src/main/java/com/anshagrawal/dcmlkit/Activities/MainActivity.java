@@ -169,18 +169,21 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
         activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
-//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String editedFinal = activityMainBinding.scannedText.getText().toString();
-//
-//                try {
-//                    decodeCipher(editedFinal);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
+        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cypher_title = activityMainBinding.scannedText.getText().toString();
+                CreateCypher(cypher_title);
+                String editedFinal = activityMainBinding.scannedText.getText().toString();
+
+                try {
+                    decodeCipher(editedFinal);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+            }
+        });
 
         activityMainBinding.cameraView.setLifecycleOwner(this);
 
@@ -195,19 +198,20 @@ public class MainActivity extends AppCompatActivity {
         
         cypher_title = activityMainBinding.scannedText.getText().toString();
 
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cypher_title = activityMainBinding.scannedText.getText().toString();
-                CreateCypher(cypher_title);
-
-
-            }
-        });
+//        activityMainBinding.btnaddtoDashboard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cypher_title = activityMainBinding.scannedText.getText().toString();
+//                CreateCypher(cypher_title);
+//
+//
+//            }
+//        });
 
 //        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
+//                decodeCipher();
 //                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
 //            }
 //        });
@@ -223,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         dcryptor1.cypherDate = sequence.toString();
 
         cypherViewModel.insertCypher(dcryptor1);
-//        Toast.makeText(this, "Cypher added.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Cypher added.", Toast.LENGTH_SHORT).show();
 
         finish();
     }
@@ -368,17 +372,17 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            dialog.show();
+            //dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
-            dialog.dismiss();
+            //dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    dialog.show();
+                    //dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {

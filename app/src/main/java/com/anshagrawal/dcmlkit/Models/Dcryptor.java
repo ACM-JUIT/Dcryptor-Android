@@ -16,5 +16,8 @@ public class Dcryptor {
     @ColumnInfo(name = "cypher_date")
     public String cypherDate;
 
+//    @ColumnInfo(name = "cypher_date")
+//    public String[] decodedCypher;
+
 
 }
