@@ -23,15 +23,15 @@ public class CypherViewModel extends AndroidViewModel {
 
     }
 
-    void insertCypher(Dcryptor dcryptor){
+    public void insertCypher(Dcryptor dcryptor){
         repository.insertCyphers(dcryptor);
     }
 
-    void deleteCypher(int id){
+    public void deleteCypher(int id){
         repository.deleteCyphers(id);
     }
 
-    void updateCypher(Dcryptor dcryptor){
+    public void updateCypher(Dcryptor dcryptor){
         repository.updateCyphers(dcryptor);
     }
 }

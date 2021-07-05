@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-        <activity android:name=".Activities.DashboardActivity"></activity>
+        <activity android:name=".Activities.DecodeActivity"></activity>
+        <activity android:name=".Activities.DashboardActivity" />
         <activity android:name=".Activities.CameraActivity" />
         <activity android:name=".Activities.SplashActivity">
             <intent-filter>

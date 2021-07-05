@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -13,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +29,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.BuildConfig;
+import com.anshagrawal.dcmlkit.Models.Dcryptor;
 import com.anshagrawal.dcmlkit.R;
+import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,6 +56,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
@@ -59,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
     String url= BuildConfig.URL_LINK;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
+    String cypher_title;
+    CypherViewModel cypherViewModel;
 //    private SharedPreferences sharedPreferences;
 //    private SharedPreferences.Editor editor;
 //    private int checkedItem;
 //    private String selected;
 
-    //    private final String CHECKEDITEM = "checked_item";
+
     ArrayList<String> decodes;
     ProgressDialog dialog;
 
@@ -114,19 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         decodes = new ArrayList<>();
 
-        activityMainBinding.trash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityMainBinding.myListView.setAdapter(null);
-                decodes.clear();
-                activityMainBinding.trash.setVisibility(View.GONE);
-            }
-        });
 
-        activityMainBinding.empty.setBackgroundResource(R.drawable.rounded_corner);
-        activityMainBinding.empty.setClipToOutline(true);
-
-        activityMainBinding.myListView.setEmptyView(activityMainBinding.empty);
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -174,18 +169,18 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
         activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String editedFinal = activityMainBinding.scannedText.getText().toString();
-
-                try {
-                    decodeCipher(editedFinal);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String editedFinal = activityMainBinding.scannedText.getText().toString();
+//
+//                try {
+//                    decodeCipher(editedFinal);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
         activityMainBinding.cameraView.setLifecycleOwner(this);
 
@@ -196,6 +191,34 @@ public class MainActivity extends AppCompatActivity {
                 takePhoto();
             }
         });
+        cypherViewModel = ViewModelProviders.of(this).get(CypherViewModel.class);
+        
+        cypher_title = activityMainBinding.scannedText.getText().toString();
+
+        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cypher_title = activityMainBinding.scannedText.getText().toString();
+                CreateCypher(cypher_title);
+                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+
+            }
+        });
+
+    }
+
+    private void CreateCypher(String cypher_title) {
+        Date date = new Date();
+        CharSequence sequence  = DateFormat.format("MMMM d, YYYY", date.getTime());
+
+        Dcryptor dcryptor1 = new Dcryptor();
+        dcryptor1.cypherTitle = cypher_title;
+        dcryptor1.cypherDate = sequence.toString();
+
+        cypherViewModel.insertCypher(dcryptor1);
+//        Toast.makeText(this, "Cypher added.", Toast.LENGTH_SHORT).show();
+
+        finish();
     }
 
 //    real time text detection
@@ -279,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(@NonNull Text text) {
 
                 activityMainBinding.scannedText.setText(text.getText());
-//                dialog.show();
+//
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -290,24 +313,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int id = item.getItemId();
-//
-//
-//        if (id == R.id.themes) {
-//            showDialog();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
 
     private void takePhoto() {
@@ -378,13 +384,13 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     }
-                    //dialog.dismiss();
+
                     String[] strArray = new String[decodes.size()];
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
                     }
 
-                    activityMainBinding.trash.setVisibility(View.VISIBLE);
+
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
                     activityMainBinding.myListView.setAdapter(arrayAdapter);
                     dialog.dismiss();
@@ -405,62 +411,9 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-//    private void showDialog() {
-//
-//        String[] themes = this.getResources().getStringArray(R.array.theme);
-//
-//        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-//        builder.setTitle("Select Theme");
-//        builder.setSingleChoiceItems(R.array.theme, getCheckedItem(), new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                selected = themes[which];
-//                checkedItem = which;
-//            }
-//        });
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                if (selected == null) {
-//                    selected = themes[which];
-//                    checkedItem = which;
-//                }
-//
-//                switch (selected) {
-//                    case "System Default":
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-//                        break;
-//
-//                    case "Dark":
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//                        break;
-//
-//                    case "Light":
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//                        break;
-//                }
-//                setCheckedItem(checkedItem);
-//            }
-//        });
-//
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//
-//    }
-//
-//    private int getCheckedItem() {
-//        return sharedPreferences.getInt(CHECKEDITEM, 0);
-//    }
-//
-//    private void setCheckedItem(int i) {
-//        editor.putInt(CHECKEDITEM, i);
-//        editor.apply();
-//    }
+
+
+
+
 
 }

@@ -100,34 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scannedText" />
 
-    <TextView
-        android:id="@+id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="#fff"
-        android:backgroundTint="#fff"
-        android:fontFamily="@font/share_tech"
-        android:gravity="center"
-        android:text="@string/empty_decode_something"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scannedText" />
 
-    <ImageView
-        android:id="@+id/trash"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/display_to_clear_the_contrnts_of_listview"
-        android:src="@drawable/trash_icon"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/myListView"
-        app:layout_constraintEnd_toEndOf="@+id/myListView" />
 
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"

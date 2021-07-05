@@ -17,7 +17,7 @@ public abstract class DcryptorDatabase extends RoomDatabase {
     public static DcryptorDatabase getDatabaseInstance(Context context){
         if (INSTANCE == null){
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                    DcryptorDatabase.class, "Dcryptor_Database").build();
+                    DcryptorDatabase.class, "Dcryptor_Database").allowMainThreadQueries().build();
         }
             return INSTANCE;
     }
