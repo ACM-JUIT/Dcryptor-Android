@@ -21,7 +21,6 @@ public class DashboardActivity extends AppCompatActivity {
     CypherAdapter adapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +35,10 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        cypherViewModel.getallCyphers.observe(this,dcryptors -> {
-               binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(this));
-               adapter = new CypherAdapter(DashboardActivity.this, dcryptors);
-               binding.cypherRecycler.setAdapter(adapter);
+        cypherViewModel.getallCyphers.observe(this, dcryptors -> {
+            binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new CypherAdapter(DashboardActivity.this, dcryptors);
+            binding.cypherRecycler.setAdapter(adapter);
 
         });
     }
