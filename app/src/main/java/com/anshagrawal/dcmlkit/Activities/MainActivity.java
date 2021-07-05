@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.scannedText.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.scannedText.setClipToOutline(true);
 
-        activityMainBinding.myListView.setBackgroundResource(R.drawable.rounded_corner);
-        activityMainBinding.myListView.setClipToOutline(true);
+//        activityMainBinding.myListView.setBackgroundResource(R.drawable.rounded_corner);
+//        activityMainBinding.myListView.setClipToOutline(true);
 
         //makes the TextView scrollable
         activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
@@ -156,16 +156,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text = ((TextView) view).getText().toString();
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
-                clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String text = ((TextView) view).getText().toString();
+//                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+//                ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
+//                clipboardManager.setPrimaryClip(clipData);
+//                Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
         activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
@@ -205,18 +205,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-            }
-        });
+//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+//            }
+//        });
 
     }
 
     private void CreateCypher(String cypher_title) {
         Date date = new Date();
-        CharSequence sequence  = DateFormat.format("MMMM d, YYYY", date.getTime());
+        CharSequence sequence  = DateFormat.format("MMM d, yyyy", date.getTime());
 
         Dcryptor dcryptor1 = new Dcryptor();
         dcryptor1.cypherTitle = cypher_title;
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
-                    activityMainBinding.myListView.setAdapter(arrayAdapter);
+//                    activityMainBinding.myListView.setAdapter(arrayAdapter);
                     dialog.dismiss();
 
 
