@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activities.DecodeActivity">
+
 
     <ListView
         android:id="@+id/myListView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="288dp"
+        android:layout_marginVertical="20dp"
         android:background="@drawable/edittext_listview"
-        android:backgroundTint="@color/white"
+        android:divider="@color/gray"
+        android:dividerHeight="10dp"
         android:fadeScrollbars="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scannedText" />
+        android:padding="20dp" />
+
 
     <TextView
         android:id="@+id/empty"
@@ -39,14 +40,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/trash"
-        android:layout_width="6dp"
-        android:layout_height="8dp"
-        android:contentDescription="@string/display_to_clear_the_contrnts_of_listview"
-        android:src="@drawable/trash_icon"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/empty"
-        app:layout_constraintEnd_toEndOf="@+id/empty" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
