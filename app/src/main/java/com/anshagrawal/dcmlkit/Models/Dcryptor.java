@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+
 @Entity(tableName = "Dcryptor_Database")
 public class Dcryptor {
     @PrimaryKey(autoGenerate = true)
@@ -17,7 +19,7 @@ public class Dcryptor {
     public String cypherDate;
 
 //    @ColumnInfo(name = "cypher_date")
-//    public String[] decodedCypher;
+//    public ArrayList<Entity> decodedCypher;
 
 
 }

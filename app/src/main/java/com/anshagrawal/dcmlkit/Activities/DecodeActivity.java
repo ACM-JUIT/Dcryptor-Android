@@ -53,9 +53,9 @@ public class DecodeActivity extends AppCompatActivity {
 //        binding.myListView.setEmptyView(binding.empty);
         //binding.scannedText.setMovementMethod(new ScrollingMovementMethod());
 
-        setContentView(R.layout.activity_decode);
-        ImageView trash = findViewById(R.id.trash);
-        ListView myListView = findViewById(R.id.myListView);
+//        setContentView(R.layout.activity_decode);
+//        ImageView trash = findViewById(R.id.trash);
+//        ListView myListView = findViewById(R.id.myListView);
         TextView empty = findViewById(R.id.empty);
         Bundle bundle = getIntent().getExtras();
         String scannedText = bundle.getString("scannedText");
@@ -64,17 +64,17 @@ public class DecodeActivity extends AppCompatActivity {
 
         decodes = new ArrayList<>();
 
-        trash.setOnClickListener(new View.OnClickListener() {
+        binding.trash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myListView.setAdapter(null);
+                binding.myListView.setAdapter(null);
                 decodes.clear();
-                trash.setVisibility(View.GONE);
+                binding.trash.setVisibility(View.GONE);
             }
         });
         binding.trash.setBackgroundResource(R.drawable.rounded_corner);
         empty.setClipToOutline(true);
-        myListView.setEmptyView(empty);
+        binding.myListView.setEmptyView(empty);
 
     }
 }

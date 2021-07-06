@@ -211,8 +211,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cypher_title = activityMainBinding.scannedText.getText().toString();
-//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+
                 CreateCypher(cypher_title);
+                Toast.makeText(MainActivity.this, "Cypher added.", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(MainActivity.this, DecodeActivity.class));
                 String text=activityMainBinding.scannedText.getText().toString();
                 Intent i =new Intent(MainActivity.this, DecodeActivity.class);
                 Bundle bundle = new Bundle();
@@ -242,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         dcryptor1.cypherDate = sequence.toString();
 
         cypherViewModel.insertCypher(dcryptor1);
-        Toast.makeText(this, "Cypher added.", Toast.LENGTH_SHORT).show();
+
 
 //        startActivity(new Intent(MainActivity.this, DecodeActivity.class));
 
