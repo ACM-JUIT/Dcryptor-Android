@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,8 @@ import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
@@ -52,15 +55,17 @@ public class DecodeActivity extends AppCompatActivity {
 //
 //        binding.myListView.setEmptyView(binding.empty);
         //binding.scannedText.setMovementMethod(new ScrollingMovementMethod());
-
-        setContentView(R.layout.activity_decode);
         ImageView trash = findViewById(R.id.trash);
         ListView myListView = findViewById(R.id.myListView);
         TextView empty = findViewById(R.id.empty);
         Bundle bundle = getIntent().getExtras();
-        String scannedText = bundle.getString("scannedText");
-        String[] decodedStringArray;
-        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
+//        String scannedText = bundle.getString("scannedText");
+        String[] decodedStringArray=bundle.getStringArray("decodedTextStringArray");
+        String scannedText = getIntent().getStringExtra("scannedText");
+        Log.i("nwn", decodedStringArray[0]);
+//        arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
+//        binding.myListView.setAdapter(arrayAdapter);
+//        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
 
         decodes = new ArrayList<>();
 
@@ -73,7 +78,6 @@ public class DecodeActivity extends AppCompatActivity {
             }
         });
         binding.trash.setBackgroundResource(R.drawable.rounded_corner);
-        empty.setClipToOutline(true);
         myListView.setEmptyView(empty);
 
     }

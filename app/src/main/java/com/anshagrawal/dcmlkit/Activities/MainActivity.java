@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
             }
         });
 
@@ -207,20 +207,20 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cypher_title = activityMainBinding.scannedText.getText().toString();
-//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-                CreateCypher(cypher_title);
-                String text=activityMainBinding.scannedText.getText().toString();
-                Intent i =new Intent(MainActivity.this, DecodeActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("scannedText", text);
-                i.putExtras(bundle);
-                startActivity(i);
-            }
-        });
+//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cypher_title = activityMainBinding.scannedText.getText().toString();
+////                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+//                CreateCypher(cypher_title);
+//                String text=activityMainBinding.scannedText.getText().toString();
+//                Intent i =new Intent(MainActivity.this, DecodeActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("scannedText", text);
+//                i.putExtras(bundle);
+//                startActivity(i);
+//            }
+//        });
 
 
 //        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
@@ -384,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
 
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final int[] length = new int[1];
 
@@ -417,9 +418,15 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
                     }
+                    Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArray("decodedTextStringArray", strArray);
+                    intent.putExtra("scannedText", text);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
 
 
-                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
+//                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
 //                    activityMainBinding.myListView.setAdapter(arrayAdapter);
                     dialog.dismiss();
 
@@ -437,6 +444,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+
     }
 
 
