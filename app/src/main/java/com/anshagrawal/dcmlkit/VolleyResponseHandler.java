@@ -24,6 +24,7 @@ public class VolleyResponseHandler {
     ProgressDialog dialog;
 
     Context context;
+
     public String[] decodeCipher(String text) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         String[] strArray1 = null;
@@ -61,7 +62,6 @@ public class VolleyResponseHandler {
                         strArray[i] = decodes.get(i);
                         strArray1[i] = decodes.get(i);
                     }
-
 
 
 //                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
