@@ -61,7 +61,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
-    String url = BuildConfig.URL_LINK;
+    String url = BuildConfig.LINK;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
     String cypher_title;
