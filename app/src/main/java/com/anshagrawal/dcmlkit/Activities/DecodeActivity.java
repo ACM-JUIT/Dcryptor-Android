@@ -35,56 +35,17 @@ public class DecodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         decodes = new ArrayList<>();
 
-//        binding.trash.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                binding.myListView.setAdapter(null);
-//                decodes.clear();
-//                binding.trash.setVisibility(View.GONE);
-//            }
-//        });
-
-//        binding.empty.setBackgroundResource(R.drawable.rounded_corner);
-//        binding.empty.setClipToOutline(true);
-//
-//        binding.myListView.setEmptyView(binding.empty);
-
-
-//        setContentView(R.layout.activity_decode);
-//        ImageView trash = findViewById(R.id.trash);
-//        ListView myListView = findViewById(R.id.myListView);
-        TextView empty = findViewById(R.id.empty);
-
-        ListView myListView = findViewById(R.id.myListView);
-
         Bundle bundle = getIntent().getExtras();
-//        String scannedText = bundle.getString("scannedText");
-        String[] decodedStringArray=bundle.getStringArray("decodedTextStringArray");
-//        String scannedText = getIntent().getStringExtra("scannedText");
+        String[] decodedStringArray = bundle.getStringArray("decodedTextStringArray");
         arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
         binding.myListView.setAdapter(arrayAdapter);
 //        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
 
         decodes = new ArrayList<>();
-
-
-//        binding.trash.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                binding.myListView.setAdapter(null);
-//                decodes.clear();
-//                binding.trash.setVisibility(View.GONE);
-//            }
-//        });
-//        binding.trash.setBackgroundResource(R.drawable.rounded_corner);
-//        empty.setClipToOutline(true);
-//        binding.myListView.setEmptyView(empty);
 
 
 //        binding.myListView.setBackgroundResource(R.drawable.edittext_listview);

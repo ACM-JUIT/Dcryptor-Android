@@ -171,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cypher_title = activityMainBinding.scannedText.getText().toString();
-                CreateCypher(cypher_title);
+
                 String editedFinal = activityMainBinding.scannedText.getText().toString();
 
                 try {
@@ -180,7 +179,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+
+//                cypher_title = activityMainBinding.scannedText.getText().toString();
+//                CreateCypher(cypher_title);
             }
         });
 
@@ -207,48 +208,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cypher_title = activityMainBinding.scannedText.getText().toString();
-
-                CreateCypher(cypher_title);
-                Toast.makeText(MainActivity.this, "Cypher added.", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-                String text=activityMainBinding.scannedText.getText().toString();
-                Intent i =new Intent(MainActivity.this, DecodeActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("scannedText", text);
-                i.putExtras(bundle);
-                startActivity(i);
-            }
-        });
-
-//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cypher_title = activityMainBinding.scannedText.getText().toString();
-////                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-//                CreateCypher(cypher_title);
-//                String text=activityMainBinding.scannedText.getText().toString();
-//                Intent i =new Intent(MainActivity.this, DecodeActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("scannedText", text);
-//                i.putExtras(bundle);
-//                startActivity(i);
-//            }
-//        });
-
-
-
-//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                decodeCipher();
-//                startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-//            }
-//        });
 
     }
 
@@ -440,9 +399,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putStringArray("decodedTextStringArray", strArray);
-                    intent.putExtra("scannedText", text);
+                    bundle.putString("scannedTextFinal", text);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    CreateCypher(text);
 
 
 //                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
