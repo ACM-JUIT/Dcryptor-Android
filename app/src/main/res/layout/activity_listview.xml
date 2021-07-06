@@ -4,13 +4,13 @@
     android:id="@+id/label"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
+    android:layout_marginHorizontal="10dp"
     android:fontFamily="@font/montserrat"
     android:padding="10dp"
     android:textSize="20sp"
     android:textStyle="bold"
     android:scrollIndicators="right"
-    android:textColor="@color/textColor"
-    android:background="@color/white"
+    android:textColor="@color/white"
+android:background="@drawable/rounded_corner"
    />
 

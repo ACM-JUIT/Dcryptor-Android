@@ -55,30 +55,19 @@ public class DecodeActivity extends AppCompatActivity {
 //
 //        binding.myListView.setEmptyView(binding.empty);
         //binding.scannedText.setMovementMethod(new ScrollingMovementMethod());
-        ImageView trash = findViewById(R.id.trash);
         ListView myListView = findViewById(R.id.myListView);
-        TextView empty = findViewById(R.id.empty);
         Bundle bundle = getIntent().getExtras();
 //        String scannedText = bundle.getString("scannedText");
         String[] decodedStringArray=bundle.getStringArray("decodedTextStringArray");
-        String scannedText = getIntent().getStringExtra("scannedText");
-        Log.i("nwn", decodedStringArray[0]);
-//        arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
-//        binding.myListView.setAdapter(arrayAdapter);
+//        String scannedText = getIntent().getStringExtra("scannedText");
+        arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
+        binding.myListView.setAdapter(arrayAdapter);
 //        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
 
         decodes = new ArrayList<>();
 
-        trash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myListView.setAdapter(null);
-                decodes.clear();
-                trash.setVisibility(View.GONE);
-            }
-        });
-        binding.trash.setBackgroundResource(R.drawable.rounded_corner);
-        myListView.setEmptyView(empty);
 
+//        binding.myListView.setBackgroundResource(R.drawable.edittext_listview);
+//        binding.myListView.setClipToOutline(true);
     }
 }
