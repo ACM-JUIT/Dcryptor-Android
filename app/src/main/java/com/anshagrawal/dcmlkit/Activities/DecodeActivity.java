@@ -34,6 +34,7 @@ public class DecodeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         binding = ActivityDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

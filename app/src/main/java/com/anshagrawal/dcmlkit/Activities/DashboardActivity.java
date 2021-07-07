@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
+import com.anshagrawal.dcmlkit.EnterTextToDecode;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
@@ -40,8 +41,13 @@ public class DashboardActivity extends AppCompatActivity {
             binding.cypherRecycler.setAdapter(adapter);
 
         });
+        binding.textButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, EnterTextToDecode.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
 
 }

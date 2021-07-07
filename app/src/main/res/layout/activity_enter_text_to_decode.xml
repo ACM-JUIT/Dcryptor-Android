@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashBg"
+    android:orientation="vertical"
+    tools:context=".EnterTextToDecode">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="100dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:textColor="@color/white"
+            android:hint="Enter Cipher Text here"
+            android:textColorHint="@color/gray"
+            android:minHeight="100dp"
+            android:id="@+id/CipherEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="250dp"
+            android:background="@color/cardBg"
+            android:fadeScrollbars="false"
+            android:outlineProvider="none"
+            android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/decodeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CipherEditText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:backgroundTint="@color/cardBg"
+            android:text="Decode!"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</LinearLayout>

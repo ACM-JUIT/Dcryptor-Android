@@ -66,6 +66,7 @@
             app:fab_color="@color/cardBg"
             app:fab_icon="@drawable/ic_baseline_edit_24"
             app:label_text="Text"
+            android:id="@+id/textButton"
             app:label_backgroundColor="@color/cardBg"/>
 
     </com.nambimobile.widgets.efab.ExpandableFabLayout>

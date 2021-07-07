@@ -2,6 +2,7 @@ package com.anshagrawal.dcmlkit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -21,30 +22,25 @@ import java.util.ArrayList;
 
 public class VolleyResponseHandler {
     ArrayList<String> decodes;
-    ProgressDialog dialog;
-
-    Context context;
-
-    public String[] decodeCipher(String text) throws JSONException {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String[] strArray1 = null;
-        dialog = new ProgressDialog(context);
-        dialog.setMessage("Processing your result!");
-        dialog.setCancelable(false);
+//    ProgressDialog dialog;
+    Context mContext;
+    String[] strArray1;
+    public String[] decodeCipher(String text, Context context) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         try {
-            dialog.show();
+//            dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
-            dialog.dismiss();
+//            dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    dialog.show();
+//                    dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
+                    Log.d("bljj", jsonArray.getString(1));
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
@@ -58,15 +54,12 @@ public class VolleyResponseHandler {
                     }
 
                     String[] strArray = new String[decodes.size()];
+                    strArray1=new String[decodes.size()];
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
                         strArray1[i] = decodes.get(i);
                     }
 
-
-//                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
-//                    activityMainBinding.myListView.setAdapter(arrayAdapter);
-                    dialog.dismiss();
 
 
                 } catch (JSONException e) {
@@ -77,11 +70,12 @@ public class VolleyResponseHandler {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                dialog.dismiss();
+//                dialog.dismiss();
 //                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
-        requestQueue.add(jsonObjectRequest);
+//        requestQueue.add(jsonObjectRequest);
+        MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
         return strArray1;
     }
 
