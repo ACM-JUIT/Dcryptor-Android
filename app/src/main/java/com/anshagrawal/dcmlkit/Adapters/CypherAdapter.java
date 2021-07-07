@@ -1,5 +1,6 @@
 package com.anshagrawal.dcmlkit.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,12 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherView
         return new cypherViewHolder(LayoutInflater.from(dashboardActivity).inflate(R.layout.item_cyphers,parent, false));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull cypherViewHolder holder, int position) {
 
         holder.title.setText(dcryptors.get(position).cypherTitle);
+//        holder.decodedcipher.setText(dcryptors.get(dcryptors.size()));
         holder.date.setText(dcryptors.get(position).cypherDate);
     }
 
@@ -41,12 +44,13 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherView
     }
 
     class cypherViewHolder extends RecyclerView.ViewHolder {
-        TextView title, date;
+        TextView title, date, decodedcipher;
         public cypherViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.cTitle);
             date = itemView.findViewById(R.id.cDate);
+            decodedcipher=itemView.findViewById(R.id.decodedCipher);
         }
     }
 }

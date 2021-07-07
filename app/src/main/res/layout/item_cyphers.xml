@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
+        android:backgroundTint="@color/dashBg"
         app:cardCornerRadius="10dp">
 
 
@@ -15,14 +16,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="6dp"
-            android:orientation="vertical">
+            android:background="@drawable/linearlayout_recyclerview_itemcyphers"
+            android:orientation="vertical"
+            >
 
             <TextView
+                android:textColor="@color/red"
+                android:maxLines="3"
                 android:id="@+id/cTitle"
-                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
+                android:padding="5dp"
+
+                android:text="Title" />
+
+            <TextView
+                android:textColor="@color/green"
+                android:maxLines="3"
+                android:id="@+id/decodedCipher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:padding="5dp"
                 android:text="Title" />
 
             <TextView
@@ -32,7 +48,7 @@
                 android:fontFamily="@font/poppins_light"
                 android:padding="2dp"
                 android:text="23 May 2021"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
 
         </LinearLayout>

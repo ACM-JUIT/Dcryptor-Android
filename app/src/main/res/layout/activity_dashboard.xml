@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.DashboardActivity">
+    tools:context=".Activities.DashboardActivity"
+    android:background="@color/dashBg">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cypherRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cypherRecycler"/>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addCypherBtn"
