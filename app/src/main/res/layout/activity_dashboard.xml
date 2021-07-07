@@ -12,13 +12,62 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addCypherBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="26dp"
-        android:src="@drawable/ic_baseline_add_24" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/addCypherBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_margin="26dp"-->
+<!--        android:src="@drawable/ic_baseline_add_24" />-->
+    <!-- This is NOT a root view, but should be a child of whatever root view you choose (CoordinatorLayout, ConstraintLayout, etc) -->
+
+
+
+    <com.nambimobile.widgets.efab.ExpandableFabLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/expandable_fab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.nambimobile.widgets.efab.ExpandableFab
+            android:id="@+id/expandable_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:efab_color="@color/white"
+            app:efab_icon="@drawable/ic_baseline_add_24"
+            app:efab_iconAnimationRotationDeg="-225"
+            app:efab_closingAnticipateTension="0"/>
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_color="#000000"
+            android:id="@+id/addCypherBtn"
+            app:fab_icon="@drawable/ic_baseline_camera_alt_24"
+            app:label_text="Camera"
+            app:label_backgroundColor="#000000"
+            app:label_textColor="#ffffff"/>
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_color="#000000"
+            app:fab_icon="@drawable/ic_baseline_image_24"
+            app:label_text="Gallery"
+            app:label_backgroundColor="#000000"/>
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_color="#000000"
+            app:fab_icon="@drawable/ic_baseline_edit_24"
+            app:label_text="Text"
+            app:label_backgroundColor="#000000"/>
+
+    </com.nambimobile.widgets.efab.ExpandableFabLayout>
 
 </RelativeLayout>
