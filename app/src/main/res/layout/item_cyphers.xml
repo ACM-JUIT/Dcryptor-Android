@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:backgroundTint="@color/dashBg"
+        android:backgroundTint="@color/cardBg"
         app:cardCornerRadius="10dp">
 
 
@@ -23,6 +23,7 @@
             <TextView
                 android:textColor="@color/red"
                 android:maxLines="3"
+                android:textSize="15dp"
                 android:id="@+id/cTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
             <TextView
                 android:textColor="@color/green"
                 android:maxLines="3"
+                android:textSize="15dp"
                 android:id="@+id/decodedCipher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
 
             <TextView
                 android:id="@+id/cDate"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"

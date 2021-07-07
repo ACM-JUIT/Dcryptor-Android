@@ -19,10 +19,9 @@ public class DashboardActivity extends AppCompatActivity {
     ActivityDashboardBinding binding;
     CypherViewModel cypherViewModel;
     CypherAdapter adapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
