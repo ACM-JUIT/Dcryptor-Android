@@ -1,42 +1,24 @@
-package com.anshagrawal.dcmlkit;
+package com.anshagrawal.dcmlkit.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.VoiceInteractor;
-import android.content.ContentResolver;
-import android.content.Context;
+import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
-import android.transition.Transition;
-import android.transition.TransitionValues;
-import android.util.Log;
-import android.util.SparseIntArray;
-import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,13 +27,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.anshagrawal.dcmlkit.BuildConfig;
+import com.anshagrawal.dcmlkit.Models.Dcryptor;
+import com.anshagrawal.dcmlkit.R;
+import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
-import com.google.android.gms.common.util.JsonUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -59,45 +42,85 @@ import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.TextRecognizerOptions;
 import com.otaliastudios.cameraview.BitmapCallback;
 import com.otaliastudios.cameraview.CameraListener;
-import com.otaliastudios.cameraview.FileCallback;
 import com.otaliastudios.cameraview.PictureResult;
-import com.otaliastudios.cameraview.controls.Grid;
-import com.otaliastudios.cameraview.controls.Mode;
 import com.otaliastudios.cameraview.gesture.Gesture;
 import com.otaliastudios.cameraview.gesture.GestureAction;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
-    String url = "https://acm-dcryptor.herokuapp.com/api/v1/";
-    String absolutePath = null;
+    String url = BuildConfig.LINK;
     ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> grocery ;
+    ArrayList<String> grocery;
+    String cypher_title;
+    CypherViewModel cypherViewModel;
+//    private SharedPreferences sharedPreferences;
+//    private SharedPreferences.Editor editor;
+//    private int checkedItem;
+//    private String selected;
+
+
+    ArrayList<String> decodes;
+    ProgressDialog dialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+
+
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+//        Intent intent = new Intent(this, CameraActivity.class);
+//        startActivity(intent);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("We are processing your result. \n Please Wait...");
+        dialog.setCancelable(false);
+        //for dark mode
+//        sharedPreferences = this.getSharedPreferences("themes", Context.MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
 
-        grocery=new ArrayList<>();
+
+//        real time text detector
+//        activityMainBinding.cameraView.addFrameProcessor(new FrameProcessor() {
+//            @Override
+//            public void process(@NonNull Frame frame) {
+//                processImage(getInputImageFromFrame(frame));
+//            }
+//        });
+        //for dark mode
+//        switch (getCheckedItem()) {
+//            case 0:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+//                break;
+//
+//            case 1:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                break;
+//
+//            case 2:
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                break;
+//        }
+
+
+        decodes = new ArrayList<>();
+
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
@@ -105,11 +128,10 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.scannedText.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.scannedText.setClipToOutline(true);
 
-        activityMainBinding.decodedText.setBackgroundResource(R.drawable.rounded_corner);
-        activityMainBinding.decodedText.setClipToOutline(true);
+//        activityMainBinding.myListView.setBackgroundResource(R.drawable.rounded_corner);
+//        activityMainBinding.myListView.setClipToOutline(true);
 
         //makes the TextView scrollable
-        activityMainBinding.decodedText.setMovementMethod(new ScrollingMovementMethod());
         activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
 
 
@@ -133,12 +155,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+//        activityMainBinding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String text = ((TextView) view).getText().toString();
+//                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+//                ClipData clipData = ClipData.newPlainText("Copied to clipboard!", text);
+//                clipboardManager.setPrimaryClip(clipData);
+//                Toast.makeText(MainActivity.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
+        activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
         activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String editedFinal = activityMainBinding.scannedText.getText().toString();
 
                 try {
@@ -146,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+//                cypher_title = activityMainBinding.scannedText.getText().toString();
+//                CreateCypher(cypher_title);
             }
         });
 
@@ -158,12 +194,88 @@ public class MainActivity extends AppCompatActivity {
                 takePhoto();
             }
         });
+        cypherViewModel = ViewModelProviders.of(this).get(CypherViewModel.class);
+
+        cypher_title = activityMainBinding.scannedText.getText().toString();
+
+//        activityMainBinding.btnaddtoDashboard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cypher_title = activityMainBinding.scannedText.getText().toString();
+//                CreateCypher(cypher_title);
+//
+//
+//            }
+//        });
+
+
     }
+
+    private void CreateCypher(String cypher_title) {
+        Date date = new Date();
+        CharSequence sequence = DateFormat.format("MMM d, yyyy", date.getTime());
+
+        Dcryptor dcryptor1 = new Dcryptor();
+        dcryptor1.cypherTitle = cypher_title;
+        dcryptor1.cypherDate = sequence.toString();
+
+        cypherViewModel.insertCypher(dcryptor1);
+
+
+//        startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+
+        finish();
+
+    }
+
+//    real time text detection
+
+
+//    private void processImage(InputImage inputImageFromFrame) {
+//
+//        TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+//        textRecognizer.process(inputImageFromFrame).addOnSuccessListener(new OnSuccessListener<Text>() {
+//            @Override
+//            public void onSuccess(@NonNull Text text) {
+//                activityMainBinding.scannedText.setText("");
+//                activityMainBinding.scannedText.setText(text.getText());
+//                for (Text.TextBlock block : text.getTextBlocks()) {
+//                    String blockText = block.getText();
+//                    Point[] blockCornerPoints = block.getCornerPoints();
+//                    Rect blockFrame = block.getBoundingBox();
+//                    for (Text.Line line : block.getLines()) {
+//                        String lineText = line.getText();
+//                        Point[] lineCornerPoints = line.getCornerPoints();
+//                        Rect lineFrame = line.getBoundingBox();
+//                        for (Text.Element element : line.getElements()) {
+//                            String elementText = element.getText();
+//                            Point[] elementCornerPoints = element.getCornerPoints();
+//                            Rect elementFrame = element.getBoundingBox();
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.d("poop", "onFailure: ");
+//            }
+//        });
+//    }
+
+
+    //    real time text detector
+//    private InputImage getInputImageFromFrame(Frame frame) {
+//        byte[] data = frame.getData();
+//        return InputImage.fromByteArray(data, frame.getSize().getWidth(), frame.getSize().getHeight(), frame.getRotation(), frame.getFormat());
+//    }
 
 
     //Saves the bitmap to external cache directory so that the image does not get stored in the device
     // storage and return Uri for the image cropping library
-
+//realtime
 
     private Uri saveBitmapToCache(Bitmap bitmap) {
         //get cache directory
@@ -196,11 +308,14 @@ public class MainActivity extends AppCompatActivity {
         recognizer.process(img).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
             public void onSuccess(@NonNull Text text) {
+
                 activityMainBinding.scannedText.setText(text.getText());
+//
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                dialog.dismiss();
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -247,38 +362,53 @@ public class MainActivity extends AppCompatActivity {
 
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final int[] length = new int[1];
 
         JSONObject jsonObject = new JSONObject();
         try {
+            //dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
+            //dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    //dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
-                        grocery.add(s);
+                        decodes.add(s);
                         if (i < (jsonArray.length() - 1)) {
                             finalDecodedText.append(jsonArray.getString(i)).append("\n");
                         } else {
                             finalDecodedText.append(jsonArray.getString(i));
                         }
-                    }
-                    String[] strArray = new String[grocery.size()];
-                    for(int i=0;i<grocery.size();i++) {
-                        strArray[i] = grocery.get(i);
-                    }
-                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
-                    activityMainBinding.myListView.setAdapter(arrayAdapter);
 
-                    activityMainBinding.decodedText.setText(finalDecodedText.toString());
+                    }
+
+                    String[] strArray = new String[decodes.size()];
+                    for (int i = 0; i < decodes.size(); i++) {
+                        strArray[i] = decodes.get(i);
+                    }
+                    Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArray("decodedTextStringArray", strArray);
+                    bundle.putString("scannedTextFinal", text);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    CreateCypher(text);
+
+
+//                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
+//                    activityMainBinding.myListView.setAdapter(arrayAdapter);
+                    dialog.dismiss();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -288,9 +418,14 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                activityMainBinding.decodedText.setText("error");
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+
     }
+
+
 }

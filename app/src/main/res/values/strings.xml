@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">dcmlkit</string>
+    <string name="app_name">Dcryptor</string>
     <string name="D">D</string>
     <string name="C">C</string>
     <string name="R">R</string>
@@ -10,4 +10,12 @@
     <string name="takePhoto">Take Photo</string>
     <string name="decodeText">Decode!</string>
     <string name="edittext">Scanned text or manually enter here</string>
+    <string-array name="theme">
+        <item>System Default</item>
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
+
+    <string name="empty_decode_something">Empty! Decode Something!</string>
+    <string name="display_to_clear_the_contrnts_of_listview">Display to clear the contrnts of listview</string>
 </resources>
