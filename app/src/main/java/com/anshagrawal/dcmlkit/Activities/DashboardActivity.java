@@ -29,6 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
     CypherViewModel cypherViewModel;
     CypherAdapter adapter;
     List<Dcryptor> filterDcryptorallList;
+    private static final int IMAGE_PICK_GALLERY_CODE = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -90,6 +91,14 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         this.adapter.searchDcryptor(FilterNames);
+    }
+
+    private void pickGallery() {
+        //intent to pick image from gallery
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        //set intent type to image
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
     }
 
 }
