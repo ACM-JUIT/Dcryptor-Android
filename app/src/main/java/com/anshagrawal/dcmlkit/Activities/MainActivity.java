@@ -16,9 +16,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
 import com.anshagrawal.dcmlkit.MySingleton;
@@ -58,6 +62,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
@@ -66,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> grocery;
     String cypher_title;
+    CypherAdapter adapter;
     CypherViewModel cypherViewModel;
+    String sTitle;
+
 //    private SharedPreferences sharedPreferences;
 //    private SharedPreferences.Editor editor;
 //    private int checkedItem;
@@ -80,13 +88,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
 
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+
+        sTitle = getIntent().getStringExtra("title");
+
+        activityMainBinding.scannedText.setText(sTitle);
 //        Intent intent = new Intent(this, CameraActivity.class);
 //        startActivity(intent);
         dialog = new ProgressDialog(this);
@@ -426,6 +438,8 @@ public class MainActivity extends AppCompatActivity {
 //        requestQueue.add(jsonObjectRequest);
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
+
+
 
 
 
