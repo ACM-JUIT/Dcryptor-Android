@@ -397,11 +397,11 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
                         decodes.add(s);
-                        if (i < (jsonArray.length() - 1)) {
-                            finalDecodedText.append(jsonArray.getString(i)).append("\n");
-                        } else {
-                            finalDecodedText.append(jsonArray.getString(i));
-                        }
+//                        if (i < (jsonArray.length() - 1)) {
+//                            finalDecodedText.append(jsonArray.getString(i)).append("\n");
+//                        } else {
+//                            finalDecodedText.append(jsonArray.getString(i));
+//                        }
 
                     }
 

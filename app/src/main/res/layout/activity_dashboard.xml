@@ -54,6 +54,7 @@
             app:label_backgroundColor="@color/cardBg"
             app:label_textColor="#ffffff"/>
         <com.nambimobile.widgets.efab.FabOption
+            android:id="@+id/selectFromGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_color="@color/cardBg"
