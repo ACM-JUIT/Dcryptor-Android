@@ -369,17 +369,17 @@ public class MainActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            //dialog.show();
+            dialog.show();
             jsonObject.put("data", text);
         } catch (JSONException e) {
-            //dialog.dismiss();
+            dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    //dialog.show();
+                    dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {

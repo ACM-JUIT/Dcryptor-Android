@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 
 @Entity(tableName = "Dcryptor_Database")
+
 public class Dcryptor {
     @PrimaryKey(autoGenerate = true)
     public int id;

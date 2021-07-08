@@ -1,13 +1,20 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
+
+import java.util.concurrent.Executor;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -40,10 +47,23 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
+                startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
                 finish();
             }
         }, 1000);
+
+        activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("Please Verify")
+                        .setDescription("User Authentiication is required to proceed")
+                        .setNegativeButtonText("Cancel")
+                        .build();
+
+                getPrompt().authenticate(promptInfo);
+            }
+        });
     }
 
     private void setInitialYScale(TextView textView) {
@@ -53,4 +73,39 @@ public class SplashActivity extends AppCompatActivity {
     private void setFinalYScale(TextView textView, long delay) {
         textView.animate().translationY(0).setDuration(400).setStartDelay(delay);
     }
+
+
+    private BiometricPrompt getPrompt(){
+        Executor executor = ContextCompat.getMainExecutor(this);
+        BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                notifyUser(errString.toString());
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                notifyUser("Authentication Succeeded!!!!");
+                startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
+
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                notifyUser("Authentication Failed!!!!!");
+            }
+        };
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, callback);
+        return biometricPrompt;
+    }
+
+
+    private void notifyUser(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
 }

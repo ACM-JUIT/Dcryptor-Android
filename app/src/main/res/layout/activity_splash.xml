@@ -120,5 +120,15 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="123dp"
+        android:id="@+id/fingerprint"
+        android:layout_height="132dp"
+        android:src="@drawable/download"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

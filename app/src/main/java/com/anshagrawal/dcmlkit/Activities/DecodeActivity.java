@@ -2,6 +2,7 @@ package com.anshagrawal.dcmlkit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
     ArrayList<String> decodes;
     ArrayAdapter<String> arrayAdapter;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class DecodeActivity extends AppCompatActivity {
         String[] decodedStringArray = bundle.getStringArray("decodedTextStringArray");
         arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
         binding.myListView.setAdapter(arrayAdapter);
+
 //        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
 
         decodes = new ArrayList<>();
@@ -52,4 +55,6 @@ public class DecodeActivity extends AppCompatActivity {
 //        binding.myListView.setBackgroundResource(R.drawable.edittext_listview);
 //        binding.myListView.setClipToOutline(true);
     }
+
+
 }
