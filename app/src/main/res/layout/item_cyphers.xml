@@ -2,56 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="150dp"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="7dp"
         android:backgroundTint="@color/cardBg"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="16dp"
+        android:hapticFeedbackEnabled="true"
+        >
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="6dp"
-            android:background="@drawable/linearlayout_recyclerview_itemcyphers"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
-                android:textColor="@color/red"
-                android:maxLines="3"
-                android:textSize="15dp"
                 android:id="@+id/cTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/linearlayout_recyclerview_itemcyphers"
                 android:fontFamily="@font/poppins_light"
+                android:maxLines="2"
                 android:padding="5dp"
-
-                android:text="Title" />
+                android:text="Title"
+                android:textColor="@color/red"
+                android:textSize="20sp" />
 
             <TextView
-                android:textColor="@color/green"
-                android:maxLines="3"
-                android:textSize="15dp"
                 android:id="@+id/decodedCipher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
+                android:maxLines="3"
                 android:padding="5dp"
-                android:text="Title" />
+                android:text="Title"
+                android:textColor="@color/green"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/cDate"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
                 android:padding="2dp"
                 android:text="23 May 2021"
-                android:textColor="@color/white" />
+                android:textColor="@color/dashboardTextColor"
+                android:textSize="15dp" />
 
 
         </LinearLayout>

@@ -42,10 +42,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setTitle("Dashboard");
 
 
         binding.selectFromGallery.setOnClickListener(new View.OnClickListener() {

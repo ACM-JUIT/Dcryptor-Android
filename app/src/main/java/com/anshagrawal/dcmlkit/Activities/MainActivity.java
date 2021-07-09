@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         final int[] length = new int[1];
 
         JSONObject jsonObject = new JSONObject();
@@ -390,18 +390,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
-                    StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
                         decodes.add(s);
-//                        if (i < (jsonArray.length() - 1)) {
-//                            finalDecodedText.append(jsonArray.getString(i)).append("\n");
-//                        } else {
-//                            finalDecodedText.append(jsonArray.getString(i));
-//                        }
-
                     }
-
                     String[] strArray = new String[decodes.size()];
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
@@ -413,10 +405,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     CreateCypher(text);
-
-
-//                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
-//                    activityMainBinding.myListView.setAdapter(arrayAdapter);
                     dialog.dismiss();
 
 
