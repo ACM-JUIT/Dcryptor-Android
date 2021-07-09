@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,23 +19,27 @@ import android.widget.SearchView;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.EnterTextToDecode;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
+import com.anshagrawal.dcmlkit.PickImageFromGallery;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    MainActivity mainActivity;
     ActivityDashboardBinding binding;
     CypherViewModel cypherViewModel;
     Uri imageUri;
     CypherAdapter adapter;
     List<Dcryptor> filterDcryptorallList;
     private static final int IMAGE_PICK_GALLERY_CODE = 1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -83,11 +89,38 @@ public class DashboardActivity extends AppCompatActivity {
         if(resultCode==RESULT_OK){
             if(requestCode==1){
                 imageUri = data.getData();
-                CropImage.activity(imageUri).start(this);
-
+//                cropImage(imageUri);
+                    Intent i =new Intent(DashboardActivity.this, PickImageFromGallery.class);
+                    i.putExtra("imageUri", imageUri.toString());
+                    startActivity(i);
             }
         }
     }
+
+//    private void cropImage(Uri imageUri) {
+//        CropImage.activity(imageUri).start(this);
+//    }
+
+//    @Override
+//    //crop image activity result listener, this block is executed when the image is cropped
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if (resultCode == RESULT_OK) {
+//                Uri resultUri = result.getUri();
+//                Bitmap imageAfterCrop = null;
+//                try {
+//                    imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+//                    mainActivity.processBitmap(imageAfterCrop, 0);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

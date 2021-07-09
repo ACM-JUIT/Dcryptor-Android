@@ -1,14 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,14 +8,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.BuildConfig;
+import com.anshagrawal.dcmlkit.GoogleMLKit;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
@@ -62,7 +57,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
@@ -74,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     CypherAdapter adapter;
     CypherViewModel cypherViewModel;
     String sTitle;
+
+    GoogleMLKit googleMLKit = new GoogleMLKit();
 
 //    private SharedPreferences sharedPreferences;
 //    private SharedPreferences.Editor editor;
@@ -290,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
     // storage and return Uri for the image cropping library
 //realtime
 
+
     private Uri saveBitmapToCache(Bitmap bitmap) {
         //get cache directory
         File cachePath = new File(getExternalCacheDir(), "my_images/");
@@ -313,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void processBitmap(Bitmap bitmap, int rotation) {
+    public void processBitmap(Bitmap bitmap, int rotation) {
         InputImage img = InputImage.fromBitmap(bitmap, rotation);
 
         //taking an instance of google mlkit textrecognizer
@@ -323,6 +320,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(@NonNull Text text) {
 
                 activityMainBinding.scannedText.setText(text.getText());
+                Log.d("mainhai", text.getText());
 //
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -333,7 +331,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void takePhoto() {
         activityMainBinding.cameraView.takePictureSnapshot();
@@ -438,9 +435,6 @@ public class MainActivity extends AppCompatActivity {
 //        requestQueue.add(jsonObjectRequest);
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
-
-
-
 
 
 }
