@@ -46,6 +46,8 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherView
         holder.title.setText(dcryptors.get(position).cypherTitle);
 //        holder.decodedcipher.setText(dcryptors.get(dcryptors.size()));
         holder.date.setText(dcryptors.get(position).cypherDate);
+        holder.time.setText(dcryptors.get(position).cypherTime);
+
 
         holder.title.setText(dcryptors.get(position).cypherTitle);
 
@@ -66,13 +68,14 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherView
     }
 
     class cypherViewHolder extends RecyclerView.ViewHolder {
-        TextView title, date, decodedcipher;
+        TextView title, date, decodedcipher, time;
         public cypherViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.cTitle);
             date = itemView.findViewById(R.id.cDate);
             decodedcipher=itemView.findViewById(R.id.decodedCipher);
+            time=itemView.findViewById(R.id.cTime);
         }
     }
 }

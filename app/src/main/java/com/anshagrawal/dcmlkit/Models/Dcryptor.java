@@ -19,8 +19,10 @@ public class Dcryptor {
     @ColumnInfo(name = "cypher_date")
     public String cypherDate;
 
-//    @ColumnInfo(name = "cypher_date")
-//    public ArrayList<Entity> decodedCypher;
+    @ColumnInfo(name = "cypher_time")
+    public String cypherTime;
+
+
 
 
 }

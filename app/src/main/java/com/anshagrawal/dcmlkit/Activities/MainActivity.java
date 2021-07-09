@@ -60,7 +60,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+
+
 
         sTitle = getIntent().getStringExtra("title");
 
@@ -227,10 +233,29 @@ public class MainActivity extends AppCompatActivity {
     private void CreateCypher(String cypher_title) {
         Date date = new Date();
         CharSequence sequence = DateFormat.format("MMM d, yyyy", date.getTime());
+//        //CharSequence sequence1 = Timestamp.valueOf(date.getTime());
+//
+//        Timestamp sequence1 = new Timestamp(date.getTime());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+        String currentTime = simpleDateFormat.format(calendar.getTime());
+
+
+        String result = null;
+        try {
+            Date date1 = simpleDateFormat.parse(currentTime);
+            calendar.setTime(date1);
+            calendar.add(Calendar.MINUTE, 15);
+            result = simpleDateFormat.format(calendar.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         Dcryptor dcryptor1 = new Dcryptor();
         dcryptor1.cypherTitle = cypher_title;
         dcryptor1.cypherDate = sequence.toString();
+        dcryptor1.cypherTime = currentTime;
 
         cypherViewModel.insertCypher(dcryptor1);
 
