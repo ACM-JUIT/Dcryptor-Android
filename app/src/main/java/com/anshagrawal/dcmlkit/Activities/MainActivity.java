@@ -1,14 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,14 +8,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.BuildConfig;
+import com.anshagrawal.dcmlkit.GoogleMLKit;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
@@ -66,7 +61,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
@@ -78,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
     CypherAdapter adapter;
     CypherViewModel cypherViewModel;
     String sTitle;
+
+    GoogleMLKit googleMLKit = new GoogleMLKit();
 
 //    private SharedPreferences sharedPreferences;
 //    private SharedPreferences.Editor editor;
@@ -315,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
     // storage and return Uri for the image cropping library
 //realtime
 
+
     private Uri saveBitmapToCache(Bitmap bitmap) {
         //get cache directory
         File cachePath = new File(getExternalCacheDir(), "my_images/");
@@ -338,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void processBitmap(Bitmap bitmap, int rotation) {
+    public void processBitmap(Bitmap bitmap, int rotation) {
         InputImage img = InputImage.fromBitmap(bitmap, rotation);
 
         //taking an instance of google mlkit textrecognizer
@@ -348,6 +345,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(@NonNull Text text) {
 
                 activityMainBinding.scannedText.setText(text.getText());
+                Log.d("mainhai", text.getText());
 //
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -358,7 +356,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void takePhoto() {
         activityMainBinding.cameraView.takePictureSnapshot();
@@ -401,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         final int[] length = new int[1];
 
         JSONObject jsonObject = new JSONObject();
@@ -418,18 +415,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     dialog.show();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
-                    StringBuilder finalDecodedText = new StringBuilder();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
                         decodes.add(s);
-                        if (i < (jsonArray.length() - 1)) {
-                            finalDecodedText.append(jsonArray.getString(i)).append("\n");
-                        } else {
-                            finalDecodedText.append(jsonArray.getString(i));
-                        }
-
                     }
-
                     String[] strArray = new String[decodes.size()];
                     for (int i = 0; i < decodes.size(); i++) {
                         strArray[i] = decodes.get(i);
@@ -441,10 +430,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     CreateCypher(text);
-
-
-//                    arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_listview, strArray);
-//                    activityMainBinding.myListView.setAdapter(arrayAdapter);
                     dialog.dismiss();
 
 
@@ -463,9 +448,6 @@ public class MainActivity extends AppCompatActivity {
 //        requestQueue.add(jsonObjectRequest);
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
-
-
-
 
 
 }
