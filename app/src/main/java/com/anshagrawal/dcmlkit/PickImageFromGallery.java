@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
 import com.anshagrawal.dcmlkit.Activities.MainActivity;
 import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,6 +43,7 @@ public class PickImageFromGallery extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         imageUri = Uri.parse(extras.getString("imageUri"));
         cropImage();
+
     }
 
 
@@ -53,6 +55,7 @@ public class PickImageFromGallery extends AppCompatActivity {
             public void onSuccess(@NonNull Text text) {
                 Log.d("ggg", text.getText());
                 binding.editText.setText(text.getText());
+                decode();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -62,10 +65,22 @@ public class PickImageFromGallery extends AppCompatActivity {
         });
     }
 
+    private void decode() {
+        binding.decodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(PickImageFromGallery.this, DecodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("textToDecode", binding.editText.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
+
     void cropImage() {
         CropImage.activity(imageUri).start(this);
     }
-
 
     @Override
     //crop image activity result listener, this block is executed when the image is cropped

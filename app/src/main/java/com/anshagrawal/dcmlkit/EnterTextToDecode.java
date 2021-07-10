@@ -4,17 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
+import com.anshagrawal.dcmlkit.Activities.MainActivity;
+import com.anshagrawal.dcmlkit.Models.Dcryptor;
+import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityEnterTextToDecodeBinding;
 
 import org.json.JSONException;
 
-public class EnterTextToDecode extends AppCompatActivity {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+public class EnterTextToDecode extends AppCompatActivity {
+    CypherViewModel cypherViewModel;
     ActivityEnterTextToDecodeBinding binding;
 
     @Override
@@ -23,24 +32,21 @@ public class EnterTextToDecode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEnterTextToDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        VolleyResponseHandler volleyResponseHandler= new VolleyResponseHandler();
+        MainActivity mainActivity = new MainActivity();
+        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String textToDecode = binding.CipherEditText.getText().toString();
-                try {
-                    String[] decoded = volleyResponseHandler.decodeCipher(textToDecode, EnterTextToDecode.this);
-                    Log.d("bljj", decoded[0]);
-//                    Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putStringArray("decodedTextStringArray", decoded);
-//                    intent.putExtras(bundle);
-//                    startActivity(intent);
-                } catch (JSONException e) {
-                    Toast.makeText(EnterTextToDecode.this, e.toString(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
+                Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("textToDecode", textToDecode);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
             }
         });
     }
+
+
 }

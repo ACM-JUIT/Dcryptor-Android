@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void CreateCypher(String cypher_title) {
+    public void CreateCypher(String cypher_title) {
         Date date = new Date();
         CharSequence sequence = DateFormat.format("MMM d, yyyy", date.getTime());
 //        //CharSequence sequence1 = Timestamp.valueOf(date.getTime());
