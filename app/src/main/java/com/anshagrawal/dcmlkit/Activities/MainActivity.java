@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
 
-
         sTitle = getIntent().getStringExtra("title");
 
         activityMainBinding.scannedText.setText(sTitle);
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void CreateCypher(String cypher_title) {
+    void CreateCypher(String cypher_title) {
         Date date = new Date();
         CharSequence sequence = DateFormat.format("MMM d, yyyy", date.getTime());
 //        //CharSequence sequence1 = Timestamp.valueOf(date.getTime());
@@ -397,56 +396,61 @@ public class MainActivity extends AppCompatActivity {
 
     //call the api to recursively decode the cipher
     private void decodeCipher(String text) throws JSONException {
-
-
-        final int[] length = new int[1];
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            dialog.show();
-            jsonObject.put("data", text);
-        } catch (JSONException e) {
-            dialog.dismiss();
-            e.printStackTrace();
-        }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    dialog.show();
-                    JSONArray jsonArray = response.getJSONArray("decoded_data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        String s = jsonArray.getString(i);
-                        decodes.add(s);
-                    }
-                    String[] strArray = new String[decodes.size()];
-                    for (int i = 0; i < decodes.size(); i++) {
-                        strArray[i] = decodes.get(i);
-                    }
-                    Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArray("decodedTextStringArray", strArray);
-                    bundle.putString("scannedTextFinal", text);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    CreateCypher(text);
-                    dialog.dismiss();
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            dialog.show();
+//            jsonObject.put("data", text);
+//        } catch (JSONException e) {
+//            dialog.dismiss();
+//            e.printStackTrace();
+//        }
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    dialog.show();
+//                    JSONArray jsonArray = response.getJSONArray("decoded_data");
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        String s = jsonArray.getString(i);
+//                        decodes.add(s);
+//                    }
+//                    String[] strArray = new String[decodes.size()];
+//                    for (int i = 0; i < decodes.size(); i++) {
+//                        strArray[i] = decodes.get(i);
+//                    }
+//                    Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
+//                    Bundle bundle = new Bundle();
+////                    bundle.putStringArray("decodedTextStringArray", strArray);
+//                    bundle.putString("textToDecode", text);
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
+//                    CreateCypher(text);
+//                    dialog.dismiss();
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                dialog.dismiss();
+//                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 //        requestQueue.add(jsonObjectRequest);
-        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+//        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+        CreateCypher(text);
+        Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
+        Bundle bundle = new Bundle();
+//                    bundle.putStringArray("decodedTextStringArray", strArray);
+        bundle.putString("textToDecode", text);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
     }
 
 

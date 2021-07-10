@@ -45,9 +45,7 @@ public class PickImageFromGallery extends AppCompatActivity {
     }
 
 
-
-
-    public  void processBitmap(Bitmap bitmap, int rotation){
+    public void processBitmap(Bitmap bitmap, int rotation) {
         InputImage img = InputImage.fromBitmap(bitmap, rotation);
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         recognizer.process(img).addOnSuccessListener(new OnSuccessListener<Text>() {

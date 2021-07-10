@@ -3,36 +3,33 @@ package com.anshagrawal.dcmlkit.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.anshagrawal.dcmlkit.BuildConfig;
+import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
-import com.anshagrawal.dcmlkit.VolleyResponseHandler;
 import com.anshagrawal.dcmlkit.databinding.ActivityDecodeBinding;
 
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.w3c.dom.Text;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
     ArrayList<String> decodes;
     ArrayAdapter<String> arrayAdapter;
     ProgressDialog dialog;
+    MainActivity mainActivity = new MainActivity();
+    String[] str ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +38,57 @@ public class DecodeActivity extends AppCompatActivity {
         binding = ActivityDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         decodes = new ArrayList<>();
-
         Bundle bundle = getIntent().getExtras();
-        String[] decodedStringArray = bundle.getStringArray("decodedTextStringArray");
-        arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
-        binding.myListView.setAdapter(arrayAdapter);
+        String textToDecode = bundle.getString("textToDecode");
+        try {
+            decodeCipher(textToDecode);
+            String[] decodedStringArray = str;
+//            arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-//        VolleyResponseHandler volleyResponseHandler = new VolleyResponseHandler();
 
         decodes = new ArrayList<>();
-
-
-//        binding.myListView.setBackgroundResource(R.drawable.edittext_listview);
-//        binding.myListView.setClipToOutline(true);
     }
-
+    //call the api to recursively decode the cipher
+    private void decodeCipher(String text) throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        try {
+//            dialog.show();
+            jsonObject.put("data", text);
+        } catch (JSONException e) {
+//            dialog.dismiss();
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+//                    dialog.show();
+                    JSONArray jsonArray = response.getJSONArray("decoded_data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        String s = jsonArray.getString(i);
+                        decodes.add(s);
+                    }
+                    String[] strArray = new String[decodes.size()];
+                    for (int i = 0; i < decodes.size(); i++) {
+                        strArray[i] = decodes.get(i);
+                    }
+                    arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, strArray);
+                    binding.myListView.setAdapter(arrayAdapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                dialog.dismiss();
+                Toast.makeText(DecodeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+    }
 
 }

@@ -30,7 +30,7 @@ public class EnterTextToDecode extends AppCompatActivity {
                 String textToDecode = binding.CipherEditText.getText().toString();
                 try {
                     String[] decoded = volleyResponseHandler.decodeCipher(textToDecode, EnterTextToDecode.this);
-                    Log.d("bljj", textToDecode);
+                    Log.d("bljj", decoded[0]);
 //                    Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
 //                    Bundle bundle = new Bundle();
 //                    bundle.putStringArray("decodedTextStringArray", decoded);

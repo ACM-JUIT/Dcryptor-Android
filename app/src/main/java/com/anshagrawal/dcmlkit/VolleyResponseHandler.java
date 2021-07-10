@@ -19,7 +19,7 @@ public class VolleyResponseHandler {
     String[] strArray1;
 
     public String[] decodeCipher(String text, Context context) throws JSONException {
-        ArrayList<String> decodes = null;
+        ArrayList<String> decodes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("data", text);
@@ -52,11 +52,9 @@ public class VolleyResponseHandler {
                         strArray1[i] = decodes.get(i);
                     }
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -67,7 +65,5 @@ public class VolleyResponseHandler {
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
         return strArray1;
     }
-
-
 }
 

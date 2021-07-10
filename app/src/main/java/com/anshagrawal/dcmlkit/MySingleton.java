@@ -18,18 +18,20 @@ public class MySingleton {
     }
 
     public static synchronized MySingleton getInstance(Context context) {
-        if (instance == null){
-            instance= new MySingleton(context);
+        if (instance == null) {
+            instance = new MySingleton(context);
         }
         return instance;
     }
-    public RequestQueue getRequestQueue(){
-        if(requestQueue==null){
-            requestQueue= Volley.newRequestQueue(ctx.getApplicationContext());
+
+    public RequestQueue getRequestQueue() {
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(ctx.getApplicationContext());
         }
         return requestQueue;
     }
-    public <T> void addToRequestQueue(Request<T> req){
+
+    public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
     }
 }

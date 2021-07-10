@@ -69,6 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         cypherViewModel.getallCyphers.observe(this, dcryptors -> {
             binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(this));
+
             adapter = new CypherAdapter(DashboardActivity.this, dcryptors);
             binding.cypherRecycler.setAdapter(adapter);
             filterDcryptorallList = dcryptors;
@@ -96,31 +97,6 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
     }
-
-//    private void cropImage(Uri imageUri) {
-//        CropImage.activity(imageUri).start(this);
-//    }
-
-//    @Override
-//    //crop image activity result listener, this block is executed when the image is cropped
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            if (resultCode == RESULT_OK) {
-//                Uri resultUri = result.getUri();
-//                Bitmap imageAfterCrop = null;
-//                try {
-//                    imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
-//                    mainActivity.processBitmap(imageAfterCrop, 0);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -152,14 +128,6 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         this.adapter.searchDcryptor(FilterNames);
-    }
-
-    private void pickGallery() {
-        //intent to pick image from gallery
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        //set intent type to image
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
     }
 
 }
