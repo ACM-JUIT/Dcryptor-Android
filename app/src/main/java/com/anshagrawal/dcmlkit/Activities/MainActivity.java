@@ -120,20 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String editedFinal = activityMainBinding.scannedText.getText().toString();
-                if (activityMainBinding.checkBox.isChecked()) {
 
-                } else {
-
-                    startActivity(new Intent(MainActivity.this, DecodeActivity.class));
-                }
-                if (activityMainBinding.radioButton.isChecked()) {
-
-
-                } else if (activityMainBinding.radioButton2.isChecked()) {
-
-                } else {
-                    Toast.makeText(MainActivity.this, "Select at least one method.", Toast.LENGTH_SHORT).show();
-                }
                 try {
                     decodeCipher(editedFinal);
                 } catch (JSONException e) {
@@ -249,8 +236,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("textToDecode", text);
+        if (activityMainBinding.checkBox.isChecked()){
+            bundle.putBoolean("toStore", true);
+        }else{
+            bundle.putBoolean("toStore", false);
+        }
+        if (activityMainBinding.radioButton.isChecked()){
+            bundle.putBoolean("method", true);
+        }else if(activityMainBinding.radioButton2.isChecked()){
+            bundle.putBoolean("method", false);
+        }
+        else{
+            Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+        }
+
         intent.putExtras(bundle);
         startActivity(intent);
+
 
     }
 

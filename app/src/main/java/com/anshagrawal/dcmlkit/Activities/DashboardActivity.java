@@ -197,21 +197,7 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.app_bar_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Search your work here...");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return false;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -222,6 +208,17 @@ public class DashboardActivity extends AppCompatActivity {
                 sharedPreferences.clearData();
                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
                 finish();
+                break;
+            case R.id.Share:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String shareBody = "Hey try this Decode Cypher App. It decodes your cypher and save it securely and permanently.";
+                intent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(intent,"Share via"));
+                return true;
+
+
+
         }
 
         return super.onOptionsItemSelected(item);

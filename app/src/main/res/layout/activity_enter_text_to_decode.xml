@@ -29,15 +29,25 @@
             android:outlineProvider="none"
             android:scrollbars="vertical" />
 
+
         <Button
             android:id="@+id/decodeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/CipherEditText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="127dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="256dp"
             android:backgroundTint="@color/cardBg"
             android:text="Decode!"
             android:textColor="@color/white" />
+
+
     </RelativeLayout>
+
+
 </LinearLayout>

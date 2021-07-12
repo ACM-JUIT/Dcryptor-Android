@@ -18,6 +18,7 @@ import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.databinding.ActivityDecodeBinding;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +32,6 @@ public class DecodeActivity extends AppCompatActivity {
     ArrayList<String> decodes;
     ArrayAdapter<String> arrayAdapter;
     ProgressDialog dialog;
-    MainActivity mainActivity = new MainActivity();
     String[] str;
 
     @Override
@@ -43,8 +43,11 @@ public class DecodeActivity extends AppCompatActivity {
         decodes = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
         String textToDecode = bundle.getString("textToDecode");
+        boolean toStore = bundle.getBoolean("toStore");
+        Log.d("@@@@", "response" + toStore);
+        boolean method = bundle.getBoolean("method");
         try {
-            decodeCipher(textToDecode, true, false);
+            decodeCipher(textToDecode, toStore, method);
             String[] decodedStringArray = str;
 
         } catch (JSONException e) {
@@ -56,21 +59,24 @@ public class DecodeActivity extends AppCompatActivity {
     }
 
     //call the api to recursively decode the cipher
-    private void decodeCipher(String text, boolean toStore, boolean base64) throws JSONException {
+    private void decodeCipher(String text, boolean toStore, boolean method) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         try {
-//            dialog.show();
+            dialog.show();
             jsonObject.put("data", text);
-        } catch (JSONException e) {
-//            dialog.dismiss();
-            e.printStackTrace();
-        }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-//                    dialog.show();
-                    JSONArray jsonArray = response.getJSONArray("decoded_data");
+            jsonObject.put("toStore", toStore?1:0);
+            Log.d("@@@@", "response  " + toStore);
+                    jsonObject.put("method", method?"base64":"recursive");
+                } catch (JSONException e) {
+            dialog.dismiss();
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                    dialog.show();
+                            JSONArray jsonArray = response.getJSONArray("decoded_data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
                         decodes.add(s);
@@ -88,7 +94,7 @@ public class DecodeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-//                dialog.dismiss();
+                dialog.dismiss();
                 Toast.makeText(DecodeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {

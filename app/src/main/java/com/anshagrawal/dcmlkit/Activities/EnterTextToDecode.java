@@ -23,10 +23,17 @@ public class EnterTextToDecode extends AppCompatActivity {
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 String textToDecode = binding.CipherEditText.getText().toString();
                 Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
                 Bundle bundle = new Bundle();
+                boolean toStore = bundle.getBoolean("toStore");
+                boolean method = bundle.getBoolean("method");
                 bundle.putString("textToDecode", textToDecode);
+                bundle.putBoolean("toStore", toStore);
+                bundle.putBoolean("method", method);
                 intent.putExtras(bundle);
                 startActivity(intent);
 

@@ -69,7 +69,7 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
             super(itemView);
             title = itemView.findViewById(R.id.cTitle);
             Date = itemView.findViewById(R.id.cDate);
-            Des = itemView.findViewById(R.id.decodedCipher);
+
         }
     }
 }

@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 
+
 import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,6 +69,10 @@ public class PickImageFromGallery extends AppCompatActivity {
                 Intent intent=new Intent(PickImageFromGallery.this, DecodeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("textToDecode", binding.editText.getText().toString());
+                boolean toStore = bundle.getBoolean("toStore");
+                boolean method = bundle.getBoolean("method");
+                bundle.putBoolean("toStore", toStore);
+                bundle.putBoolean("method", method);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
