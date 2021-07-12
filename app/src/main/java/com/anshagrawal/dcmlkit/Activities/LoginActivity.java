@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         android.content.SharedPreferences preferences = getSharedPreferences("user_cypher", MODE_PRIVATE);
         if (preferences.contains("token")){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             finish();
         }
     }

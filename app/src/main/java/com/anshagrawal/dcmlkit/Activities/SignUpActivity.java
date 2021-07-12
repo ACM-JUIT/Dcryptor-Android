@@ -98,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
                         Toast.makeText(SignUpActivity.this, token, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -112,9 +112,9 @@ public class SignUpActivity extends AppCompatActivity {
                     try {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
-                        //JSONObject jsonObject = new JSONObject(res);
-                        Toast.makeText(SignUpActivity.this, "User not found.", Toast.LENGTH_SHORT).show();
-                    } catch (UnsupportedEncodingException e) {
+                        JSONObject jsonObject = new JSONObject(res);
+                        Toast.makeText(SignUpActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                    } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -177,7 +177,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onStart();
         android.content.SharedPreferences preferences = getSharedPreferences("user_cypher", MODE_PRIVATE);
         if (preferences.contains("token")) {
-            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+            startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
             finish();
         }
     }
