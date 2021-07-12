@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dashBg"
     android:orientation="vertical"
-    tools:context=".EnterTextToDecode">
+    tools:context=".Activities.EnterTextToDecode">
 
     <RelativeLayout
         android:layout_width="match_parent"

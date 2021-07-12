@@ -47,12 +47,15 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = new SharedPreferencesClass(this);
 
+        //Without login button functionality added
         binding.withoutLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             }
         });
+
+        //Sign up button functionality added
         binding.gotosignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        //login button functionality added
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    //Calling of the api for signing in the user
     private void loginUser(View view){
 
         final HashMap<String, String> params = new HashMap<>();
@@ -87,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         String url = "https://acm-dcryptor.herokuapp.com/api/v1/login";
-
+        //Json Object and Post method
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -118,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }){
+            //Headers added to get in which format we are getting the data from the api in our case it is Json
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
@@ -126,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                 return params;
             }
         };
-        //setting of retry policy
+        //Setting of retry policy in case of any network error
         int socketTime = 3000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTime, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
@@ -138,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //To see that nothing is kept empty while giving email and password
     private boolean validate(View v1) {
         boolean isValid;
 
@@ -161,6 +170,7 @@ public class LoginActivity extends AppCompatActivity {
         return isValid;
     }
 
+    //Token stored in shared preferences and onStart is to check whether there is token or not if token is existing direct the user to the Dashboard Activity
     @Override
     protected void onStart() {
         super.onStart();

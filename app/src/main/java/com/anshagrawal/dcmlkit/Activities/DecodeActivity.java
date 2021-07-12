@@ -44,9 +44,9 @@ public class DecodeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String textToDecode = bundle.getString("textToDecode");
         try {
-            decodeCipher(textToDecode);
+            decodeCipher(textToDecode, true,false);
             String[] decodedStringArray = str;
-//            arrayAdapter = new ArrayAdapter<String>(DecodeActivity.this, R.layout.activity_listview, decodedStringArray);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class DecodeActivity extends AppCompatActivity {
         decodes = new ArrayList<>();
     }
     //call the api to recursively decode the cipher
-    private void decodeCipher(String text) throws JSONException {
+    private void decodeCipher(String text,boolean toStore, boolean base64) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         try {
 //            dialog.show();

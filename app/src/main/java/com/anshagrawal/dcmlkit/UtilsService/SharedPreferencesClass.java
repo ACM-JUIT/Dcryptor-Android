@@ -8,7 +8,7 @@ public class SharedPreferencesClass {
     private static final String USER_PREFERENCE = "user_cypher";
     private android.content.SharedPreferences appShared;
     private android.content.SharedPreferences.Editor prefsEditor;
-
+    //For storing our token in local storage of android that is shared preferences
     public SharedPreferencesClass(Context context){
         appShared = context.getSharedPreferences(USER_PREFERENCE, Activity.MODE_PRIVATE);
         this.prefsEditor = appShared.edit();
@@ -42,7 +42,7 @@ public class SharedPreferencesClass {
     public void setValueBoolean(String key, boolean value){
         prefsEditor.putBoolean(key, value).commit();
     }
-
+    //for clearing data when the user clicks on logout
     public void clearData(){
         prefsEditor.clear().commit();
     }

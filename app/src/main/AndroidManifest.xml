@@ -15,11 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-        <activity android:name=".PickImageFromGallery"></activity>
+        <activity android:name=".Activities.PickImageFromGallery"></activity>
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.LoginActivity" />
         <activity
-            android:name=".EnterTextToDecode"
+            android:name=".Activities.EnterTextToDecode"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Activities.DecodeActivity" />
         <activity android:name=".Activities.DashboardActivity" />

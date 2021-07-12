@@ -1,7 +1,6 @@
-package com.anshagrawal.dcmlkit;
+package com.anshagrawal.dcmlkit.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,10 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
-import com.anshagrawal.dcmlkit.Activities.MainActivity;
 import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

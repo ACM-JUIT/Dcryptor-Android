@@ -3,11 +3,9 @@ package com.anshagrawal.dcmlkit.Activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,13 +28,10 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
-import com.anshagrawal.dcmlkit.EnterTextToDecode;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
-import com.anshagrawal.dcmlkit.Models.Dcryptor;
-import com.anshagrawal.dcmlkit.PickImageFromGallery;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
-import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
+
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
 
 import org.json.JSONArray;
@@ -51,17 +46,14 @@ import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    MainActivity mainActivity;
+
     ActivityDashboardBinding binding;
-    CypherViewModel cypherViewModel;
     Uri imageUri;
     String token;
     CypherAdapter adapter;
-    List<Dcryptor> filterDcryptorallList;
     SharedPreferencesClass sharedPreferences;
     ArrayList<CypherModel> arrayList;
 
-    private static final int IMAGE_PICK_GALLERY_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +63,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Dashboard");
         sharedPreferences =  new SharedPreferencesClass(this);
-
+        //Getting token that has been stored in shared preferences
         token = sharedPreferences.getValueString("token");
 
-
+        //Selecting image from gallery
         binding.selectFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +79,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
 
-        //cypherViewModel = ViewModelProviders.of(this).get(CypherViewModel.class);
+        //Functionality to decode the cypher using camera of the device on clicking the cypher button
         binding.addCypherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,14 +87,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-//        cypherViewModel.getallCyphers.observe(this, dcryptors -> {
-//            binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(this));
-//
-//            adapter = new CypherAdapter(DashboardActivity.this, dcryptors);
-//            binding.cypherRecycler.setAdapter(adapter);
-//            filterDcryptorallList = dcryptors;
-//
-//        });
+        //By using only text mode this button will be used
         binding.textButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +95,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //Setting the recycler view
         binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.cypherRecycler.setHasFixedSize(true);
         getTask();
@@ -130,10 +115,9 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
     }
-
+    //Api for fetching the data of a particular user
     private void getTask() {
         arrayList = new ArrayList<>();
-        //binding.progressBar.setVisibility(View.VISIBLE);
         String url = "https://acm-dcryptor.herokuapp.com/api/v2/history";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -150,7 +134,12 @@ public class DashboardActivity extends AppCompatActivity {
                                     obj.getString("stringtoDecode"),
                                     obj.getString("decodedAt")
 
+
                             );
+                            JSONArray jsonArray1  = response.getJSONArray("decoded_Text");
+                            for (int j = 0;j < jsonArray1.length();j++){
+                                JSONObject object = jsonArray1.getJSONObject(j);
+                            }
                             arrayList.add(cypherModel);
 
                         }
@@ -167,7 +156,8 @@ public class DashboardActivity extends AppCompatActivity {
                     binding.progressBar.setVisibility(View.GONE);
                 }
             }
-        }, new Response.ErrorListener() {
+        }, //Error Handling
+                new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("historyapi", "error" + error.getMessage());
@@ -185,6 +175,8 @@ public class DashboardActivity extends AppCompatActivity {
                 binding.progressBar.setVisibility(View.GONE);
             }
         }){
+            //Headers added to get in which format we are getting the data from the api in our case it is Json and
+            // also authorization is also done when the api will get the token then it will send the data of the particular user.
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
@@ -194,15 +186,16 @@ public class DashboardActivity extends AppCompatActivity {
                 return headers;
             }
         };
-        //setting of retry policy
+        //Setting of retry policy in case of any network error
         int socketTime = 3000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTime, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
-        //request add
+        //Adding request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
+    //Overriding the below methods for showing the menu on the top right of the dashboard activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -218,7 +211,7 @@ public class DashboardActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//                DcryptorFilter(newText);
+
                 return false;
             }
         });
@@ -237,15 +230,7 @@ public class DashboardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void DcryptorFilter(String newText) {
-//        ArrayList<Dcryptor> FilterNames = new ArrayList<>();
-//        for (Dcryptor dcryptor : this.filterDcryptorallList) {
-//            if (dcryptor.cypherTitle.contains(newText) || dcryptor.cypherDate.contains(newText)) {
-//                FilterNames.add(dcryptor);
-//            }
-//        }
-//        this.adapter.searchDcryptor(FilterNames);
-//    }
+
 
 
 

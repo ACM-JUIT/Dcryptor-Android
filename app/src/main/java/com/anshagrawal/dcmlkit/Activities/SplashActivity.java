@@ -27,20 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         activitySplashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(activitySplashBinding.getRoot());
         getSupportActionBar().hide();
-//        setInitialYScale(activitySplashBinding.textViewD);
-//        setInitialYScale(activitySplashBinding.textViewC);
-//        setInitialYScale(activitySplashBinding.textViewR);
-//        setInitialYScale(activitySplashBinding.textViewP);
-//        setInitialYScale(activitySplashBinding.textViewT);
-//        setInitialYScale(activitySplashBinding.textViewO);
-//        setInitialYScale(activitySplashBinding.textViewR1);
-//        setFinalYScale(activitySplashBinding.textViewD, 0);
-//        setFinalYScale(activitySplashBinding.textViewC, 300);
-//        setFinalYScale(activitySplashBinding.textViewR, 300 * 2);
-//        setFinalYScale(activitySplashBinding.textViewP, 300 * 3);
-//        setFinalYScale(activitySplashBinding.textViewT, 300 * 4);
-//        setFinalYScale(activitySplashBinding.textViewO, 300 * 5);
-//        setFinalYScale(activitySplashBinding.textViewR1, 300 * 6);
         activitySplashBinding.textViewY.animate().rotation(360).setDuration(800);
 
         //launch main activity after 3.2s os splash screen
@@ -51,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 1000);
-
+        //Fingerprint image added when the user clicks the image a prompt will open and when the user will authenticate then only the user will be allowed to enter in the app.
         activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,15 +52,9 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    private void setInitialYScale(TextView textView) {
-        textView.setY(1350);
-    }
-
-    private void setFinalYScale(TextView textView, long delay) {
-        textView.animate().translationY(0).setDuration(400).setStartDelay(delay);
-    }
 
 
+    //For security of the app by executing the biometric.
     private BiometricPrompt getPrompt(){
         Executor executor = ContextCompat.getMainExecutor(this);
         BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {

@@ -47,14 +47,14 @@ public class SignUpActivity extends AppCompatActivity {
         utilService = new UtilService();
         sharedPreferences = new SharedPreferencesClass(this);
 
-
+        //Direct the user to login activity for signing in the app.
         binding.loginActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             }
         });
-
+        //Functionality of the button when the user clicks on sign up take all the params and get connected to the api.
         binding.signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-
+    //Calling the api for Signing up of the user
     private void registerUser() {
         //final HashMap<String, String> params = new HashMap<>();
         JSONObject params = new JSONObject();
@@ -121,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }) {
 
-
+            //Headers added to get in which format we are getting the data from the api in our case it is Json
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
@@ -129,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
                 return headers;
             }
         };
-        //setting of retry policy
+        //Setting of retry policy in case of any network error
         int socketTime = 3000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTime, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
@@ -139,7 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
     }
-
+    //To see that nothing is kept empty while giving username, email, password and confirm password
     public boolean validate(View v1) {
         boolean isValid;
 
@@ -171,13 +171,13 @@ public class SignUpActivity extends AppCompatActivity {
         return isValid;
     }
 
-
+    //Token stored in shared preferences and onStart is to check whether there is token or not if token is existing direct the user to the Dashboard Activity
     @Override
     protected void onStart() {
         super.onStart();
         android.content.SharedPreferences preferences = getSharedPreferences("user_cypher", MODE_PRIVATE);
         if (preferences.contains("token")) {
-            startActivity(new Intent(SignUpActivity.this, DashboardActivity.class));
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             finish();
         }
     }
