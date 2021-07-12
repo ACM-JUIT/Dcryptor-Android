@@ -9,12 +9,7 @@
         android:icon="@drawable/ic_baseline_color_lens_24"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/Refresh"
-        android:icon="@drawable/ic_baseline_refresh_24"
-        android:title="Refresh"
-        app:showAsAction="always"
-         />
+    
 
     <item
         android:id="@+id/Share"

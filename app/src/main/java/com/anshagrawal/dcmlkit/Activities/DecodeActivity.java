@@ -61,21 +61,22 @@ public class DecodeActivity extends AppCompatActivity {
     //call the api to recursively decode the cipher
     private void decodeCipher(String text, boolean toStore, boolean method) throws JSONException {
         JSONObject jsonObject = new JSONObject();
+//        dialog.show();
         try {
-            dialog.show();
+
             jsonObject.put("data", text);
             jsonObject.put("toStore", toStore?1:0);
             Log.d("@@@@", "response  " + toStore);
                     jsonObject.put("method", method?"base64":"recursive");
                 } catch (JSONException e) {
-            dialog.dismiss();
+            //dialog.dismiss();
                     e.printStackTrace();
                 }
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                    dialog.show();
+//                    dialog.show();
                             JSONArray jsonArray = response.getJSONArray("decoded_data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
