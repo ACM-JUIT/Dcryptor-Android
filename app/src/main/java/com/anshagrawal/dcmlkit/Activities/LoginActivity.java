@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
                         JSONObject  jsonObject = new JSONObject(res);
-                        Toast.makeText(LoginActivity.this, "User not found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }

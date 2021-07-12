@@ -87,8 +87,6 @@
         app:layout_constraintVertical_bias="1.0" />
 
 
-
-
     <com.theartofdev.edmodo.cropper.CropImageView
         android:id="@+id/cropImageView"
         android:layout_width="match_parent"
@@ -135,5 +133,48 @@
         app:layout_constraintBottom_toBottomOf="@+id/scannedText"
         app:layout_constraintEnd_toEndOf="@+id/scannedText"
         app:layout_constraintTop_toTopOf="@+id/scannedText" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:fontFamily="@font/share_tech"
+        android:text="Store In Database"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scannedText"
+        app:layout_constraintVertical_bias="0.107" />
+
+    <RadioGroup
+        android:layout_width="298dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/share_tech"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:fontFamily="@font/share_tech"
+            android:text="In Base 64" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/share_tech"
+            android:text="In Recursive" />
+    </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

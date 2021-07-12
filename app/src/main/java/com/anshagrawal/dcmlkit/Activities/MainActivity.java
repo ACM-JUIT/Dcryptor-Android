@@ -187,7 +187,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String editedFinal = activityMainBinding.scannedText.getText().toString();
+                if (activityMainBinding.checkBox.isChecked()){
 
+
+
+                }else{
+                    startActivity(new Intent(MainActivity.this, DecodeActivity.class));
+                }
+                if (activityMainBinding.radioButton.isChecked()){
+
+                }else if (activityMainBinding.radioButton2.isChecked()){
+
+                }else{
+                    Toast.makeText(MainActivity.this, "Select at least one method.", Toast.LENGTH_SHORT).show();
+                }
                 try {
                     decodeCipher(editedFinal);
                 } catch (JSONException e) {

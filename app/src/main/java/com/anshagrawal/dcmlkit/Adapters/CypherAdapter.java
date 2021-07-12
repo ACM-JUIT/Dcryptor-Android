@@ -1,8 +1,7 @@
 package com.anshagrawal.dcmlkit.Adapters;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,76 +11,51 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anshagrawal.dcmlkit.Activities.DashboardActivity;
-import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
-import com.anshagrawal.dcmlkit.Activities.MainActivity;
-import com.anshagrawal.dcmlkit.Models.Dcryptor;
+import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherViewHolder> {
-    DashboardActivity dashboardActivity;
-    List<Dcryptor> dcryptors;
-    List<Dcryptor> allDcryptoritem;
+public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder> {
 
-    public CypherAdapter(DashboardActivity dashboardActivity, List<Dcryptor> dcryptors) {
-        this.dashboardActivity = dashboardActivity;
-        this.dcryptors = dcryptors;
-        allDcryptoritem = new ArrayList<>(dcryptors);
-    }
-
-    public void searchDcryptor(List<Dcryptor> filteredName) {
-        this.dcryptors = filteredName;
-        notifyDataSetChanged();
+    ArrayList<CypherModel> arrayList;
+    Context context;
+    public CypherAdapter(Context context, ArrayList<CypherModel> arrayList) {
+        this.arrayList = arrayList;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public cypherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new cypherViewHolder(LayoutInflater.from(dashboardActivity).inflate(R.layout.item_cyphers, parent, false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_cyphers, parent, false);
+        final ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
     }
-
 
     @Override
-    public void onBindViewHolder(@NonNull cypherViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final String title = arrayList.get(position).getStringtoDecode();
+        final String date = arrayList.get(position).getDecodedAt();
+        final String id = arrayList.get(position).get_id();
 
-        holder.title.setText(dcryptors.get(position).cypherTitle);
-//        holder.decodedcipher.setText(dcryptors.get(dcryptors.size()));
-        holder.date.setText(dcryptors.get(position).cypherDate);
-        holder.time.setText(dcryptors.get(position).cypherTime);
-
-
-        holder.title.setText(dcryptors.get(position).cypherTitle);
-
-
-        holder.itemView.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            Intent intent = new Intent(dashboardActivity, DecodeActivity.class);
-            bundle.putString("textToDecode", dcryptors.get(position).cypherTitle);
-//            intent.putExtra("title", dcryptors.get(position).cypherTitle);
-            intent.putExtras(bundle);
-            dashboardActivity.startActivity(intent);
-        });
+        holder.title.setText(title);
+        holder.Date.setText(date);
 
     }
-
 
     @Override
     public int getItemCount() {
-        return dcryptors.size();
+        return arrayList.size();
     }
 
-    class cypherViewHolder extends RecyclerView.ViewHolder {
-        TextView title, date, decodedcipher, time;
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public cypherViewHolder(@NonNull View itemView) {
+        TextView title,Date;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             title = itemView.findViewById(R.id.cTitle);
-            date = itemView.findViewById(R.id.cDate);
-            decodedcipher = itemView.findViewById(R.id.decodedCipher);
-            time = itemView.findViewById(R.id.cTime);
+            Date = itemView.findViewById(R.id.cDate);
         }
     }
 }

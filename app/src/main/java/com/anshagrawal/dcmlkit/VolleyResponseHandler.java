@@ -18,7 +18,7 @@ public class VolleyResponseHandler {
     Context mContext;
     String[] strArray1;
 
-    public String[] decodeCipher(String text, Context context) throws JSONException {
+    public String[] decodeCipher(String text,boolean toStore, boolean base64, Context context) throws JSONException {
         ArrayList<String> decodes = new ArrayList<>();
         JSONObject jsonObject = new JSONObject();
         try {

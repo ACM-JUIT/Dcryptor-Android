@@ -51,13 +51,7 @@
                 android:orientation="horizontal">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Date : "
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+
 
                 <TextView
                     android:id="@+id/cDate"
@@ -68,23 +62,9 @@
                     android:textColor="@color/white"
                     android:textSize="15dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Time : "
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/cTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="12:00 PM"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+
+
 
 
             </LinearLayout>
