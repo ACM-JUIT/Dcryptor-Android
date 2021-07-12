@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
@@ -87,7 +90,15 @@ public class DecodeActivity extends AppCompatActivity {
 //                dialog.dismiss();
                 Toast.makeText(DecodeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put("token", "bcdb");
+                return hashMap;
+            }
+        };
+
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 

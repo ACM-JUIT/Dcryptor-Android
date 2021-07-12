@@ -1,16 +1,15 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +20,10 @@ import com.anshagrawal.dcmlkit.EnterTextToDecode;
 import com.anshagrawal.dcmlkit.Models.Dcryptor;
 import com.anshagrawal.dcmlkit.PickImageFromGallery;
 import com.anshagrawal.dcmlkit.R;
+import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.ViewModel.CypherViewModel;
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
     Uri imageUri;
     CypherAdapter adapter;
     List<Dcryptor> filterDcryptorallList;
+    SharedPreferencesClass sharedPreferences;
     private static final int IMAGE_PICK_GALLERY_CODE = 1000;
 
     @Override
@@ -45,7 +43,9 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         getSupportActionBar().setTitle("Dashboard");
+        sharedPreferences =  new SharedPreferencesClass(this);
 
 
         binding.selectFromGallery.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
 
 
         cypherViewModel = ViewModelProviders.of(this).get(CypherViewModel.class);
@@ -119,6 +120,18 @@ public class DashboardActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logout:
+                 sharedPreferences.clearData();
+                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+                 finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void DcryptorFilter(String newText) {
         //Log.e("@@@@@","NotesFilter: "+newText);
         ArrayList<Dcryptor> FilterNames = new ArrayList<>();
@@ -129,5 +142,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
         this.adapter.searchDcryptor(FilterNames);
     }
+
+
 
 }

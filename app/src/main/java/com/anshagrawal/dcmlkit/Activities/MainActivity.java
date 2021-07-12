@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     GoogleMLKit googleMLKit = new GoogleMLKit();
 
-//    private SharedPreferences sharedPreferences;
-//    private SharedPreferences.Editor editor;
+//    private SharedPreferencesClass sharedPreferences;
+//    private SharedPreferencesClass.Editor editor;
 //    private int checkedItem;
 //    private String selected;
 

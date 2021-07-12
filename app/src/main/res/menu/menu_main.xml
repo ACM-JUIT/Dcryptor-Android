@@ -8,6 +8,12 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_color_lens_24"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/app_bar_search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search"
