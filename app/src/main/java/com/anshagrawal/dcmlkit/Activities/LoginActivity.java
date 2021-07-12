@@ -47,13 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = new SharedPreferencesClass(this);
 
-        //Without login button functionality added
-        binding.withoutLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-            }
-        });
+
+
 
         //Sign up button functionality added
         binding.gotosignup.setOnClickListener(new View.OnClickListener() {

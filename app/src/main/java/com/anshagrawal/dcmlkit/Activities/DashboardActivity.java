@@ -62,7 +62,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getSupportActionBar().setTitle("Dashboard");
-        sharedPreferences =  new SharedPreferencesClass(this);
+        sharedPreferences = new SharedPreferencesClass(this);
         //Getting token that has been stored in shared preferences
         token = sharedPreferences.getValueString("token");
 
@@ -76,7 +76,6 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
-
 
 
         //Functionality to decode the cypher using camera of the device on clicking the cypher button
@@ -104,17 +103,18 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            if(requestCode==1){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
                 imageUri = data.getData();
 //                cropImage(imageUri);
-                    Intent i =new Intent(DashboardActivity.this, PickImageFromGallery.class);
-                    i.putExtra("imageUri", imageUri.toString());
-                    startActivity(i);
+                Intent i = new Intent(DashboardActivity.this, PickImageFromGallery.class);
+                i.putExtra("imageUri", imageUri.toString());
+                startActivity(i);
             }
         }
 
     }
+
     //Api for fetching the data of a particular user
     private void getTask() {
         arrayList = new ArrayList<>();
@@ -123,11 +123,11 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getBoolean("status")){
+                    if (response.getBoolean("status")) {
                         //Toast.makeText(DashboardActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         JSONArray jsonArray = response.getJSONArray("decodedHistory");
                         Log.i("historyapi", "response" + jsonArray.toString());
-                        for (int i = 0; i<jsonArray.length();i++){
+                        for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
                             CypherModel cypherModel = new CypherModel(
                                     obj.getString("_id"),
@@ -136,10 +136,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
                             );
-                            JSONArray jsonArray1  = response.getJSONArray("decoded_Text");
-                            for (int j = 0;j < jsonArray1.length();j++){
-                                JSONObject object = jsonArray1.getJSONObject(j);
-                            }
+
                             arrayList.add(cypherModel);
 
                         }
@@ -149,7 +146,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
                     }
-                    //binding.progressBar.setVisibility(View.GONE);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -158,30 +155,30 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }, //Error Handling
                 new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("historyapi", "error" + error.getMessage());
-                Toast.makeText(DashboardActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                NetworkResponse response  =error.networkResponse;
-                if (error instanceof ServerError && response != null){
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        JSONObject  jsonObject = new JSONObject(res);
-                        Toast.makeText(DashboardActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
-                    } catch (UnsupportedEncodingException | JSONException e) {
-                        e.printStackTrace();
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("historyapi", "error" + error.getMessage());
+                        Toast.makeText(DashboardActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        NetworkResponse response = error.networkResponse;
+                        if (error instanceof ServerError && response != null) {
+                            try {
+                                String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                JSONObject jsonObject = new JSONObject(res);
+                                Toast.makeText(DashboardActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
+                            } catch (UnsupportedEncodingException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        binding.progressBar.setVisibility(View.GONE);
                     }
-                }
-                binding.progressBar.setVisibility(View.GONE);
-            }
-        }){
+                }) {
             //Headers added to get in which format we are getting the data from the api in our case it is Json and
             // also authorization is also done when the api will get the token then it will send the data of the particular user.
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization",  "Bearer "  + token);
+                headers.put("Authorization", "Bearer " + token);
 
                 return headers;
             }
@@ -220,18 +217,15 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.logout:
-                 sharedPreferences.clearData();
-                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-                 finish();
+                sharedPreferences.clearData();
+                startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+                finish();
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 
 }

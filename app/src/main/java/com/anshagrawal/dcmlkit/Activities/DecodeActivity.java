@@ -32,7 +32,7 @@ public class DecodeActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     ProgressDialog dialog;
     MainActivity mainActivity = new MainActivity();
-    String[] str ;
+    String[] str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class DecodeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String textToDecode = bundle.getString("textToDecode");
         try {
-            decodeCipher(textToDecode, true,false);
+            decodeCipher(textToDecode, true, false);
             String[] decodedStringArray = str;
 
         } catch (JSONException e) {
@@ -54,8 +54,9 @@ public class DecodeActivity extends AppCompatActivity {
 
         decodes = new ArrayList<>();
     }
+
     //call the api to recursively decode the cipher
-    private void decodeCipher(String text,boolean toStore, boolean base64) throws JSONException {
+    private void decodeCipher(String text, boolean toStore, boolean base64) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         try {
 //            dialog.show();
@@ -90,10 +91,10 @@ public class DecodeActivity extends AppCompatActivity {
 //                dialog.dismiss();
                 Toast.makeText(DecodeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String,String> hashMap = new HashMap<>();
+                HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put("token", "bcdb");
                 return hashMap;
             }

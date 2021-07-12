@@ -51,15 +51,8 @@ public class MainActivity extends AppCompatActivity {
     int rotationAfterCrop;
     ActivityMainBinding activityMainBinding;
     String url = BuildConfig.LINK;
-    ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> grocery;
     String cypher_title;
-    CypherAdapter adapter;
-
     String sTitle;
-    GoogleMLKit googleMLKit = new GoogleMLKit();
-
-
     ArrayList<String> decodes;
     ProgressDialog dialog;
 
@@ -84,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCancelable(false);
 
 
-
         decodes = new ArrayList<>();
 
 
@@ -93,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding.scannedText.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.scannedText.setClipToOutline(true);
-
 
 
         //makes the TextView scrollable
@@ -132,9 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 if (activityMainBinding.checkBox.isChecked()) {
 
                 } else {
+
                     startActivity(new Intent(MainActivity.this, DecodeActivity.class));
                 }
                 if (activityMainBinding.radioButton.isChecked()) {
+
 
                 } else if (activityMainBinding.radioButton2.isChecked()) {
 
@@ -164,9 +157,7 @@ public class MainActivity extends AppCompatActivity {
         cypher_title = activityMainBinding.scannedText.getText().toString();
 
 
-
     }
-
 
 
     private Uri saveBitmapToCache(Bitmap bitmap) {

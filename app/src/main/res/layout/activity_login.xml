@@ -9,7 +9,6 @@
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/withoutLogin"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
         android:id="@+id/progressbarofmainactivity"
@@ -106,17 +105,7 @@
             android:textColor="@color/white"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/withoutLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:text="Proceed without login"
-        android:textAlignment="center"
-        android:textColor="@color/black" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

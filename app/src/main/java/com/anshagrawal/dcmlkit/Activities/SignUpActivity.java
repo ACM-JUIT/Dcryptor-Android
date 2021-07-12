@@ -1,12 +1,12 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -34,10 +34,9 @@ import java.util.Map;
 public class SignUpActivity extends AppCompatActivity {
 
     ActivitySignUpBinding binding;
-    private String username, email, password, cnfPassword;
     UtilService utilService;
     SharedPreferencesClass sharedPreferences;
-
+    private String username, email, password, cnfPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
     //Calling the api for Signing up of the user
     private void registerUser() {
         //final HashMap<String, String> params = new HashMap<>();
@@ -139,6 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
     }
+
     //To see that nothing is kept empty while giving username, email, password and confirm password
     public boolean validate(View v1) {
         boolean isValid;
