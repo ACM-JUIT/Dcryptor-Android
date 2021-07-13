@@ -24,7 +24,8 @@
         <activity android:name=".Activities.DecodeActivity" />
         <activity android:name=".Activities.DashboardActivity" />
         <activity android:name=".Activities.CameraActivity" />
-        <activity android:name=".Activities.SplashActivity">
+        <activity android:name=".Activities.SplashActivity" android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
