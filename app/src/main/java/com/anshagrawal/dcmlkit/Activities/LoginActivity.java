@@ -1,5 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     UtilService utilService;
     SharedPreferencesClass sharedPreferences;
     private String email, password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 email = binding.loginemail.getText().toString();
                 password = binding.loginPassword.getText().toString();
-
 
                 if (validate(v)) {
                     loginUser(v);
@@ -133,8 +132,6 @@ public class LoginActivity extends AppCompatActivity {
         jsonObjectRequest.setRetryPolicy(policy);
 
         //request add
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(jsonObjectRequest);
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
 
