@@ -25,10 +25,10 @@ import java.io.IOException;
 
 public class PickImageFromGallery extends AppCompatActivity {
 
-    public static final int PICK_IMAGES = 1;
+
     ActivityPickImageFromGalleryBinding binding;
     Uri imageUri;
-    MainActivity mainActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
