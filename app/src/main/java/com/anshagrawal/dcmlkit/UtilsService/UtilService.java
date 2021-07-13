@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class UtilService {
 
-    public  void hideKeyboard(View view, Activity activity) {
+    public void hideKeyboard(View view, Activity activity) {
 
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -18,9 +18,10 @@ public class UtilService {
             e.printStackTrace();
         }
     }
-   //for showing snack bar this is used in Sign up and Login Activity
-    public void showSnackBar(View view, String msg){
-        Snackbar. make(view, msg, Snackbar.LENGTH_LONG).show();
+
+    //for showing snack bar this is used in Sign up and Login Activity
+    public void showSnackBar(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
     }
 
 

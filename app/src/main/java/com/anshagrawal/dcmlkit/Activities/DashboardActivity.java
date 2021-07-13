@@ -1,10 +1,5 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -31,7 +30,6 @@ import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
-
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
 
 import org.json.JSONArray;
@@ -41,7 +39,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -214,9 +211,8 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.setType("text/plain");
                 String shareBody = "Hey try this Decode Cypher App. It decodes your cypher and save it securely and permanently.";
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(intent,"Share via"));
+                startActivity(Intent.createChooser(intent, "Share via"));
                 return true;
-
 
 
         }

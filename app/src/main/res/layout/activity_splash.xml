@@ -121,8 +121,8 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="123dp"
         android:id="@+id/fingerprint"
+        android:layout_width="123dp"
         android:layout_height="132dp"
         android:src="@drawable/download"
         app:layout_constraintBottom_toBottomOf="parent"

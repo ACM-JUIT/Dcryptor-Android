@@ -20,14 +20,12 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
     ArrayList<CypherModel> arrayList;
 
 
-
     Context context;
 
     public CypherAdapter(Context context, ArrayList<CypherModel> arrayList) {
         this.arrayList = arrayList;
         this.context = context;
     }
-
 
 
     public void searchDcryptor(ArrayList<CypherModel> filteredName) {

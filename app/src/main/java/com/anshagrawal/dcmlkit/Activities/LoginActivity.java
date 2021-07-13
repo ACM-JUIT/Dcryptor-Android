@@ -1,12 +1,12 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -34,9 +34,9 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
-    private String  email,password ;
     UtilService utilService;
     SharedPreferencesClass sharedPreferences;
+    private String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         utilService = new UtilService();
 
         sharedPreferences = new SharedPreferencesClass(this);
-
-
 
 
         //Sign up button functionality added
@@ -80,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     //Calling of the api for signing in the user
-    private void loginUser(View view){
+    private void loginUser(View view) {
 
         final HashMap<String, String> params = new HashMap<>();
 
@@ -94,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getBoolean("status")){
+                    if (response.getBoolean("status")) {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
                         Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
@@ -107,19 +105,19 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse response  =error.networkResponse;
-                if (error instanceof ServerError && response != null){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
                     try {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
-                        JSONObject  jsonObject = new JSONObject(res);
+                        JSONObject jsonObject = new JSONObject(res);
                         Toast.makeText(LoginActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }){
+        }) {
             //Headers added to get in which format we are getting the data from the api in our case it is Json
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -146,21 +144,21 @@ public class LoginActivity extends AppCompatActivity {
         boolean isValid;
 
 
-            if(!TextUtils.isEmpty(email)){
-                if(!TextUtils.isEmpty(password)){
+        if (!TextUtils.isEmpty(email)) {
+            if (!TextUtils.isEmpty(password)) {
 
-                        isValid = true;
+                isValid = true;
 
-                }else{
-                    utilService.showSnackBar(v1, "Please enter password...");
-                    isValid = false;
-
-                }
-            }else{
-                utilService.showSnackBar(v1, "Please enter email...");
+            } else {
+                utilService.showSnackBar(v1, "Please enter password...");
                 isValid = false;
 
             }
+        } else {
+            utilService.showSnackBar(v1, "Please enter email...");
+            isValid = false;
+
+        }
 
         return isValid;
     }
@@ -170,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         android.content.SharedPreferences preferences = getSharedPreferences("user_cypher", MODE_PRIVATE);
-        if (preferences.contains("token")){
+        if (preferences.contains("token")) {
             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             finish();
         }

@@ -5,19 +5,16 @@
 
     <item
         android:id="@+id/logout"
-        android:title="Logout"
         android:icon="@drawable/ic_baseline_color_lens_24"
-        app:showAsAction="never"/>
+        android:title="Logout"
+        app:showAsAction="never" />
 
-    
 
     <item
         android:id="@+id/Share"
         android:icon="@drawable/ic_baseline_share_24"
         android:title="Share"
-        app:showAsAction="always"
-         />
-
+        app:showAsAction="always" />
 
 
 </menu>

@@ -1,8 +1,5 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,6 +8,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,10 +25,10 @@ import java.io.IOException;
 
 public class PickImageFromGallery extends AppCompatActivity {
 
+    public static final int PICK_IMAGES = 1;
     ActivityPickImageFromGalleryBinding binding;
     Uri imageUri;
     MainActivity mainActivity;
-    public static final int PICK_IMAGES = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class PickImageFromGallery extends AppCompatActivity {
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(PickImageFromGallery.this, DecodeActivity.class);
+                Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("textToDecode", binding.editText.getText().toString());
                 boolean toStore = bundle.getBoolean("toStore");

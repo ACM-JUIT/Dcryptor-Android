@@ -9,20 +9,15 @@ import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.BuildConfig;
-import com.anshagrawal.dcmlkit.GoogleMLKit;
 import com.anshagrawal.dcmlkit.R;
-
 import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -236,17 +231,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("textToDecode", text);
-        if (activityMainBinding.checkBox.isChecked()){
+        if (activityMainBinding.checkBox.isChecked()) {
             bundle.putBoolean("toStore", true);
-        }else{
+        } else {
             bundle.putBoolean("toStore", false);
         }
-        if (activityMainBinding.radioButton.isChecked()){
+        if (activityMainBinding.radioButton.isChecked()) {
             bundle.putBoolean("method", true);
-        }else if(activityMainBinding.radioButton2.isChecked()){
+        } else if (activityMainBinding.radioButton2.isChecked()) {
             bundle.putBoolean("method", false);
-        }
-        else{
+        } else {
             Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
         }
 

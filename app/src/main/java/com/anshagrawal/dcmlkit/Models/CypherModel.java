@@ -3,8 +3,6 @@ package com.anshagrawal.dcmlkit.Models;
 public class CypherModel {
 
 
-
-
     private String _id, stringtoDecode, decodedAt;
 
     public CypherModel(String id, String stringtoDecode, String decodedAt) {

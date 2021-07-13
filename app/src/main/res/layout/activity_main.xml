@@ -163,17 +163,17 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:fontFamily="@font/share_tech"
-            android:text="In Base 64" />
+            android:text="In Base 64"
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
-            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/share_tech"
-            android:text="In Recursive" />
+            android:text="In Recursive"
+            android:textSize="15sp" />
     </RadioGroup>
 
 

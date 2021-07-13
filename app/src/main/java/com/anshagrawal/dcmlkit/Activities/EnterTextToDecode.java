@@ -1,11 +1,10 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anshagrawal.dcmlkit.databinding.ActivityEnterTextToDecodeBinding;
 
@@ -23,7 +22,6 @@ public class EnterTextToDecode extends AppCompatActivity {
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
 
                 String textToDecode = binding.CipherEditText.getText().toString();

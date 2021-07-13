@@ -1,12 +1,12 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,7 +17,6 @@ import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.databinding.ActivityDecodeBinding;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,19 +64,19 @@ public class DecodeActivity extends AppCompatActivity {
         try {
 
             jsonObject.put("data", text);
-            jsonObject.put("toStore", toStore?1:0);
+            jsonObject.put("toStore", toStore ? 1 : 0);
             Log.d("@@@@", "response  " + toStore);
-                    jsonObject.put("method", method?"base64":"recursive");
-                } catch (JSONException e) {
+            jsonObject.put("method", method ? "base64" : "recursive");
+        } catch (JSONException e) {
             //dialog.dismiss();
-                    e.printStackTrace();
-                }
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
 //                    dialog.show();
-                            JSONArray jsonArray = response.getJSONArray("decoded_data");
+                    JSONArray jsonArray = response.getJSONArray("decoded_data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);
                         decodes.add(s);

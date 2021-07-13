@@ -97,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (response.getBoolean("Status")) {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
-                        Toast.makeText(SignUpActivity.this, token, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SignUpActivity.this, token, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                 } catch (JSONException e) {
@@ -134,7 +134,7 @@ public class SignUpActivity extends AppCompatActivity {
         RetryPolicy policy = new DefaultRetryPolicy(socketTime, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         jsonObjectRequest.setRetryPolicy(policy);
 
-        //adding request
+        //adding request to the queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
 

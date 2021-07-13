@@ -1,16 +1,15 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
 
@@ -53,9 +52,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-
     //For security of the app by executing the biometric.
-    private BiometricPrompt getPrompt(){
+    private BiometricPrompt getPrompt() {
         Executor executor = ContextCompat.getMainExecutor(this);
         BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
             @Override
@@ -84,7 +82,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private void notifyUser(String message){
+    private void notifyUser(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
