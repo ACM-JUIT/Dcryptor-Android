@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        }, 100000);
-        checkForFingerprint();
+        //checkForFingerprint();
         //Fingerprint image added when the user clicks the image a prompt will open and when the user will authenticate then only the user will be allowed to enter in the app.
 //        activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
 //            @Override

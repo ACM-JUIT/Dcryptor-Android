@@ -2,6 +2,7 @@ package com.anshagrawal.dcmlkit.Adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anshagrawal.dcmlkit.Activities.MainActivity;
+import com.anshagrawal.dcmlkit.Activities.ResultActivity;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
@@ -49,8 +52,21 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
         final String id = arrayList.get(position).get_id();
 
 
+
         holder.title.setText(title);
         holder.Date.setText(date);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("title",title);
+
+                context.startActivity(intent);
+
+            }
+        });
+
+
 
     }
 
@@ -61,7 +77,7 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, Date, Des;
+        TextView title, Date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

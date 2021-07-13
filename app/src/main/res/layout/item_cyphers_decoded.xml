@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dp"
     android:layout_margin="10dp"
-    android:background="@drawable/linearlayout_recyclerview_itemcyphers">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:backgroundTint="@color/cardBg"
         android:hapticFeedbackEnabled="true"
@@ -16,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="vertical">
 
@@ -33,28 +32,11 @@
                 android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/cDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="15 aug 2021"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
+
+
 
 </LinearLayout>

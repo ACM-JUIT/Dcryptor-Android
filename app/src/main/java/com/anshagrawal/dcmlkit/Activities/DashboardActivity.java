@@ -28,6 +28,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
+import com.anshagrawal.dcmlkit.Adapters.ResultAdapter;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
@@ -43,16 +44,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity  {
 
 
     ActivityDashboardBinding binding;
     Uri imageUri;
     String token;
     CypherAdapter adapter;
+    ResultAdapter adapter1;
     private ProgressDialog dialog;
     SharedPreferencesClass sharedPreferences;
     ArrayList<CypherModel> arrayList;
+
 
 
     @Override
@@ -222,6 +225,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 
 }

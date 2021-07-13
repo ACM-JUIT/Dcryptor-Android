@@ -17,4 +17,7 @@
     <color name="green">#3CDA10</color>
     <color name="grey">#66676b</color>
     <color name="titlebardashboard">#121930</color>
+    <color name="cardBg1">#f2bb65</color>
+    <color name="cardBg2">#e2286b</color>
+    <color name="cardBg3">#351542</color>
 </resources>

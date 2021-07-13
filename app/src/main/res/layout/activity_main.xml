@@ -143,6 +143,7 @@
         android:text="Store In Database"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,6 +156,7 @@
         android:fontFamily="@font/share_tech"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox">
@@ -164,6 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/share_tech"
+            android:textColor="@color/textColor"
             android:text="In Base 64"
             android:textSize="15sp" />
 
@@ -172,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/share_tech"
+            android:textColor="@color/textColor"
             android:text="In Recursive"
             android:textSize="15sp" />
     </RadioGroup>
