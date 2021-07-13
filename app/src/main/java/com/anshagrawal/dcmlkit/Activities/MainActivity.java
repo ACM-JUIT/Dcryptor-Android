@@ -18,6 +18,7 @@ import androidx.core.content.FileProvider;
 
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.R;
+
 import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
+        getSupportActionBar().hide();
 
 
         sTitle = getIntent().getStringExtra("title");

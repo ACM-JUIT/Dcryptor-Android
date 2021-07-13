@@ -47,24 +47,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/decodedText"-->
-    <!--        android:layout_width="350dp"-->
-    <!--        android:layout_height="100dp"-->
-    <!--        android:layout_marginBottom="60dp"-->
-    <!--        android:background="@color/white"-->
-    <!--        android:backgroundTint="@color/white"-->
-    <!--        android:fontFamily="@font/share_tech"-->
-    <!--        android:gravity="center_horizontal"-->
-    <!--        android:padding="1dp"-->
-    <!--        android:scrollbars="vertical"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        android:textSize="30sp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.508"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
 
 
     <Button
