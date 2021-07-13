@@ -120,7 +120,7 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="8dp"
             android:background="@drawable/login_signup_btn_rounded"
-            android:text="Sign Up"
+            android:text="Want to Sign Up!"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

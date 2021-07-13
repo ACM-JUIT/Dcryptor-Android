@@ -137,6 +137,7 @@ public class DashboardActivity extends AppCompatActivity {
                             arrayList.add(cypherModel);
 
                         }
+                        arrayList.clear();
 
                         adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                         binding.cypherRecycler.setAdapter(adapter);

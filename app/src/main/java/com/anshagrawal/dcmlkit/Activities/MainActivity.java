@@ -233,22 +233,29 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("textToDecode", text);
         if (activityMainBinding.checkBox.isChecked()) {
             bundle.putBoolean("toStore", true);
+
         } else {
             bundle.putBoolean("toStore", false);
+
         }
         if (activityMainBinding.radioButton.isChecked()) {
             bundle.putBoolean("method", true);
-        } else if (activityMainBinding.radioButton2.isChecked()) {
-            bundle.putBoolean("method", false);
-        } else {
-            Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
         }
 
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if (activityMainBinding.radioButton2.isChecked()) {
+                bundle.putBoolean("method", false);
+
+        }
+        else {
+                Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+            }
+
+            intent.putExtras(bundle);
+            startActivity(intent);
 
 
-    }
+        }
+
 
 
 }
