@@ -1,5 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -36,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     ActivitySignUpBinding binding;
     UtilService utilService;
     SharedPreferencesClass sharedPreferences;
+    private ProgressDialog dialog;
     private String username, email, password, cnfPassword;
 
     @Override
@@ -43,8 +45,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setCancelable(true);
         utilService = new UtilService();
         sharedPreferences = new SharedPreferencesClass(this);
+
 
         //Direct the user to login activity for signing in the app.
         binding.login.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +85,13 @@ public class SignUpActivity extends AppCompatActivity {
         //final HashMap<String, String> params = new HashMap<>();
         JSONObject params = new JSONObject();
         try {
+            dialog.show();
             params.put("username", username);
             params.put("email", email);
             params.put("password", password);
             params.put("confirmPassword", cnfPassword);
         } catch (JSONException e) {
+            dialog.dismiss();
             e.printStackTrace();
         }
 
@@ -94,6 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    dialog.dismiss();
                     if (response.getBoolean("Status")) {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
@@ -101,6 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                 } catch (JSONException e) {
+                    dialog.dismiss();
                     e.printStackTrace();
                 }
             }

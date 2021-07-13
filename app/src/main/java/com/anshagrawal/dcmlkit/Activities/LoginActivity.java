@@ -1,6 +1,7 @@
 package com.anshagrawal.dcmlkit.Activities;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,12 +39,16 @@ public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     UtilService utilService;
     SharedPreferencesClass sharedPreferences;
+    private ProgressDialog dialog;
     private String email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setCancelable(true);
         utilService = new UtilService();
 
         sharedPreferences = new SharedPreferencesClass(this);
@@ -81,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser(View view) {
 
         final HashMap<String, String> params = new HashMap<>();
-
+        dialog.show();
         params.put("email", email);
         params.put("password", password);
 
@@ -92,18 +97,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    dialog.dismiss();
                     if (response.getBoolean("status")) {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                     }
                 } catch (JSONException e) {
+                    dialog.dismiss();
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {

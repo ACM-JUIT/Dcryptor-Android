@@ -2,6 +2,7 @@ package com.anshagrawal.dcmlkit.Activities;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -34,7 +35,7 @@ public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
     ArrayList<String> decodes;
     ArrayAdapter<String> arrayAdapter;
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
     String[] str;
     SharedPreferencesClass sharedPreferences;
     String token;
@@ -46,6 +47,9 @@ public class DecodeActivity extends AppCompatActivity {
         binding = ActivityDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         decodes = new ArrayList<>();
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setCancelable(true);
         sharedPreferences = new SharedPreferencesClass(this);
         token = sharedPreferences.getValueString("token");
         Bundle bundle = getIntent().getExtras();
@@ -82,22 +86,22 @@ public class DecodeActivity extends AppCompatActivity {
     //call the api to recursively decode the cipher
     private void decodeCipher(String text, int toStore, String method) throws JSONException {
         JSONObject jsonObject = new JSONObject();
-//        dialog.show();
-        try {
 
+        try {
+            dialog.show();
             jsonObject.put("data", text);
             jsonObject.put("toStore", toStore);
             Log.d("@@@@", "response  " + toStore);
             jsonObject.put("method", method);
         } catch (JSONException e) {
-            //dialog.dismiss();
+            dialog.dismiss();
             e.printStackTrace();
         }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,"https://acm-dcryptor.herokuapp.com/api/v2/", jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-//                    dialog.show();
+                    dialog.dismiss();
                     JSONArray jsonArray = response.getJSONArray("decoded_data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String s = jsonArray.getString(i);

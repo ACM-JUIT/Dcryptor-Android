@@ -1,5 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
     Uri imageUri;
     String token;
     CypherAdapter adapter;
+    private ProgressDialog dialog;
     SharedPreferencesClass sharedPreferences;
     ArrayList<CypherModel> arrayList;
 
@@ -57,8 +59,12 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setCancelable(true);
         getSupportActionBar().setTitle("Dashboard");
         getTask();
+
         sharedPreferences = new SharedPreferencesClass(this);
         //Getting token that has been stored in shared preferences
         token = sharedPreferences.getValueString("token");
@@ -92,6 +98,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
         //Setting the recycler view
+        dialog.show();
         binding.cypherRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.cypherRecycler.setHasFixedSize(true);
         getTask();
@@ -103,7 +110,6 @@ public class DashboardActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 imageUri = data.getData();
-//                cropImage(imageUri);
                 Intent i = new Intent(DashboardActivity.this, PickImageFromGallery.class);
                 i.putExtra("imageUri", imageUri.toString());
                 startActivity(i);
@@ -120,8 +126,9 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    dialog.dismiss();
                     if (response.getBoolean("status")) {
-                        //Toast.makeText(DashboardActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        arrayList.clear();
                         JSONArray jsonArray = response.getJSONArray("decodedHistory");
                         Log.i("historyapi", "response" + jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -133,12 +140,14 @@ public class DashboardActivity extends AppCompatActivity {
                             );
                             arrayList.add(cypherModel);
                         }
-                        arrayList.clear();
+
 
                         adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                         binding.cypherRecycler.setAdapter(adapter);
                     }
+                    //arrayList.clear();
                 } catch (JSONException e) {
+                    dialog.dismiss();
                     e.printStackTrace();
                     binding.progressBar.setVisibility(View.GONE);
                 }
@@ -147,6 +156,7 @@ public class DashboardActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        dialog.dismiss();
                         Log.i("historyapi", "error" + error.getMessage());
                         Toast.makeText(DashboardActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                         NetworkResponse response = error.networkResponse;
