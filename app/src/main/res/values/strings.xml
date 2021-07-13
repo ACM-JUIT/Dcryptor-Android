@@ -18,4 +18,8 @@
 
     <string name="empty_decode_something">Empty! Decode Something!</string>
     <string name="display_to_clear_the_contrnts_of_listview">Display to clear the contrnts of listview</string>
+    <string name="store_in_database">Store In Database</string>
+    <string name="done">Done</string>
+    <string name="recursive">Recursive</string>
+    <string name="base_64">Base 64</string>
 </resources>

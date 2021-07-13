@@ -1,5 +1,6 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,10 +8,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -65,15 +71,48 @@ public class PickImageFromGallery extends AppCompatActivity {
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("textToDecode", binding.editText.getText().toString());
-                boolean toStore = bundle.getBoolean("toStore");
-                boolean method = bundle.getBoolean("method");
-                bundle.putBoolean("toStore", toStore);
-                bundle.putBoolean("method", method);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                //
+                final boolean[] toStore = new boolean[1];
+                final boolean[] method = new boolean[1];
+                Dialog dialog1 = new Dialog(PickImageFromGallery.this);
+                dialog1.setContentView(R.layout.dialog_resource);
+                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
+                CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
+                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
+                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
+                if (checkBox.isChecked()) {
+                    toStore[0] = true;
+
+                } else {
+                    toStore[0] = false;
+
+                }
+                if (radioButton1.isChecked()) {
+                    method[0] = true;
+                }
+
+                if (radioButton2.isChecked()) {
+                    method[0] = true;
+
+                } else {
+                    Toast.makeText(PickImageFromGallery.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+                }
+
+                //
+                dialog1.show();
+                doneBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String textToDecode = binding.editText.getText().toString();
+                        Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("textToDecode", textToDecode);
+                        bundle1.putBoolean("toStore", toStore[0]);
+                        bundle1.putBoolean("method", method[0]);
+                        intent.putExtras(bundle1);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
