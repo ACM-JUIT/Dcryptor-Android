@@ -1,11 +1,15 @@
 package com.anshagrawal.dcmlkit.Activities;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -56,20 +60,18 @@ public class DecodeActivity extends AppCompatActivity {
         String textToDecode = bundle.getString("textToDecode");
         boolean toStore = bundle.getBoolean("toStore");
         int toStoreInt;
-        if(toStore==true){
-            toStoreInt=1;
-        }
-        else{
-            toStoreInt=0;
+        if (toStore == true) {
+            toStoreInt = 1;
+        } else {
+            toStoreInt = 0;
         }
         Log.d("@@@@", "response" + toStore);
         boolean method = bundle.getBoolean("method");
-        String methodString ;
-        if(method==true){
-            methodString="base64";
-        }
-        else{
-            methodString="recursive";
+        String methodString;
+        if (method == true) {
+            methodString = "base64";
+        } else {
+            methodString = "recursive";
         }
         try {
             decodeCipher(textToDecode, toStoreInt, methodString);
@@ -97,7 +99,7 @@ public class DecodeActivity extends AppCompatActivity {
             dialog.dismiss();
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,"https://acm-dcryptor.herokuapp.com/api/v2/", jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://acm-dcryptor.herokuapp.com/api/v2/", jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -126,7 +128,7 @@ public class DecodeActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("Authorization", "Bearer "+token);
+                hashMap.put("Authorization", "Bearer " + token);
                 return hashMap;
             }
         };
