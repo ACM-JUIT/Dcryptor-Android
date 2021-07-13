@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.UtilsService.UtilService;
 import com.anshagrawal.dcmlkit.databinding.ActivityLoginBinding;
@@ -95,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.getBoolean("status")) {
                         String token = response.getString("token");
                         sharedPreferences.setValueString("token", token);
-                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                     }
                 } catch (JSONException e) {
@@ -133,8 +133,9 @@ public class LoginActivity extends AppCompatActivity {
         jsonObjectRequest.setRetryPolicy(policy);
 
         //request add
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(jsonObjectRequest);
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
 
     }

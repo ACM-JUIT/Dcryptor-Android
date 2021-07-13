@@ -47,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         sharedPreferences = new SharedPreferencesClass(this);
 
         //Direct the user to login activity for signing in the app.
-        binding.loginActivity.setOnClickListener(new View.OnClickListener() {
+        binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
