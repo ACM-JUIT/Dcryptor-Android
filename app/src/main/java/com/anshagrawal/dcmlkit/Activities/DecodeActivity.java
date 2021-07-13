@@ -1,11 +1,13 @@
 package com.anshagrawal.dcmlkit.Activities;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -16,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
+import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.databinding.ActivityDecodeBinding;
 
 import org.json.JSONArray;
@@ -25,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class DecodeActivity extends AppCompatActivity {
     ActivityDecodeBinding binding;
@@ -32,6 +36,8 @@ public class DecodeActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     ProgressDialog dialog;
     String[] str;
+    SharedPreferencesClass sharedPreferences;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +46,29 @@ public class DecodeActivity extends AppCompatActivity {
         binding = ActivityDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         decodes = new ArrayList<>();
+        sharedPreferences = new SharedPreferencesClass(this);
+        token = sharedPreferences.getValueString("token");
         Bundle bundle = getIntent().getExtras();
         String textToDecode = bundle.getString("textToDecode");
         boolean toStore = bundle.getBoolean("toStore");
+        int toStoreInt;
+        if(toStore==true){
+            toStoreInt=1;
+        }
+        else{
+            toStoreInt=0;
+        }
         Log.d("@@@@", "response" + toStore);
         boolean method = bundle.getBoolean("method");
+        String methodString ;
+        if(method==true){
+            methodString="base64";
+        }
+        else{
+            methodString="recursive";
+        }
         try {
-            decodeCipher(textToDecode, toStore, method);
+            decodeCipher(textToDecode, toStoreInt, methodString);
             String[] decodedStringArray = str;
 
         } catch (JSONException e) {
@@ -58,20 +80,20 @@ public class DecodeActivity extends AppCompatActivity {
     }
 
     //call the api to recursively decode the cipher
-    private void decodeCipher(String text, boolean toStore, boolean method) throws JSONException {
+    private void decodeCipher(String text, int toStore, String method) throws JSONException {
         JSONObject jsonObject = new JSONObject();
 //        dialog.show();
         try {
 
             jsonObject.put("data", text);
-            jsonObject.put("toStore", toStore ? 1 : 0);
+            jsonObject.put("toStore", toStore);
             Log.d("@@@@", "response  " + toStore);
-            jsonObject.put("method", method ? "base64" : "recursive");
+            jsonObject.put("method", method);
         } catch (JSONException e) {
             //dialog.dismiss();
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LINK, jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,"https://acm-dcryptor.herokuapp.com/api/v2/", jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -94,14 +116,13 @@ public class DecodeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                dialog.dismiss();
                 Toast.makeText(DecodeActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("token", "bcdb");
+                hashMap.put("Authorization", "Bearer "+token);
                 return hashMap;
             }
         };
