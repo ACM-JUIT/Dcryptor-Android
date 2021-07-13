@@ -29,6 +29,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
+import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
@@ -189,8 +190,7 @@ public class DashboardActivity extends AppCompatActivity {
         jsonObjectRequest.setRetryPolicy(policy);
 
         //Adding request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
     //Overriding the below methods for showing the menu on the top right of the dashboard activity
 

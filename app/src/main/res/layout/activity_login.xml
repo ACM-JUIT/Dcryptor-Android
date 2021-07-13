@@ -25,14 +25,14 @@
 
     </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@id/email"
-            android:layout_marginBottom="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"

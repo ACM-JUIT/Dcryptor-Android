@@ -36,19 +36,30 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 1000);
+        checkForFingerprint();
         //Fingerprint image added when the user clicks the image a prompt will open and when the user will authenticate then only the user will be allowed to enter in the app.
-        activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                        .setTitle("Please Verify")
-                        .setDescription("User Authentiication is required to proceed")
-                        .setNegativeButtonText("Cancel")
-                        .build();
+//        activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+//                        .setTitle("Please Verify")
+//                        .setDescription("User Authentication is required to proceed")
+//                        .setNegativeButtonText("Cancel")
+//                        .build();
+//
+//                getPrompt().authenticate(promptInfo);
+//            }
+//        });
+    }
 
-                getPrompt().authenticate(promptInfo);
-            }
-        });
+    void checkForFingerprint(){
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Please Verify")
+                .setDescription("User Authentication is required to proceed")
+                .setNegativeButtonText("Cancel")
+                .build();
+
+        getPrompt().authenticate(promptInfo);
     }
 
 

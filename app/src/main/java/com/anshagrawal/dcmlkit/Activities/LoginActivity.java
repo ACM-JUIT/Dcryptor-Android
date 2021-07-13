@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferencesClass sharedPreferences;
     private ProgressDialog dialog;
     private String email, password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
