@@ -57,8 +57,8 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         getSupportActionBar().setTitle("Dashboard");
+        getTask();
         sharedPreferences = new SharedPreferencesClass(this);
         //Getting token that has been stored in shared preferences
         token = sharedPreferences.getValueString("token");
@@ -130,22 +130,14 @@ public class DashboardActivity extends AppCompatActivity {
                                     obj.getString("_id"),
                                     obj.getString("stringtoDecode"),
                                     obj.getString("decodedAt")
-
-
                             );
-
                             arrayList.add(cypherModel);
-
                         }
                         arrayList.clear();
 
                         adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                         binding.cypherRecycler.setAdapter(adapter);
-
-
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     binding.progressBar.setVisibility(View.GONE);
@@ -170,7 +162,7 @@ public class DashboardActivity extends AppCompatActivity {
                         binding.progressBar.setVisibility(View.GONE);
                     }
                 }) {
-            //Headers added to get in which format we are getting the data from the api in our case it is Json and
+            // Headers added to get in which format we are getting the data from the api in our case it is Json and
             // also authorization is also done when the api will get the token then it will send the data of the particular user.
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
