@@ -64,6 +64,7 @@ public class EnterTextToDecode extends AppCompatActivity {
                         dialog1.dismiss();
                         String textToDecode = binding.CipherEditText.getText().toString();
                         Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
+                        finish();
                         Bundle bundle = new Bundle();
                         bundle.putString("textToDecode", textToDecode);
                         bundle.putBoolean("toStore", toStore[0]);

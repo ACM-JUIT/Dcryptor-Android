@@ -134,7 +134,7 @@ public class DashboardActivity extends AppCompatActivity  {
                     if (response.getBoolean("status")) {
                         arrayList.clear();
                         JSONArray jsonArray = response.getJSONArray("decodedHistory");
-                        Log.i("historyapi", "response" + jsonArray.toString());
+                        //Log.i("historyapi", "response" + jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
                             CypherModel cypherModel = new CypherModel(
@@ -142,15 +142,17 @@ public class DashboardActivity extends AppCompatActivity  {
                                     obj.getString("stringtoDecode"),
                                     obj.getString("decodedAt")
                             );
+
                             arrayList.add(cypherModel);
 
                         }
 
-
-
                         adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                         binding.cypherRecycler.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
                     }
+
 
                     //arrayList.clear();
                 } catch (JSONException e) {
@@ -158,7 +160,8 @@ public class DashboardActivity extends AppCompatActivity  {
                     e.printStackTrace();
                     binding.progressBar.setVisibility(View.GONE);
                 }
-                adapter.notifyDataSetChanged();
+
+
             }
         }, //Error Handling
                 new Response.ErrorListener() {
@@ -229,7 +232,6 @@ public class DashboardActivity extends AppCompatActivity  {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

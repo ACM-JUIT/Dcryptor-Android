@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-        <activity android:name=".Activities.ResultActivity"></activity>
         <activity android:name=".Activities.PickImageFromGallery" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.LoginActivity" />

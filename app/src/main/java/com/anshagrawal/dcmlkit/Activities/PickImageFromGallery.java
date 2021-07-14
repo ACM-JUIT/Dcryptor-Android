@@ -103,6 +103,7 @@ public class PickImageFromGallery extends AppCompatActivity {
                         dialog1.dismiss();
                         String textToDecode = binding.editText.getText().toString();
                         Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
+                        finish();
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("textToDecode", textToDecode);
                         bundle1.putBoolean("toStore", toStore[0]);

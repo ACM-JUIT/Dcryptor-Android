@@ -58,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                finish();
             }
         });
         //Functionality of the button when the user clicks on sign up take all the params and get connected to the api.
@@ -109,6 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
                         sharedPreferences.setValueString("token", token);
                         //Toast.makeText(SignUpActivity.this, token, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        finish();
                     }
                 } catch (JSONException e) {
                     dialog.dismiss();
@@ -118,13 +120,14 @@ public class SignUpActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
                         String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
                         JSONObject jsonObject = new JSONObject(res);
-                        Toast.makeText(SignUpActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }

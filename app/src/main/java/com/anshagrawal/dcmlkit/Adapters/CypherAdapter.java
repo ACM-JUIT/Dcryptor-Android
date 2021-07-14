@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anshagrawal.dcmlkit.Activities.MainActivity;
-import com.anshagrawal.dcmlkit.Activities.ResultActivity;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
@@ -28,6 +27,7 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
     public CypherAdapter(Context context, ArrayList<CypherModel> arrayList) {
         this.arrayList = arrayList;
         this.context = context;
+        notifyDataSetChanged();
     }
 
 
@@ -65,6 +65,8 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
 
             }
         });
+
+
 
 
 
