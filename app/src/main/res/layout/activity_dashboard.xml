@@ -35,8 +35,7 @@
         android:visibility="gone" />
 
 
-    <com.nambimobile.widgets.efab.ExpandableFabLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.nambimobile.widgets.efab.ExpandableFabLayout
         android:id="@+id/expandable_fab_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -46,11 +45,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:padding="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             app:efab_closingAnticipateTension="0"
-            app:efab_color="@color/cardBg"
+            app:efab_color="@color/cardBg2"
             app:efab_icon="@drawable/ic_baseline_add_24"
             app:efab_iconAnimationRotationDeg="-225" />
 
@@ -58,29 +59,36 @@
             android:id="@+id/addCypherBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_color="@color/cardBg"
+            app:fab_color="@color/cardBg2"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
             app:fab_icon="@drawable/ic_baseline_camera_alt_24"
-            app:label_backgroundColor="@color/cardBg"
-            app:label_text="Camera"
-            app:label_textColor="#ffffff" />
+            app:label_textColor="#ffffff"
+            app:label_backgroundColor="@color/cardBg2"/>
+<!--            app:label_text="Camera"-->
+
 
         <com.nambimobile.widgets.efab.FabOption
             android:id="@+id/selectFromGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_color="@color/cardBg"
+            android:layout_marginBottom="10dp"
+            app:fab_color="@color/cardBg2"
+            android:padding="5dp"
             app:fab_icon="@drawable/ic_baseline_image_24"
-            app:label_backgroundColor="@color/cardBg"
-            app:label_text="Gallery" />
+            app:label_backgroundColor="@color/cardBg2"/>
+<!--            app:label_text="Gallery" />-->
 
         <com.nambimobile.widgets.efab.FabOption
             android:id="@+id/textButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_color="@color/cardBg"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            app:fab_color="@color/cardBg2"
             app:fab_icon="@drawable/ic_baseline_edit_24"
-            app:label_backgroundColor="@color/cardBg"
-            app:label_text="Text" />
+            app:label_backgroundColor="@color/cardBg2"/>
+<!--            app:label_text="Text" />-->
 
     </com.nambimobile.widgets.efab.ExpandableFabLayout>
 

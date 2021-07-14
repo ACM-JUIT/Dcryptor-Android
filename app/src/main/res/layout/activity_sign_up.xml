@@ -7,32 +7,41 @@
     android:background="@color/dashBg"
     tools:context=".Activities.SignUpActivity">
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/username"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="50dp"-->
-    <!--        android:hint="Enter username"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.144" />-->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayoutTIL"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <View
+        android:id="@+id/dc_text_1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-78dp"
+        android:background="@drawable/icon_signup" />
+
+    <TextView
+        android:id="@+id/create_an_a"
+        android:layout_width="176dp"
+        android:layout_height="86dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="171dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/create_an_a"
+        android:textAppearance="@style/create_an_a" />
+
 
     <LinearLayout
         android:id="@+id/linearLayoutTIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/create_an_a"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameTIL"
@@ -40,13 +49,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/only_rounded_corner"
+                android:drawableLeft="@drawable/user"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
                 android:hint="Enter your username"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,15 +74,23 @@
             android:layout_below="@id/usernameTIL"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/only_rounded_corner"
+                android:drawableLeft="@drawable/email"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -77,13 +101,21 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
-            app:passwordToggleEnabled="true">
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white">
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/only_rounded_corner"
+                android:drawableStart="@drawable/password"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,70 +128,56 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
-            app:passwordToggleEnabled="true">
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white">
 
             <EditText
                 android:id="@+id/cnfPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/only_rounded_corner"
+                android:drawableStart="@drawable/password"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
                 android:hint="Confirm Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
-    <!--    <Button-->
-    <!--        android:id="@+id/signup"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/linearLayoutTIL"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:background="@drawable/only_rounded_corner"-->
-    <!--        android:backgroundTint="@color/cardBg"-->
-    <!--        android:text="Sign Up" />-->
 
-
-    <RelativeLayout
-        android:id="@+id/signup"
-        android:layout_width="181dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/linearLayoutTIL"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/login_signup_btn_rounded">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:text="Sign Up"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <TextView
         android:id="@+id/login"
-        android:layout_width="181dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/signup"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login_signup_btn_rounded">
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="619dp"
+        android:backgroundTint="@color/cardBg2"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="13sp"
+        android:text="Sign In"
+        android:textAppearance="@style/register"
+        android:translationY="-6.64sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:text="Want to login!"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/signup"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="329dp"
+        android:layout_marginTop="603dp"
+        android:background="@drawable/image_rounded"
+        android:elevation="26dp"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        app:tint="@color/white" />
 
 
 </RelativeLayout>

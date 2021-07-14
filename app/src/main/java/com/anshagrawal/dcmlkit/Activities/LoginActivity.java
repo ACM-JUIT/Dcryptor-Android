@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         dialog = new ProgressDialog(this);
-        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setMessage("Please Wait... \nWhile we are fetching your details");
         dialog.setCancelable(true);
         utilService = new UtilService();
 
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 utilService.hideKeyboard(v, LoginActivity.this);
 
                 email = binding.loginemail.getText().toString();
-                password = binding.loginPassword.getText().toString();
+                password = binding.loginpassword.getText().toString();
 
                 if (validate(v)) {
                     loginUser(v);

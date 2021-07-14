@@ -22,4 +22,9 @@
     <string name="done">Done</string>
     <string name="recursive">Recursive</string>
     <string name="base_64">Base 64</string>
+    <string name="welcome_bac">Welcome Back! </string>
+    <string name="username_or">Email</string>
+    <string name="create_an_a">Create an account</string>
+
+
 </resources>

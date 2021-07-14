@@ -7,123 +7,126 @@
     android:background="@color/dashBg"
     tools:context=".Activities.LoginActivity">
 
-    <ProgressBar
-        android:id="@+id/progressbarofmainactivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible">
+    <View
+        android:id="@+id/dc_text_1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-78dp"
+        android:background="@drawable/icon_signup" />
 
-    </ProgressBar>
+    <TextView
+        android:id="@+id/create_an_a"
+        android:layout_width="176dp"
+        android:layout_height="86dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="171dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:text="Welcome Back"
+        android:textAppearance="@style/create_an_a" />
 
-    <RelativeLayout
-        android:id="@+id/center_line"
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_below="@+id/create_an_a"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-    </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usernameTIL"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white">
+
+            <EditText
+                android:id="@+id/loginemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/only_rounded_corner"
+                android:drawableLeft="@drawable/email"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginpasswordTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTIL"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white">
+
+            <EditText
+                android:id="@+id/loginpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/only_rounded_corner"
+                android:drawableStart="@drawable/password"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/gotosignup"
+        android:layout_width="121dp"
+        android:layout_height="51dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="473dp"
+        android:backgroundTint="@color/cardBg2"
+        android:fontFamily="@font/montserrat"
+        android:gravity="top"
+        android:lineSpacingExtra="13sp"
+        android:text="Register"
+        android:textAppearance="@style/register"
+        android:translationY="-6.64sp" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/center_line"
-        android:layout_marginLeft="30dp"
-        android:textColorHint="@color/white"
-        app:hintTextColor="@color/white"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp">
-
-        <EditText
-            android:id="@+id/loginemail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/only_rounded_corner"
-            android:hint="Enter your email"
-            android:textColorHint="#eeeeee"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/center_line"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/white"
-        app:hintTextColor="@color/white"
-        android:layout_marginRight="30dp"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/loginPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/only_rounded_corner"
-            android:hint="Enter your password"
-            android:textColorHint="#eeeeee"
-            android:textColor="#eeeeee"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RelativeLayout
         android:id="@+id/login"
-        android:layout_width="181dp"
-        android:layout_height="47dp"
-        android:layout_below="@id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/login_signup_btn_rounded">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:text="Log In"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/gotosignup"
-        android:layout_width="168dp"
-        android:layout_height="47dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="90dp"
-        android:background="@drawable/login_signup_btn_rounded">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/login_signup_btn_rounded"
-            android:text="Want to Sign Up!"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="334dp"
+        android:layout_marginTop="464dp"
+        android:background="@drawable/image_rounded"
+        android:elevation="26dp"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        app:tint="@color/white" />
 
 </RelativeLayout>

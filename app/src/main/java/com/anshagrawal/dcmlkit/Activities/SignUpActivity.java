@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         dialog = new ProgressDialog(this);
-        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setMessage("Please Wait... \nWhile we are proceesing your request");
         dialog.setCancelable(true);
         utilService = new UtilService();
         sharedPreferences = new SharedPreferencesClass(this);

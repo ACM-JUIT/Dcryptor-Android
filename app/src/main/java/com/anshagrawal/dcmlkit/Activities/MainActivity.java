@@ -19,7 +19,8 @@ import androidx.core.content.FileProvider;
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.R;
 
-import com.anshagrawal.dcmlkit.databinding.ActivityMainBinding;
+
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -45,7 +46,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     int rotationAfterCrop;
-    ActivityMainBinding activityMainBinding;
+    com.anshagrawal.dcmlkit.databinding.ActivityMainBinding activityMainBinding;
     String url = BuildConfig.LINK;
     String cypher_title;
     String sTitle;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        activityMainBinding = com.anshagrawal.dcmlkit.databinding.ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
         getSupportActionBar().hide();
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding.scannedText.setText(sTitle);
         dialog = new ProgressDialog(this);
-        dialog.setMessage("We are processing your result. \n Please Wait...");
+        dialog.setMessage("We are processing your results. \n Please Wait...");
         dialog.setCancelable(false);
 
 
