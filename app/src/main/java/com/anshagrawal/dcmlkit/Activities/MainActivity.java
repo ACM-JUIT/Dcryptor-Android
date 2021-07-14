@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         sTitle = getIntent().getStringExtra("title");
 
-        activityMainBinding.scannedText.setText(sTitle);
+//        activityMainBinding.scannedText.setText(sTitle);
         dialog = new ProgressDialog(this);
         dialog.setMessage("We are processing your results. \n Please Wait...");
         dialog.setCancelable(false);
@@ -76,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
         activityMainBinding.cameraView.setBackgroundResource(R.drawable.rounded_corner);
         activityMainBinding.cameraView.setClipToOutline(true);
-
-        activityMainBinding.scannedText.setBackgroundResource(R.drawable.rounded_corner);
-        activityMainBinding.scannedText.setClipToOutline(true);
-
-
-        //makes the TextView scrollable
-        activityMainBinding.scannedText.setMovementMethod(new ScrollingMovementMethod());
 
 
         //camera listener, listens the activity of camera
@@ -109,21 +102,21 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
         activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
-        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String editedFinal = activityMainBinding.scannedText.getText().toString();
-
-                try {
-                    decodeCipher(editedFinal);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
+//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                String editedFinal = activityMainBinding.scannedText.getText().toString();
+//
+//                try {
+//                    decodeCipher(editedFinal);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
 
         activityMainBinding.cameraView.setLifecycleOwner(this);
 
@@ -135,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cypher_title = activityMainBinding.scannedText.getText().toString();
+//        cypher_title = activityMainBinding.scannedText.getText().toString();
 
 
     }
@@ -172,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(@NonNull Text text) {
 
-                activityMainBinding.scannedText.setText(text.getText());
+//                activityMainBinding.scannedText.setText(text.getText());
                 Log.d("mainhai", text.getText());
 //
             }
@@ -229,34 +222,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //call the api to recursively decode the cipher
-    private void decodeCipher(String text) throws JSONException {
-
-        Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("textToDecode", text);
-        if (activityMainBinding.checkBox.isChecked()) {
-            bundle.putBoolean("toStore", true);
-
-        } else {
-            bundle.putBoolean("toStore", false);
-
-        }
-        if (activityMainBinding.radioButton.isChecked()) {
-            bundle.putBoolean("method", true);
-        }
-
-        if (activityMainBinding.radioButton2.isChecked()) {
-            bundle.putBoolean("method", false);
-
-        } else {
-            Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-        }
-
-        intent.putExtras(bundle);
-        startActivity(intent);
-
-
-    }
+//    private void decodeCipher(String text) throws JSONException {
+//
+//        Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("textToDecode", text);
+//        if (activityMainBinding.checkBox.isChecked()) {
+//            bundle.putBoolean("toStore", true);
+//
+//        } else {
+//            bundle.putBoolean("toStore", false);
+//
+//        }
+//        if (activityMainBinding.radioButton.isChecked()) {
+//            bundle.putBoolean("method", true);
+//        }
+//
+//        if (activityMainBinding.radioButton2.isChecked()) {
+//            bundle.putBoolean("method", false);
+//
+//        } else {
+//            Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+//
+//
+//    }
 
 
 }

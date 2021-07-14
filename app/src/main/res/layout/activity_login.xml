@@ -67,7 +67,6 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/gilroy_bold"
                 android:hint="Email"
-                android:textColor="@color/white"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
@@ -93,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:background="@drawable/login_signup_til"
-                android:textColor="@color/white"
                 android:drawableStart="@drawable/password"
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"
