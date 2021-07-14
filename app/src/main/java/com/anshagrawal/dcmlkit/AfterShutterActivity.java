@@ -100,6 +100,7 @@ import java.io.IOException;
                     public void onClick(View v) {
                         String textToDecode = binding.editText.getText().toString();
                         Intent intent = new Intent(AfterShutterActivity.this, DecodeActivity.class);
+                        finish();
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("textToDecode", textToDecode);
                         bundle1.putBoolean("toStore", toStore[0]);

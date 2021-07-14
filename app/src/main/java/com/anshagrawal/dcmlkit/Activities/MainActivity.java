@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("imageUri", uri.toString());
         Intent i1 = new Intent(MainActivity.this, AfterShutterActivity.class);
+        finish();
         i1.putExtras(bundle);
         startActivity(i1);
 //        CropImage.activity(uri)
