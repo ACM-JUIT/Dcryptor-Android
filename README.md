@@ -18,10 +18,13 @@ The application does not only show the final decrypted text, it also shows the t
 
 ## 👽 Developed By
 
+### Design
+[__*Utsav Jhamb*__](https://github.com/utsavjhamb)
+
 ### Front-End
 
 [__*Amritanshu Suyal*__](https://github.com/suyalamritanshu)<br>
-[__*Ansh Agarwal*__](https://github.com/CH1NRU5T)<br>
+[__*Ansh Agarwal*__](https://github.com/CH1NRU5T)
 
 ### Back-End
 
