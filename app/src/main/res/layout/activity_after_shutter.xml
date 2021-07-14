@@ -25,31 +25,31 @@
         android:textColorHint="@color/white"
         app:hintTextColor="@color/white">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:minLines="10"
-        android:layout_height="wrap_content"
-        android:maxHeight="300dp"
-        android:background="@drawable/login_signup_til"
-        android:drawableBottom="@color/white"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/white"
-        android:fontFamily="@font/gilroy_bold"
-        android:hint="Scanned Text"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white" />
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:minLines="10"
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:background="@drawable/login_signup_til"
+            android:drawableBottom="@color/white"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/white"
+            android:fontFamily="@font/gilroy_bold"
+            android:hint="Scanned Text"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <EditText-->
-<!--        android:id="@+id/editText"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:minHeight="100dp" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/editText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:minHeight="100dp" />-->
 
     <Button
         android:id="@+id/decodeButton"

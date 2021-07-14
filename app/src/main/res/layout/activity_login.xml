@@ -17,19 +17,22 @@
         android:layout_marginTop="-78dp"
         android:background="@drawable/iconsignup" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dc_text_1"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/login_card" />
+
     <TextView
         android:id="@+id/create_an_a"
         android:layout_width="176dp"
         android:layout_height="86dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="171dp"
+        android:layout_below="@id/dc_text_1"
+        android:layout_marginHorizontal="35dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/gilroy_bold"
-        android:gravity="top"
-        android:lineSpacingExtra="0sp"
-        android:text="Welcome Back"
+        android:text="@string/welcome_back"
         android:textAppearance="@style/create_an_a"
         android:textColor="#4097f7" />
 
@@ -90,7 +93,6 @@
                 android:id="@+id/loginpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:background="@drawable/login_signup_til"
                 android:drawableStart="@drawable/password"
                 android:drawableBottom="@color/white"
@@ -98,7 +100,8 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/gilroy_bold"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -109,20 +112,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linearLayoutTIL"
         android:layout_marginHorizontal="35dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:id="@+id/gotosignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/cardBg2"
+
             android:fontFamily="@font/gilroy_bold"
-            android:lineSpacingExtra="13sp"
-            android:text="Register"
-            android:textAppearance="@style/register"
-            android:textColor="#4097F7" />
+            android:backgroundTint="@color/cardBg2"
+            android:text="@string/sign_in"
+            android:textColor="@color/white" />
+
 
         <ImageView
             android:id="@+id/login"
