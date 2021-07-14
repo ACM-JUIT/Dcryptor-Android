@@ -15,11 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-<<<<<<< HEAD
-=======
-        <activity android:name=".AfterShutterActivity"></activity>
-        <activity android:name=".Activities.ResultActivity" />
->>>>>>> 0a1ceab32be82545434e76f1010ba8af7f1afaa9
+        <activity android:name=".AfterShutterActivity"/>
         <activity android:name=".Activities.PickImageFromGallery" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.LoginActivity" />
