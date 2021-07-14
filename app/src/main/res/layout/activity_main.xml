@@ -8,7 +8,22 @@
     android:scrollbarSize="10dp"
     tools:context=".Activities.MainActivity">
 
-
+    <com.otaliastudios.cameraview.CameraView
+        android:id="@+id/cameraView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="20dp"
+        android:keepScreenOn="true"
+        app:cameraFacing="back"
+        app:cameraFlash="off"
+        app:cameraGrid="draw3x3"
+        app:cameraMode="picture"
+        app:cameraPictureFormat="jpeg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_drawOnPictureSnapshot="true" />
 
     <Button
         android:id="@+id/btnTake"
@@ -28,9 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cropImageView"
         app:layout_constraintVertical_bias="1.0" />
-
-
-
 
 
     <Button
@@ -107,9 +119,9 @@
         android:checked="true"
         android:fontFamily="@font/share_tech"
         android:text="Store In Database"
+        android:textColor="@color/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,9 +132,9 @@
         android:layout_width="298dp"
         android:layout_height="80dp"
         android:fontFamily="@font/share_tech"
+        android:textColor="@color/textColor"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="@color/textColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox">
@@ -132,8 +144,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/share_tech"
-            android:textColor="@color/textColor"
             android:text="In Base 64"
+            android:textColor="@color/textColor"
             android:textSize="15sp" />
 
         <RadioButton
@@ -141,8 +153,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/share_tech"
-            android:textColor="@color/textColor"
             android:text="In Recursive"
+            android:textColor="@color/textColor"
             android:textSize="15sp" />
     </RadioGroup>
 
