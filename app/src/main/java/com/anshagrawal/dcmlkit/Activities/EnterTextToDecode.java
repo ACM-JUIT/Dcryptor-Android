@@ -20,7 +20,7 @@ public class EnterTextToDecode extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         binding = ActivityEnterTextToDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

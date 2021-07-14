@@ -14,36 +14,43 @@
         android:layout_marginVertical="100dp"
         android:orientation="vertical">
 
+
         <EditText
             android:id="@+id/CipherEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/cardBg"
+            android:backgroundTint="@color/cardBg5"
             android:fadeScrollbars="false"
+            android:fontFamily="@font/montserrat"
             android:hint="Enter Cipher Text here"
+            android:gravity="center"
             android:maxHeight="250dp"
             android:minHeight="100dp"
             android:outlineProvider="none"
             android:scrollbars="vertical"
             android:textColor="@color/white"
-            android:textColorHint="@color/gray" />
+            android:textColorHint="@color/white" />
 
-
-        <Button
+        <TextView
             android:id="@+id/decodeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@id/CipherEditText"
-            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="114dp"
-            android:layout_marginTop="127dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="256dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginTop="288dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="95dp"
+            android:gravity="center"
+            android:background="@drawable/button_bg"
             android:backgroundTint="@color/cardBg"
-            android:text="Decode!"
-            android:textColor="@color/white" />
+            android:fontFamily="@font/montserrat"
+            android:padding="2dp"
+            android:text="    Decode !     "
+            android:textColor="@color/white"
+            android:textSize="25dp" />
 
 
     </RelativeLayout>

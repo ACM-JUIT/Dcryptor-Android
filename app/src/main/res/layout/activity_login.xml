@@ -66,6 +66,7 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat"
                 android:hint="Email"
+                android:textColor="@color/white"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -88,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_signup_til"
+                android:textColor="@color/white"
                 android:drawableStart="@drawable/password"
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"

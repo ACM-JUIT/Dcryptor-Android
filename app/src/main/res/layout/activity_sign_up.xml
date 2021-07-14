@@ -61,6 +61,7 @@
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/white"
+                android:textColor="@color/white"
                 android:fontFamily="@font/montserrat"
                 android:hint="Enter your username"
                 android:inputType="textEmailAddress" />
@@ -83,6 +84,7 @@
                 android:background="@drawable/login_signup_til"
                 android:drawableStart="@drawable/email"
                 android:drawableBottom="@color/white"
+                android:textColor="@color/white"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat"
@@ -111,6 +113,7 @@
                 android:drawableStart="@drawable/password"
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"
+                android:textColor="@color/white"
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat"
                 android:hint="@string/password"
@@ -127,6 +130,7 @@
             android:fontFamily="@font/montserrat"
             android:textColorHint="@color/white"
             app:passwordToggleEnabled="true"
+            android:textColor="@color/white"
             app:passwordToggleTint="@color/white">
 
             <EditText
@@ -139,6 +143,7 @@
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/montserrat"
+                android:textColor="@color/white"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
