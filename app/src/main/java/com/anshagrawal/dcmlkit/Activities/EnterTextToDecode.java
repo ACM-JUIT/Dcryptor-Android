@@ -61,6 +61,7 @@ public class EnterTextToDecode extends AppCompatActivity {
                 doneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog1.dismiss();
                         String textToDecode = binding.CipherEditText.getText().toString();
                         Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
                         Bundle bundle = new Bundle();

@@ -1,4 +1,7 @@
-package com.anshagrawal.dcmlkit.Activities;
+package com.anshagrawal.dcmlkit;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -11,13 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.anshagrawal.dcmlkit.R;
-import com.anshagrawal.dcmlkit.databinding.ActivityPickImageFromGalleryBinding;
+import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
+import com.anshagrawal.dcmlkit.databinding.ActivityAfterMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -29,24 +28,19 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
 
-public class PickImageFromGallery extends AppCompatActivity {
-
-
-    ActivityPickImageFromGalleryBinding binding;
+public class AfterMainActivity extends AppCompatActivity {
     Uri imageUri;
-
+    ActivityAfterMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPickImageFromGalleryBinding.inflate(getLayoutInflater());
+        binding = ActivityAfterMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         Bundle extras = getIntent().getExtras();
         imageUri = Uri.parse(extras.getString("imageUri"));
 
         cropImage();
-
     }
 
     public void processBitmap(Bitmap bitmap, int rotation) {
@@ -71,9 +65,10 @@ public class PickImageFromGallery extends AppCompatActivity {
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //
                 final boolean[] toStore = new boolean[1];
                 final boolean[] method = new boolean[1];
-                Dialog dialog1 = new Dialog(PickImageFromGallery.this);
+                Dialog dialog1 = new Dialog(AfterMainActivity.this);
                 dialog1.setContentView(R.layout.dialog_resource);
                 Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
                 CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
@@ -94,15 +89,16 @@ public class PickImageFromGallery extends AppCompatActivity {
                     method[0] = true;
 
                 } else {
-                    Toast.makeText(PickImageFromGallery.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
                 }
+
+                //
                 dialog1.show();
                 doneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog1.dismiss();
                         String textToDecode = binding.editText.getText().toString();
-                        Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
+                        Intent intent = new Intent(AfterMainActivity.this, DecodeActivity.class);
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("textToDecode", textToDecode);
                         bundle1.putBoolean("toStore", toStore[0]);

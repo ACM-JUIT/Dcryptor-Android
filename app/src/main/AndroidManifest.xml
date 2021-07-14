@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
-        <activity android:name=".Activities.ResultActivity"></activity>
+        <activity android:name=".AfterMainActivity"></activity>
+        <activity android:name=".Activities.ResultActivity" />
         <activity android:name=".Activities.PickImageFromGallery" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.LoginActivity" />
@@ -23,20 +24,16 @@
             android:name=".Activities.EnterTextToDecode"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Activities.DecodeActivity" />
-        <activity android:name=".Activities.DashboardActivity">
+        <activity android:name=".Activities.DashboardActivity" />
+        <activity android:name=".Activities.CameraActivity" />
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <activity android:name=".Activities.CameraActivity" />
-        <activity
-            android:name=".Activities.SplashActivity"
-            android:noHistory="true">
-
         </activity>
         <activity
             android:name=".Activities.MainActivity"

@@ -26,7 +26,7 @@
         android:layout_marginLeft="29dp"
         android:layout_marginTop="171dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/gilroy_bold"
         android:gravity="top"
         android:lineSpacingExtra="0sp"
         android:text="Welcome Back"
@@ -53,7 +53,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserrat"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/white"
+            app:hintTextColor="@color/white">
 
             <EditText
                 android:id="@+id/loginemail"
@@ -64,9 +65,10 @@
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/white"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/gilroy_bold"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,6 +82,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserrat"
             android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/white">
 
@@ -87,12 +90,13 @@
                 android:id="@+id/loginpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:background="@drawable/login_signup_til"
                 android:drawableStart="@drawable/password"
                 android:drawableBottom="@color/white"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/white"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/gilroy_bold"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,31 +107,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="20dp">
+        android:layout_below="@id/linearLayoutTIL"
+        android:layout_marginHorizontal="35dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/gotosignup"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="473dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:backgroundTint="@color/cardBg2"
-            android:fontFamily="@font/montserrat"
-            android:gravity="top"
+            android:fontFamily="@font/gilroy_bold"
             android:lineSpacingExtra="13sp"
             android:text="Register"
             android:textAppearance="@style/register"
-            android:textColor="#4097F7"
-            android:translationY="-6.64sp" />
+            android:textColor="#4097F7" />
 
         <ImageView
             android:id="@+id/login"
             android:layout_width="51dp"
             android:layout_height="51dp"
-
-            android:layout_marginTop="464dp"
             android:background="@drawable/image_rounded"
             android:elevation="26dp"
             android:src="@drawable/ic_baseline_arrow_forward_24"

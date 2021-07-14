@@ -45,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
         dialog = new ProgressDialog(this);
         dialog.setMessage("Please Wait... \nWhile we are proceesing your request");
         dialog.setCancelable(true);

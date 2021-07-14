@@ -33,7 +33,6 @@
         android:textAppearance="@style/create_an_a"
         android:textColor="#4097f7" />
 
-
     <LinearLayout
         android:id="@+id/linearLayoutTIL"
         android:layout_width="match_parent"
@@ -166,8 +165,8 @@
         <TextView
             android:id="@+id/login"
             android:layout_width="0dp"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:backgroundTint="@color/cardBg2"
             android:fontFamily="@font/gilroy_bold"
@@ -179,8 +178,8 @@
         <ImageView
             android:id="@+id/signup"
             android:layout_width="51dp"
-            android:layout_gravity="center"
             android:layout_height="51dp"
+            android:layout_gravity="center"
             android:background="@drawable/image_rounded"
             android:src="@drawable/ic_baseline_arrow_forward_24"
             app:tint="@color/white" />

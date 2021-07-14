@@ -26,17 +26,16 @@ public class SplashActivity extends AppCompatActivity {
         activitySplashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(activitySplashBinding.getRoot());
         getSupportActionBar().hide();
-
-
         //launch main activity after 3.2s os splash screen
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
+//                activitySplashBinding.textViewY.animate().rotation(360).setDuration(900);
 //                startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
 //                finish();
 //            }
-//        }, 100000);
-        //checkForFingerprint();
+//        }, 1000);
+        checkForFingerprint();
         //Fingerprint image added when the user clicks the image a prompt will open and when the user will authenticate then only the user will be allowed to enter in the app.
 //        activitySplashBinding.fingerprint.setOnClickListener(new View.OnClickListener() {
 //            @Override

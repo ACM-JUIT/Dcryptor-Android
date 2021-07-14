@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().hide();
         dialog = new ProgressDialog(this);
         dialog.setMessage("Please Wait... \nWhile we are fetching your details");
         dialog.setCancelable(true);
@@ -176,6 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         android.content.SharedPreferences preferences = getSharedPreferences("user_cypher", MODE_PRIVATE);
         if (preferences.contains("token")) {
+            Log.d("}}}", sharedPreferences.getValueString("token"));
             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             finish();
         }

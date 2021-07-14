@@ -89,7 +89,7 @@ public class DashboardActivity extends AppCompatActivity  {
         binding.addCypherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DashboardActivity.this, CameraActivity.class));
+                startActivity(new Intent(DashboardActivity.this, MainActivity.class));
             }
         });
 

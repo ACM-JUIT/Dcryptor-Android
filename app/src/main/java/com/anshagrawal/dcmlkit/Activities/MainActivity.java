@@ -16,9 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.anshagrawal.dcmlkit.AfterMainActivity;
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.R;
-
 
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,11 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-
-
         activityMainBinding = com.anshagrawal.dcmlkit.databinding.ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();
         setContentView(view);
@@ -170,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void processBitmap(Bitmap bitmap, int rotation) {
         InputImage img = InputImage.fromBitmap(bitmap, rotation);
-
         //taking an instance of google mlkit textrecognizer
         TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
         recognizer.process(img).addOnSuccessListener(new OnSuccessListener<Text>() {
@@ -196,32 +191,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void cropImage(Bitmap bitmap) throws IOException {
         Uri uri = saveBitmapToCache(bitmap);
-        CropImage.activity(uri)
-                .start(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("imageUri", uri.toString());
+        Intent i1 = new Intent(MainActivity.this, AfterMainActivity.class);
+        i1.putExtras(bundle);
+        startActivity(i1);
+//        CropImage.activity(uri)
+//                .start(this);
     }
 
-    @Override
-    //crop image activity result listener, this block is executed when the image is cropped
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
-                Bitmap imageAfterCrop = null;
-                try {
-                    imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
-
-                    ocr(imageAfterCrop, rotationAfterCrop);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                activityMainBinding.cropImageView.setVisibility(View.VISIBLE);
-                activityMainBinding.cropImageView.setImageBitmap(imageAfterCrop);
-
-            }
-        }
-    }
+//    @Override
+//    //crop image activity result listener, this block is executed when the image is cropped
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            if (resultCode == RESULT_OK) {
+//                Uri resultUri = result.getUri();
+//                Bitmap imageAfterCrop = null;
+//                try {
+//                    imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+//
+//                    ocr(imageAfterCrop, rotationAfterCrop);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                activityMainBinding.cropImageView.setVisibility(View.VISIBLE);
+//                activityMainBinding.cropImageView.setImageBitmap(imageAfterCrop);
+//
+//            }
+//        }
+//    }
 
     //processes bitmap of the cropped image
     private void ocr(Bitmap imageAfterCrop, int rotationAfterCrop) {
