@@ -31,6 +31,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="username">Username</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="want_to_register"><u>Want to Register?</u></string>
 
 
 </resources>
