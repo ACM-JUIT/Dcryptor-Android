@@ -17,8 +17,12 @@
         android:theme="@style/Theme.Dcmlkit">
 
 
-        <activity android:name=".AfterShutterActivity"></activity>
 
+
+
+
+
+        <activity android:name=".AfterShutterActivity"/>
 
         <activity android:name=".Activities.PickImageFromGallery" />
         <activity android:name=".Activities.SignUpActivity" />
