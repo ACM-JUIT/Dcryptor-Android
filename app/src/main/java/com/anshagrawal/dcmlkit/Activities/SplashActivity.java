@@ -82,7 +82,7 @@ public class SplashActivity extends AppCompatActivity {
                         finish();
                     }
                 }, 1000);
-                activitySplashBinding.textViewY.animate().rotation(360).setDuration(900);
+                //activitySplashBinding.textViewY.animate().rotation(360).setDuration(900);
                 notifyUser("Authentication Succeeded!!!!");
 
             }

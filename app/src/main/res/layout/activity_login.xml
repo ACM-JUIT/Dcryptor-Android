@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="-78dp"
-        android:background="@drawable/icon_signup" />
+        android:background="@drawable/iconsignup" />
 
     <TextView
         android:id="@+id/create_an_a"

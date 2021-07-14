@@ -143,18 +143,22 @@ public class DashboardActivity extends AppCompatActivity  {
                                     obj.getString("decodedAt")
                             );
                             arrayList.add(cypherModel);
+
                         }
+
 
 
                         adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                         binding.cypherRecycler.setAdapter(adapter);
                     }
+
                     //arrayList.clear();
                 } catch (JSONException e) {
                     dialog.dismiss();
                     e.printStackTrace();
                     binding.progressBar.setVisibility(View.GONE);
                 }
+                adapter.notifyDataSetChanged();
             }
         }, //Error Handling
                 new Response.ErrorListener() {
