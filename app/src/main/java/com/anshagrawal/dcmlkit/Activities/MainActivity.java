@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -15,8 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-
-import com.anshagrawal.dcmlkit.AfterMainActivity;
+import com.anshagrawal.dcmlkit.AfterShutterActivity;
 import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.R;
 
@@ -33,9 +30,6 @@ import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.PictureResult;
 import com.otaliastudios.cameraview.gesture.Gesture;
 import com.otaliastudios.cameraview.gesture.GestureAction;
-import com.theartofdev.edmodo.cropper.CropImage;
-
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -186,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = saveBitmapToCache(bitmap);
         Bundle bundle = new Bundle();
         bundle.putString("imageUri", uri.toString());
-        Intent i1 = new Intent(MainActivity.this, AfterMainActivity.class);
+        Intent i1 = new Intent(MainActivity.this, AfterShutterActivity.class);
         i1.putExtras(bundle);
         startActivity(i1);
 //        CropImage.activity(uri)

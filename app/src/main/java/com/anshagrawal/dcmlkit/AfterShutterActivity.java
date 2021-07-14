@@ -1,3 +1,4 @@
+//java
 package com.anshagrawal.dcmlkit;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 
 import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
-import com.anshagrawal.dcmlkit.databinding.ActivityAfterMainBinding;
+import com.anshagrawal.dcmlkit.databinding.ActivityAfterShutterBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
@@ -28,14 +29,14 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
 
-public class AfterMainActivity extends AppCompatActivity {
+ public class AfterShutterActivity extends AppCompatActivity {
     Uri imageUri;
-    ActivityAfterMainBinding binding;
+    ActivityAfterShutterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAfterMainBinding.inflate(getLayoutInflater());
+        binding = ActivityAfterShutterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Bundle extras = getIntent().getExtras();
         imageUri = Uri.parse(extras.getString("imageUri"));
@@ -68,7 +69,7 @@ public class AfterMainActivity extends AppCompatActivity {
                 //
                 final boolean[] toStore = new boolean[1];
                 final boolean[] method = new boolean[1];
-                Dialog dialog1 = new Dialog(AfterMainActivity.this);
+                Dialog dialog1 = new Dialog(AfterShutterActivity.this);
                 dialog1.setContentView(R.layout.dialog_resource);
                 Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
                 CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
@@ -98,7 +99,7 @@ public class AfterMainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String textToDecode = binding.editText.getText().toString();
-                        Intent intent = new Intent(AfterMainActivity.this, DecodeActivity.class);
+                        Intent intent = new Intent(AfterShutterActivity.this, DecodeActivity.class);
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("textToDecode", textToDecode);
                         bundle1.putBoolean("toStore", toStore[0]);
