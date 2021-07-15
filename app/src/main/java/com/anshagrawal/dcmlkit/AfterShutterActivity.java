@@ -29,7 +29,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
 
- public class AfterShutterActivity extends AppCompatActivity {
+public class AfterShutterActivity extends AppCompatActivity {
     Uri imageUri;
     ActivityAfterShutterBinding binding;
 
@@ -69,12 +69,12 @@ import java.io.IOException;
                 //
                 final boolean[] toStore = new boolean[1];
                 final boolean[] method = new boolean[1];
-                Dialog dialog1 = new Dialog(AfterShutterActivity.this);
-                dialog1.setContentView(R.layout.dialog_resource);
-                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
-                CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
-                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
-                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
+//                Dialog dialog1 = new Dialog(AfterShutterActivity.this);
+//                dialog1.setContentView(R.layout.dialog_resource);
+//                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
+                CheckBox checkBox = (CheckBox) binding.checkBox;
+//                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
+//                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
                 if (checkBox.isChecked()) {
                     toStore[0] = true;
 
@@ -82,33 +82,33 @@ import java.io.IOException;
                     toStore[0] = false;
 
                 }
-                if (radioButton1.isChecked()) {
-                    method[0] = true;
-                }
+                String textToDecode = binding.editText.getText().toString();
+                Intent intent = new Intent(AfterShutterActivity.this, DecodeActivity.class);
+                finish();
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("textToDecode", textToDecode);
+                bundle1.putBoolean("toStore", toStore[0]);
+                bundle1.putBoolean("method", method[0]);
+                intent.putExtras(bundle1);
+                startActivity(intent);
 
-                if (radioButton2.isChecked()) {
-                    method[0] = true;
-
-                } else {
-//                    Toast.makeText(, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-                }
 
                 //
-                dialog1.show();
-                doneBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String textToDecode = binding.editText.getText().toString();
-                        Intent intent = new Intent(AfterShutterActivity.this, DecodeActivity.class);
-                        finish();
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putString("textToDecode", textToDecode);
-                        bundle1.putBoolean("toStore", toStore[0]);
-                        bundle1.putBoolean("method", method[0]);
-                        intent.putExtras(bundle1);
-                        startActivity(intent);
-                    }
-                });
+//                dialog1.show();
+//                doneBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String textToDecode = binding.editText.getText().toString();
+//                        Intent intent = new Intent(AfterShutterActivity.this, DecodeActivity.class);
+//                        finish();
+//                        Bundle bundle1 = new Bundle();
+//                        bundle1.putString("textToDecode", textToDecode);
+//                        bundle1.putBoolean("toStore", toStore[0]);
+//                        bundle1.putBoolean("method", method[0]);
+//                        intent.putExtras(bundle1);
+//                        startActivity(intent);
+//                    }
+//                });
             }
         });
     }
