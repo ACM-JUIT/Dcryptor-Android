@@ -4,6 +4,7 @@ package com.anshagrawal.dcmlkit.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
 import java.util.ArrayList;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder> {
 
@@ -51,15 +55,19 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
         final String date = arrayList.get(position).getDecodedAt();
         final String id = arrayList.get(position).get_id();
 
+        String s = date;
 
+        s = s.substring(s.indexOf("T") + 1);
+        s = s.substring(0, s.indexOf("."));
 
         holder.title.setText(title);
         holder.Date.setText(date);
+        holder.time.setText(s);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DecodeActivity.class);
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("textToDecode", title);
                 bundle.putBoolean("toStore", false);
                 bundle.putBoolean("method", false);
@@ -67,9 +75,6 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
                 context.startActivity(intent);
             }
         });
-
-
-
 
 
     }
@@ -81,12 +86,13 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, Date;
+        TextView title, Date, time;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.cTitle);
             Date = itemView.findViewById(R.id.cDate);
+            time = itemView.findViewById(R.id.cTime);
 
         }
     }

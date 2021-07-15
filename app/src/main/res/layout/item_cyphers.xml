@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="2dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
+        android:id="@+id/llcard"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/loginsignupgradient1"
+        android:layout_height="80dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/cTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="8dp"
+            android:maxLength="25"
             android:fontFamily="@font/lato_bold"
             android:maxLines="1"
             android:text="Title"
@@ -28,16 +27,34 @@
 
         <TextView
             android:id="@+id/cDate"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
+            android:maxLength="10"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/lato"
             android:text="15 aug 2021"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textColor="#4deefb"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/cTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/lato"
+            android:text="15 aug 2021"
+            android:textColor="#4deefb"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/llcard"
+        android:layout_marginHorizontal="20dp"
+        android:background="#4deefb" />
 
 </RelativeLayout>

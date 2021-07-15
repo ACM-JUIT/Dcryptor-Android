@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DashboardActivity extends AppCompatActivity  {
+public class DashboardActivity extends AppCompatActivity {
 
 
     ActivityDashboardBinding binding;
@@ -58,14 +58,13 @@ public class DashboardActivity extends AppCompatActivity  {
     ArrayList<CypherModel> arrayList;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         dialog = new ProgressDialog(this);
-        dialog.setMessage("Please Wait... \n while we are processing your result");
+        dialog.setMessage("Processing your result");
         dialog.setCancelable(true);
         getSupportActionBar().setTitle("Dashboard");
         getTask();

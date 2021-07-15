@@ -8,6 +8,7 @@
     tools:context=".Activities.DashboardActivity">
 
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cypherRecycler"
         android:layout_width="match_parent"
