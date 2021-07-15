@@ -8,11 +8,11 @@ The application consists of a Frontend made on JAVA, and a Backend made using No
 
 ## 🎆 Major Features
 
-1. Uses Optical Character Recognition.
-2. Automatic Encryption Detection. (Detects the kind of encryption technique used)
-3. Decyrpts data recursively.
-4. Saves previously decrypted data.
-5. Ability to share the results with friends.
+* Uses Optical Character Recognition.
+* Automatic Encryption Detection. (Detects the kind of encryption technique used)
+* Decyrpts data recursively.
+* Saves previously decrypted data.
+* Ability to share the results with friends.
 
 ## ⚙️ Usage
 
