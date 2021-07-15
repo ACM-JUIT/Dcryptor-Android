@@ -8,7 +8,6 @@
     tools:context=".Activities.DashboardActivity">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cypherRecycler"
         android:layout_width="match_parent"
@@ -90,7 +89,6 @@
             app:fab_color="@color/cardBg2"
             app:fab_icon="@drawable/ic_baseline_edit_24"
             app:label_backgroundColor="@color/cardBg2" />
-        <!--            app:label_text="Text" />-->
 
     </com.nambimobile.widgets.efab.ExpandableFabLayout>
 
