@@ -84,7 +84,7 @@
             app:fab_color="@color/cardBg2"
             app:fab_icon="@drawable/ic_baseline_image_24"
             app:label_backgroundColor="@color/cardBg2" />
-        <!--            app:label_text="Gallery" />-->
+
 
         <com.nambimobile.widgets.efab.FabOption
             android:id="@+id/textButton"
