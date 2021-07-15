@@ -3,17 +3,10 @@ package com.anshagrawal.dcmlkit.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
-
-import java.util.concurrent.Executor;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -36,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
 
-        }, 2000);
+        }, 1750);
         activitySplashBinding.logo.animate().rotation(180).setDuration(1200);
 
 
