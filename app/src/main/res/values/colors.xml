@@ -23,4 +23,5 @@
     <color name="cardBg5">#1b224d</color>
     <color name="cardBg4">#4451f8</color>
     <color name="loginsignupcard">#23206d</color>
+    <color name="loginsignupbtn">#5EA7FF</color>
 </resources>

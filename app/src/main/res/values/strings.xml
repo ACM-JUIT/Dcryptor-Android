@@ -32,6 +32,8 @@
     <string name="username">Username</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="want_to_register"><u>Want to Register?</u></string>
+    <string name="register">Register</string>
+    <string name="still_have_no_account">Still have no account?</string>
 
 
 </resources>
