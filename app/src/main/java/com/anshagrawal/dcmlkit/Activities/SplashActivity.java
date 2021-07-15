@@ -25,12 +25,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activitySplashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(activitySplashBinding.getRoot());
+        activitySplashBinding.logo.animate().rotation(180).setDuration(0);
         getSupportActionBar().hide();
         //launch main activity after 3.2s os splash screen
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                activitySplashBinding.textViewY.animate().rotation(360).setDuration(900);
+                activitySplashBinding.logo.animate().rotation(180).setDuration(900);
                 startActivity(new Intent(SplashActivity.this, SignUpActivity.class));
                 finish();
             }
