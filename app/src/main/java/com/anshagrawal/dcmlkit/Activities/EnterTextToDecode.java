@@ -33,12 +33,13 @@ public class EnterTextToDecode extends AppCompatActivity {
                 //
                 final boolean[] toStore = new boolean[1];
                 final boolean[] method = new boolean[1];
-                Dialog dialog1 = new Dialog(EnterTextToDecode.this);
-                dialog1.setContentView(R.layout.dialog_resource);
-                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
-                CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
-                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
-                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
+//                Dialog dialog1 = new Dialog(EnterTextToDecode.this);
+//                dialog1.setContentView(R.layout.dialog_resource);
+
+//                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
+                CheckBox checkBox = (CheckBox) binding.checkBox;
+//                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
+//                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
                 if (checkBox.isChecked()) {
                     toStore[0] = true;
 
@@ -46,34 +47,43 @@ public class EnterTextToDecode extends AppCompatActivity {
                     toStore[0] = false;
 
                 }
-                if (radioButton1.isChecked()) {
-                    method[0] = true;
-                }
-
-                if (radioButton2.isChecked()) {
-                    method[0] = true;
-
-                } else {
-                    Toast.makeText(EnterTextToDecode.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-                }
+                String textToDecode = binding.CipherEditText.getText().toString();
+                Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
+                finish();
+                Bundle bundle = new Bundle();
+                bundle.putString("textToDecode", textToDecode);
+                bundle.putBoolean("toStore", toStore[0]);
+                bundle.putBoolean("method", false);
+                intent.putExtras(bundle);
+                startActivity(intent);
+//                if (radioButton1.isChecked()) {
+//                    method[0] = true;
+//                }
+//
+//                if (radioButton2.isChecked()) {
+//                    method[0] = true;
+//
+//                } else {
+//                    Toast.makeText(EnterTextToDecode.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+//                }
 
                 //
-                    dialog1.show();
-                doneBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog1.dismiss();
-                        String textToDecode = binding.CipherEditText.getText().toString();
-                        Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
-                        finish();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("textToDecode", textToDecode);
-                        bundle.putBoolean("toStore", toStore[0]);
-                        bundle.putBoolean("method", method[0]);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
-                });
+//                    dialog1.show();
+//                doneBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog1.dismiss();
+//                        String textToDecode = binding.CipherEditText.getText().toString();
+//                        Intent intent = new Intent(EnterTextToDecode.this, DecodeActivity.class);
+//                        finish();
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("textToDecode", textToDecode);
+//                        bundle.putBoolean("toStore", toStore[0]);
+//                        bundle.putBoolean("method", method[0]);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+//                    }
+//                });
 
 
             }
