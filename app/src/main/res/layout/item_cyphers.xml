@@ -24,7 +24,7 @@
                 android:id="@+id/cTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/lato_bold"
                 android:maxLines="1"
                 android:padding="5dp"
                 android:text="Title"
@@ -43,7 +43,7 @@
                     android:id="@+id/cDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
+                    android:fontFamily="@font/lato"
                     android:text="15 aug 2021"
                     android:textColor="@color/white"
                     android:textSize="15dp" />
