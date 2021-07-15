@@ -65,6 +65,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'com.nambimobile.widgets:expandable-fab:1.1.1'
+
+    implementation "androidx.biometric:biometric:1.1.0"
+
+  
+
+
 
 
 }

@@ -10,4 +10,18 @@
     <color name="app_ui_background">#120E43</color>
     <color name="textColor">#000</color>
     <color name="gray">#707070</color>
+    <color name="dashBg">#0f0d41</color>
+    <color name="cardBg">#427cf6</color>
+    <color name="dashboardTextColor">#f5cb5c</color>
+    <color name="red">#f00</color>
+    <color name="green">#3CDA10</color>
+    <color name="grey">#66676b</color>
+    <color name="titlebardashboard">#1b224d</color>
+    <color name="cardBg1">#4deefb</color>
+    <color name="cardBg2">#4097f7</color>
+    <color name="cardBg3">#427cf6</color>
+    <color name="cardBg5">#1b224d</color>
+    <color name="cardBg4">#4451f8</color>
+    <color name="loginsignupcard">#23206d</color>
+    <color name="loginsignupbtn">#5EA7FF</color>
 </resources>

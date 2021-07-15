@@ -1,5 +1,9 @@
 package com.anshagrawal.dcmlkit.Adapters;
 
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,45 +12,83 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.anshagrawal.dcmlkit.Activities.DashboardActivity;
-import com.anshagrawal.dcmlkit.Models.Dcryptor;
+import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
+import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.cypherViewHolder> {
-    DashboardActivity dashboardActivity;
-    List<Dcryptor> dcryptors;
-    public CypherAdapter(DashboardActivity dashboardActivity, List<Dcryptor> dcryptors) {
-        this.dashboardActivity = dashboardActivity;
-        this.dcryptors = dcryptors;
+public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder> {
+
+    ArrayList<CypherModel> arrayList;
+    Context context;
+
+    public CypherAdapter(Context context, ArrayList<CypherModel> arrayList) {
+        this.arrayList = arrayList;
+        this.context = context;
+
     }
+
+
+    public void searchDcryptor(ArrayList<CypherModel> filteredName) {
+        this.arrayList = filteredName;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
-    public cypherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new cypherViewHolder(LayoutInflater.from(dashboardActivity).inflate(R.layout.item_cyphers,parent, false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_cyphers, parent, false);
+        final ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull cypherViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final String title = arrayList.get(position).getStringtoDecode();
+        final String date = arrayList.get(position).getDecodedAt();
+        final String id = arrayList.get(position).get_id();
 
-        holder.title.setText(dcryptors.get(position).cypherTitle);
-        holder.date.setText(dcryptors.get(position).cypherDate);
+        String s = date;
+
+        s = s.substring(s.indexOf("T") + 1);
+        s = s.substring(0, s.indexOf("."));
+
+        holder.title.setText(title);
+        holder.Date.setText(date);
+        holder.time.setText(s);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DecodeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("textToDecode", title);
+                bundle.putBoolean("toStore", false);
+                bundle.putBoolean("method", false);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
-        return dcryptors.size();
+        return arrayList.size();
     }
 
-    class cypherViewHolder extends RecyclerView.ViewHolder {
-        TextView title, date;
-        public cypherViewHolder(@NonNull View itemView) {
-            super(itemView);
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
+        TextView title, Date, time;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
             title = itemView.findViewById(R.id.cTitle);
-            date = itemView.findViewById(R.id.cDate);
+            Date = itemView.findViewById(R.id.cDate);
+            time = itemView.findViewById(R.id.cTime);
+
         }
     }
 }

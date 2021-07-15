@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
+        android:id="@+id/llcard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        app:cardCornerRadius="10dp">
+        android:layout_height="80dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/cTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:text="Title"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="6dp"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/cDate"
 
-            <TextView
-                android:id="@+id/cTitle"
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:text="Title" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/lato"
+            android:maxLength="10"
+            android:text="15 aug 2021"
+            android:textColor="#4deefb"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/cDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_light"
-                android:padding="2dp"
-                android:text="23 May 2021"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/cTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/lato"
+            android:text="15 aug 2021"
+            android:textColor="#4deefb"
+            android:textSize="12sp" />
 
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/llcard"
+        android:layout_marginHorizontal="20dp"
+        android:background="#4deefb" />
 
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</RelativeLayout>

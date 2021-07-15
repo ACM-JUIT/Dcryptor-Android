@@ -1,17 +1,19 @@
 package com.anshagrawal.dcmlkit.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
 
     ActivitySplashBinding activitySplashBinding;
+    SharedPreferences sharedPreferencesClass;
+    SharedPreferences.Editor editor;
 
     @Override
 
@@ -19,38 +21,35 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activitySplashBinding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(activitySplashBinding.getRoot());
+        activitySplashBinding.logo.animate().rotation(180);
         getSupportActionBar().hide();
-        setInitialYScale(activitySplashBinding.textViewD);
-        setInitialYScale(activitySplashBinding.textViewC);
-        setInitialYScale(activitySplashBinding.textViewR);
-        setInitialYScale(activitySplashBinding.textViewP);
-        setInitialYScale(activitySplashBinding.textViewT);
-        setInitialYScale(activitySplashBinding.textViewO);
-        setInitialYScale(activitySplashBinding.textViewR1);
-        setFinalYScale(activitySplashBinding.textViewD, 0);
-        setFinalYScale(activitySplashBinding.textViewC, 300);
-        setFinalYScale(activitySplashBinding.textViewR, 300 * 2);
-        setFinalYScale(activitySplashBinding.textViewP, 300 * 3);
-        setFinalYScale(activitySplashBinding.textViewT, 300 * 4);
-        setFinalYScale(activitySplashBinding.textViewO, 300 * 5);
-        setFinalYScale(activitySplashBinding.textViewR1, 300 * 6);
-        activitySplashBinding.textViewY.animate().rotation(360).setDuration(790).setStartDelay(300 * 7);
-
+        sharedPreferencesClass = this.getSharedPreferences("splash", MODE_PRIVATE);
+        editor = sharedPreferencesClass.edit();
         //launch main activity after 3.2s os splash screen
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, DashboardActivity.class));
-                finish();
+                if (sharedPreferencesClass.getBoolean("isMain", false)) {
+
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+
+
+                } else {
+                    editor.putBoolean("isMain", true);
+                    editor.apply();
+
+
+                    startActivity(new Intent(SplashActivity.this, AfterSplashScreenActivity.class));
+                }
+
+
             }
-        }, 3000);
+
+        }, 1750);
+
+        activitySplashBinding.logo.animate().rotation(180).setDuration(1200);
+
+
     }
 
-    private void setInitialYScale(TextView textView) {
-        textView.setY(1350);
-    }
-
-    private void setFinalYScale(TextView textView, long delay) {
-        textView.animate().translationY(0).setDuration(400).setStartDelay(delay);
-    }
 }

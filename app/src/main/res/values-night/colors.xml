@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_ui_background">#120E43</color>
     <color name="textColor">#000</color>
+    <color name="gray">#707070</color>
+    <color name="dashBg">#0f0d41</color>
+    <color name="cardBg">#427cf6</color>
+    <color name="dashboardTextColor">#f5cb5c</color>
+    <color name="red">#f00</color>
+    <color name="green">#3CDA10</color>
+    <color name="grey">#66676b</color>
+    <color name="titlebardashboard">#1b224d</color>
+    <color name="cardBg1">#4deefb</color>
+    <color name="cardBg2">#4097f7</color>
+    <color name="cardBg3">#427cf6</color>
+    <color name="cardBg5">#1b224d</color>
+    <color name="cardBg4">#4451f8</color>
+    <color name="loginsignupcard">#23206d</color>
+    <color name="loginsignupbtn">#5EA7FF</color>
 </resources>

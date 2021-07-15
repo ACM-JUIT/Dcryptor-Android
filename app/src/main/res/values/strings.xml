@@ -18,4 +18,22 @@
 
     <string name="empty_decode_something">Empty! Decode Something!</string>
     <string name="display_to_clear_the_contrnts_of_listview">Display to clear the contrnts of listview</string>
+    <string name="store_in_database">Store In Database</string>
+    <string name="done">Done</string>
+    <string name="recursive">Recursive</string>
+    <string name="base_64">Base 64</string>
+    <string name="welcome_bac">Welcome Back! </string>
+    <string name="username_or">Email</string>
+    <string name="create_an_a">Create an account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="username">Username</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="want_to_register"><u>Want to Register?</u></string>
+    <string name="register">Register</string>
+    <string name="still_have_no_account">Still have no account?</string>
+
+
 </resources>

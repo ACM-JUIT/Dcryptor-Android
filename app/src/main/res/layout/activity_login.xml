@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dashBg"
+    tools:context=".Activities.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="475dp"
+        android:background="@drawable/loginsignupgradient" />
+
+    <View
+        android:id="@+id/dc_text_1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="-78dp"
+        android:background="@drawable/iconsignup" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dc_text_1"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/login_card" />
+
+    <TextView
+        android:id="@+id/create_an_a"
+        android:layout_width="176dp"
+        android:layout_height="86dp"
+        android:layout_below="@id/dc_text_1"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/gilroy_bold"
+        android:text="@string/welcome_back"
+        android:textAppearance="@style/create_an_a"
+        android:textColor="@color/white" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTIL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_an_a"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usernameTIL"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white"
+            app:hintTextColor="@color/white">
+
+            <EditText
+                android:id="@+id/loginemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/login_signup_til"
+                android:drawableLeft="@drawable/email"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/lato_bold"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginpasswordTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white">
+
+            <EditText
+                android:id="@+id/loginpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_signup_til"
+                android:drawableStart="@drawable/password"
+                android:drawableBottom="@color/white"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/lato_bold"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@drawable/login_signup_btn_rounded"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="Log In"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/still_have_no_account"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/gotosignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/register"
+                android:textColor="@color/cardBg1"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout><!--gotosignup and login-->

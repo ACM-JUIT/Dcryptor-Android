@@ -4,20 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dashBg"
     tools:context=".Activities.DashboardActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cypherRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cypherRecycler"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="1dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addCypherBtn"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="26dp"
-        android:src="@drawable/ic_baseline_add_24" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/emptyCypher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/lato_bold"
+        android:text="Let's Decode something"
+        android:textColor="@color/cardBg2"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+
+    <com.nambimobile.widgets.efab.ExpandableFabLayout
+        android:id="@+id/expandable_fab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.nambimobile.widgets.efab.ExpandableFab
+            android:id="@+id/expandable_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            app:efab_closingAnticipateTension="0"
+            app:efab_color="@color/cardBg2"
+            app:efab_icon="@drawable/ic_baseline_add_24"
+            app:efab_iconAnimationRotationDeg="-225" />
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:id="@+id/addCypherBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            app:fab_color="@color/cardBg2"
+            app:fab_icon="@drawable/ic_baseline_camera_alt_24"
+            app:label_backgroundColor="@color/cardBg2"
+            app:label_textColor="#ffffff" />
+        <!--            app:label_text="Camera"-->
+
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:id="@+id/selectFromGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            app:fab_color="@color/cardBg2"
+            app:fab_icon="@drawable/ic_baseline_image_24"
+            app:label_backgroundColor="@color/cardBg2" />
+
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:id="@+id/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            app:fab_color="@color/cardBg2"
+            app:fab_icon="@drawable/ic_baseline_edit_24"
+            app:label_backgroundColor="@color/cardBg2" />
+
+    </com.nambimobile.widgets.efab.ExpandableFabLayout>
 
 </RelativeLayout>

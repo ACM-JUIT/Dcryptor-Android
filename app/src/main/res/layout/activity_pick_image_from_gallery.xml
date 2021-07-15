@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBg5"
+    tools:context=".Activities.PickImageFromGallery">
+
+    <ImageView
+        android:id="@+id/croppedImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/croppedImage"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/login_signup_til1"
+        android:fadeScrollbars="false"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="center"
+        android:hint="Scanned Text"
+        android:maxHeight="250dp"
+        android:minHeight="100dp"
+        android:outlineProvider="none"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20dp" />
+
+
+    <TextView
+        android:id="@+id/decodeButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/login_signup_btn_rounded"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="center"
+        android:text="Decode !"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decodeButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:checked="true"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/store_in_database"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+</RelativeLayout>
