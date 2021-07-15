@@ -1,60 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/linearlayout_recyclerview_itemcyphers">
+    android:layout_margin="2dp">
 
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="1dp"
-        android:backgroundTint="@color/cardBg"
-        android:hapticFeedbackEnabled="true"
-        app:cardCornerRadius="16dp">
+        android:layout_height="96dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/loginsignupgradient1"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/cTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:maxLines="1"
+            android:text="Title"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/cTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lato_bold"
-                android:maxLines="1"
-                android:padding="5dp"
-                android:text="Title"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/cDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/lato"
+            android:text="15 aug 2021"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/cDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato"
-                    android:text="15 aug 2021"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+    </LinearLayout>
 
 
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</RelativeLayout>
