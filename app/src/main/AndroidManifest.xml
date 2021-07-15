@@ -16,12 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dcmlkit">
 
-
-
-
-
-
-
         <activity android:name=".AfterShutterActivity"/>
 
         <activity android:name=".Activities.PickImageFromGallery" />
