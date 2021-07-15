@@ -26,10 +26,10 @@
         android:id="@+id/emptyCypher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:text="Let's Decode something"
-        android:textColor="@color/red"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/cardBg2"
         android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="gone" />

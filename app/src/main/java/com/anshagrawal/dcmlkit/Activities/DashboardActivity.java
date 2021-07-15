@@ -134,23 +134,29 @@ public class DashboardActivity extends AppCompatActivity  {
                     if (response.getBoolean("status")) {
                         arrayList.clear();
                         JSONArray jsonArray = response.getJSONArray("decodedHistory");
-                        //Log.i("historyapi", "response" + jsonArray.toString());
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject obj = jsonArray.getJSONObject(i);
-                            CypherModel cypherModel = new CypherModel(
-                                    obj.getString("_id"),
-                                    obj.getString("stringtoDecode"),
-                                    obj.getString("decodedAt")
-                            );
+                        if (jsonArray.length() == 0) {
+                            binding.emptyCypher.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.emptyCypher.setVisibility(View.GONE);
 
-                            arrayList.add(cypherModel);
+                            //Log.i("historyapi", "response" + jsonArray.toString());
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject obj = jsonArray.getJSONObject(i);
+                                CypherModel cypherModel = new CypherModel(
+                                        obj.getString("_id"),
+                                        obj.getString("stringtoDecode"),
+                                        obj.getString("decodedAt")
+                                );
+
+                                arrayList.add(cypherModel);
+
+                            }
+
+                            adapter = new CypherAdapter(DashboardActivity.this, arrayList);
+                            binding.cypherRecycler.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
 
                         }
-
-                        adapter = new CypherAdapter(DashboardActivity.this, arrayList);
-                        binding.cypherRecycler.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-
                     }
 
 
@@ -163,6 +169,7 @@ public class DashboardActivity extends AppCompatActivity  {
 
 
             }
+
         }, //Error Handling
                 new Response.ErrorListener() {
                     @Override
@@ -193,6 +200,8 @@ public class DashboardActivity extends AppCompatActivity  {
 
                 return headers;
             }
+
+
         };
         //Setting of retry policy in case of any network error
         int socketTime = 3000;
