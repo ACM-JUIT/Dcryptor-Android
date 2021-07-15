@@ -3,6 +3,7 @@ package com.anshagrawal.dcmlkit.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
 import com.anshagrawal.dcmlkit.Activities.MainActivity;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
@@ -58,11 +60,13 @@ public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra("title",title);
-
+                Intent intent = new Intent(context, DecodeActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("textToDecode", title);
+                bundle.putBoolean("toStore", false);
+                bundle.putBoolean("method", false);
+                intent.putExtras(bundle);
                 context.startActivity(intent);
-
             }
         });
 
