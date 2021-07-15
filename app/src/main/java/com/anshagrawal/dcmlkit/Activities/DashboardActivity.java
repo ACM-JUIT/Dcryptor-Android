@@ -228,6 +228,11 @@ public class DashboardActivity extends AppCompatActivity  {
                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
                 finish();
                 break;
+
+            case R.id.Refresh:
+                adapter.notifyDataSetChanged();
+
+                break;
             case R.id.Share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
