@@ -4,7 +4,6 @@ package com.anshagrawal.dcmlkit.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anshagrawal.dcmlkit.Activities.DecodeActivity;
-import com.anshagrawal.dcmlkit.Activities.MainActivity;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.R;
 
 import java.util.ArrayList;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CypherAdapter extends RecyclerView.Adapter<CypherAdapter.ViewHolder> {
 

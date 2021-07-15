@@ -23,155 +23,162 @@
 
 
     <ImageView
+        android:id="@+id/flash"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/flash"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:src="@drawable/flash"
+        app:tint="@color/white" />
+
     <ImageView
+        android:id="@+id/grid"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/grid"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        app:tint="@color/white"
+        android:src="@drawable/grid" />
+
     <ImageView
         android:id="@+id/btnTake"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/aperture"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="70dp"/>
+        app:tint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:src="@drawable/aperture" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btnTake"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="260dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/share_tech"-->
-<!--        android:text="@string/takePhoto"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:cornerRadius="50dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.18"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
-<!--    <Button-->
-<!--        android:id="@+id/btnDecode"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="260dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/share_tech"-->
-<!--        android:text="@string/decodeText"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20dp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:cornerRadius="50dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.827"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnTake"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="260dp"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:text="@string/takePhoto"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:cornerRadius="50dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.18"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
+    <!--        app:layout_constraintVertical_bias="1.0" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnDecode"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="260dp"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:text="@string/decodeText"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:cornerRadius="50dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.827"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
+    <!--        app:layout_constraintVertical_bias="1.0" />-->
 
 
-<!--    <com.theartofdev.edmodo.cropper.CropImageView-->
-<!--        android:id="@+id/cropImageView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="93dp"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:layout_marginBottom="344dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cameraView" />-->
+    <!--    <com.theartofdev.edmodo.cropper.CropImageView-->
+    <!--        android:id="@+id/cropImageView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="93dp"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:layout_marginBottom="344dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/cameraView" />-->
 
-<!--    <EditText-->
-<!--        android:id="@+id/scannedText"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:layout_marginBottom="188dp"-->
-<!--        android:autofillHints=""-->
-<!--        android:background="@drawable/edittext_back"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/share_tech"-->
-<!--        android:hint="@string/edittext"-->
-<!--        android:inputType="text"-->
-<!--        android:padding="1dp"-->
-<!--        android:scrollbars="vertical"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/textColor"-->
-<!--        android:textSize="23sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.491"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/scannedText"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:layout_marginBottom="188dp"-->
+    <!--        android:autofillHints=""-->
+    <!--        android:background="@drawable/edittext_back"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:hint="@string/edittext"-->
+    <!--        android:inputType="text"-->
+    <!--        android:padding="1dp"-->
+    <!--        android:scrollbars="vertical"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/textColor"-->
+    <!--        android:textSize="23sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.491"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/cropImageView"-->
+    <!--        app:layout_constraintVertical_bias="1.0" />-->
 
-<!--    <ImageButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/image_button_rounded_corner"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:src="@drawable/ic_baseline_more_vert_24" />-->
+    <!--    <ImageButton-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/image_button_rounded_corner"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        android:src="@drawable/ic_baseline_more_vert_24" />-->
 
-<!--    <CheckBox-->
-<!--        android:id="@+id/checkBox"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:checked="true"-->
-<!--        android:fontFamily="@font/share_tech"-->
-<!--        android:text="Store In Database"-->
-<!--        android:textSize="15sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:textColor="@color/textColor"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.466"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/scannedText"-->
-<!--        app:layout_constraintVertical_bias="0.107" />-->
+    <!--    <CheckBox-->
+    <!--        android:id="@+id/checkBox"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:checked="true"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:text="Store In Database"-->
+    <!--        android:textSize="15sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        android:textColor="@color/textColor"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.466"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/scannedText"-->
+    <!--        app:layout_constraintVertical_bias="0.107" />-->
 
-<!--    <RadioGroup-->
-<!--        android:layout_width="298dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:fontFamily="@font/share_tech"-->
-<!--        android:textSize="15sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:textColor="@color/textColor"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/checkBox">-->
+    <!--    <RadioGroup-->
+    <!--        android:layout_width="298dp"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:fontFamily="@font/share_tech"-->
+    <!--        android:textSize="15sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        android:textColor="@color/textColor"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/checkBox">-->
 
-<!--        <RadioButton-->
-<!--            android:id="@+id/radioButton"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/share_tech"-->
-<!--            android:textColor="@color/textColor"-->
-<!--            android:text="In Base 64"-->
-<!--            android:textSize="15sp" />-->
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/radioButton"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/share_tech"-->
+    <!--            android:textColor="@color/textColor"-->
+    <!--            android:text="In Base 64"-->
+    <!--            android:textSize="15sp" />-->
 
-<!--        <RadioButton-->
-<!--            android:id="@+id/radioButton2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/share_tech"-->
-<!--            android:textColor="@color/textColor"-->
-<!--            android:text="In Recursive"-->
-<!--            android:textSize="15sp" />-->
-<!--    </RadioGroup>-->
+    <!--        <RadioButton-->
+    <!--            android:id="@+id/radioButton2"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/share_tech"-->
+    <!--            android:textColor="@color/textColor"-->
+    <!--            android:text="In Recursive"-->
+    <!--            android:textSize="15sp" />-->
+    <!--    </RadioGroup>-->
 
 
 </RelativeLayout>

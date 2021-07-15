@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,28 +8,28 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:id="@+id/ll1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginLeft="5dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="-82dp"
-        android:src="@drawable/logo_colour" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-82dp"
+            android:src="@drawable/logo_colour" />
 
-    <ImageView
+        <ImageView
             android:id="@+id/logo2"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
             android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginTop="-230dp"
             android:src="@drawable/iconsignup" />
 
@@ -38,68 +37,67 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tt1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tt1"
         android:layout_below="@+id/ll1"
-        android:text="Decrypt Your Codes Recursively"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/lato_bold"
         android:layout_marginBottom="22dp"
-        android:textAlignment="center"/>
+        android:fontFamily="@font/lato_bold"
+        android:text="Decrypt Your Codes Recursively"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
     <TextView
+        android:id="@+id/tt2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tt2"
         android:layout_below="@+id/tt1"
-        android:text="The one stop solution to all your encryption problems. OCR tech to decrypt \n recursively and endlessly!"
-        android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
         android:fontFamily="@font/lato"
-        android:textAlignment="center"/>
+        android:text="The one stop solution to all your encryption problems. OCR tech to decrypt \n recursively and endlessly!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 
     <LinearLayout
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="86dp"
-        android:orientation="vertical"
-        android:id="@+id/ll2">
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="35dp"
-        android:background="@drawable/login_signup_btn_rounded"
-        android:fontFamily="@font/lato_bold"
-        android:layout_below="@id/ll1"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="Get Started"
-        android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/ll1"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/login_signup_btn_rounded"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="Get Started"
+            android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="35dp"
-        android:layout_below="@id/signup"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/login_signup_btn_rounded"
-        android:fontFamily="@font/lato_bold"
-        android:gravity="center"
-        android:text="Log In"
-        android:backgroundTint="#3f3d67"
-        android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/signup"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/login_signup_btn_rounded"
+            android:backgroundTint="#3f3d67"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="Log In"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
-
 
 
 </RelativeLayout>

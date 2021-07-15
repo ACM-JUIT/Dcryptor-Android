@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,22 +18,18 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
-import com.anshagrawal.dcmlkit.Adapters.ResultAdapter;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.databinding.ActivityDashboardBinding;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,11 +47,9 @@ public class DashboardActivity extends AppCompatActivity {
     Uri imageUri;
     String token;
     CypherAdapter adapter;
-    ResultAdapter adapter1;
-    private ProgressDialog dialog;
     SharedPreferencesClass sharedPreferences;
     ArrayList<CypherModel> arrayList;
-
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,7 +223,7 @@ public class DashboardActivity extends AppCompatActivity {
                 break;
 
 
-                case R.id.Share:
+            case R.id.Share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 String shareBody = "Hey try this Decode Cypher App. It decodes your cypher and save it securely and permanently.";

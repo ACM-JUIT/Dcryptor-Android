@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.anshagrawal.dcmlkit">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -25,7 +24,6 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Activities.DecodeActivity" />
         <activity android:name=".Activities.DashboardActivity"></activity>
-        <activity android:name=".Activities.CameraActivity" />
         <activity
             android:name=".Activities.SplashActivity"
             android:noHistory="true">

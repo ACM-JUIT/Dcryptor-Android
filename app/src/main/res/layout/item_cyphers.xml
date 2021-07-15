@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -17,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="8dp"
-            android:maxLength="25"
             android:fontFamily="@font/lato_bold"
+            android:maxLength="25"
             android:maxLines="1"
             android:text="Title"
             android:textColor="#fff"
@@ -30,13 +29,14 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLength="10"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/lato"
+            android:maxLength="10"
             android:text="15 aug 2021"
             android:textColor="#4deefb"
             android:textSize="12sp" />
+
         <TextView
             android:id="@+id/cTime"
             android:layout_width="wrap_content"

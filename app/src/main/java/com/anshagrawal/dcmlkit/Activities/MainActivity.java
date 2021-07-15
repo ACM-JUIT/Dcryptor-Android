@@ -28,6 +28,8 @@ import com.google.mlkit.vision.text.TextRecognizerOptions;
 import com.otaliastudios.cameraview.BitmapCallback;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.PictureResult;
+import com.otaliastudios.cameraview.controls.Flash;
+import com.otaliastudios.cameraview.controls.Grid;
 import com.otaliastudios.cameraview.gesture.Gesture;
 import com.otaliastudios.cameraview.gesture.GestureAction;
 
@@ -96,23 +98,23 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.cameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM);
         activityMainBinding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 
-//        activityMainBinding.btnDecode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String editedFinal = activityMainBinding.scannedText.getText().toString();
-//
-//                try {
-//                    decodeCipher(editedFinal);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//        });
+
 
         activityMainBinding.cameraView.setLifecycleOwner(this);
+
+        activityMainBinding.flash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityMainBinding.cameraView.setFlash(Flash.ON);
+            }
+        });
+
+        activityMainBinding.grid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityMainBinding.cameraView.setGrid(Grid.OFF);
+            }
+        });
 
         //take photo button click listener
         activityMainBinding.btnTake.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        cypher_title = activityMainBinding.scannedText.getText().toString();
+
+
 
 
     }
@@ -184,67 +187,16 @@ public class MainActivity extends AppCompatActivity {
         finish();
         i1.putExtras(bundle);
         startActivity(i1);
-//        CropImage.activity(uri)
-//                .start(this);
+
     }
 
-//    @Override
-//    //crop image activity result listener, this block is executed when the image is cropped
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            if (resultCode == RESULT_OK) {
-//                Uri resultUri = result.getUri();
-//                Bitmap imageAfterCrop = null;
-//                try {
-//                    imageAfterCrop = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
-//
-//                    ocr(imageAfterCrop, rotationAfterCrop);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                activityMainBinding.cropImageView.setVisibility(View.VISIBLE);
-//                activityMainBinding.cropImageView.setImageBitmap(imageAfterCrop);
-//
-//            }
-//        }
-//    }
 
     //processes bitmap of the cropped image
     private void ocr(Bitmap imageAfterCrop, int rotationAfterCrop) {
         processBitmap(imageAfterCrop, rotationAfterCrop);
     }
 
-    //call the api to recursively decode the cipher
-//    private void decodeCipher(String text) throws JSONException {
-//
-//        Intent intent = new Intent(MainActivity.this, DecodeActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("textToDecode", text);
-//        if (activityMainBinding.checkBox.isChecked()) {
-//            bundle.putBoolean("toStore", true);
-//
-//        } else {
-//            bundle.putBoolean("toStore", false);
-//
-//        }
-//        if (activityMainBinding.radioButton.isChecked()) {
-//            bundle.putBoolean("method", true);
-//        }
-//
-//        if (activityMainBinding.radioButton2.isChecked()) {
-//            bundle.putBoolean("method", false);
-//
-//        } else {
-//            Toast.makeText(this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-//
-//
-//    }
+
 
 
 }
