@@ -20,6 +20,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.UtilsService.UtilService;
@@ -93,9 +94,9 @@ public class LoginActivity extends AppCompatActivity {
         params.put("password", password);
 
 
-        String url = "https://acm-dcryptor.herokuapp.com/api/v1/login";
+
         //Json Object and Post method
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.LOGINLINK, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
