@@ -9,127 +9,123 @@
     tools:context=".Activities.SplashActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="8"
-        android:layout_marginTop="100dp"
-        android:gravity="center_vertical"
-        >
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewD"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/D"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold"
-            app:autoSizeMaxTextSize="100sp"
-            app:autoSizeMinTextSize="12sp" />
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_colour" />
 
-        <TextView
-            android:id="@+id/textViewC"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_marginTop="-20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/C"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:weightSum="8">
 
-        <TextView
-            android:id="@+id/textViewR"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/R"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/D"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="100sp"
+                app:autoSizeMinTextSize="12sp" />
 
-        <TextView
-            android:id="@+id/textViewY"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/Y"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/C"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/P"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewR"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/R"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewT"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/T"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewY"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/Y"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewO"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/O"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/P"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewR1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/share_tech"
-            android:text="@string/R"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="69sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textViewT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/T"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewO"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/O"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewR1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/share_tech"
+                android:text="@string/R"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="69sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-<!--    <ImageView-->
-<!--        android:id="@+id/fingerprint"-->
-<!--        android:layout_width="123dp"-->
-<!--        android:layout_height="132dp"-->
-<!--        android:src="@drawable/download"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />-->
-
-
-
-
-
-
-
 </RelativeLayout>
