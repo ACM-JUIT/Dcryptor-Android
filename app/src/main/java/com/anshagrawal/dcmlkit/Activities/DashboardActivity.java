@@ -230,11 +230,8 @@ public class DashboardActivity extends AppCompatActivity  {
                 finish();
                 break;
 
-            case R.id.Refresh:
-                adapter.notifyDataSetChanged();
 
-                break;
-            case R.id.Share:
+                case R.id.Share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 String shareBody = "Hey try this Decode Cypher App. It decodes your cypher and save it securely and permanently.";
