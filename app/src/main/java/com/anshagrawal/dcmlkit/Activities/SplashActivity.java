@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
-
 import com.anshagrawal.dcmlkit.databinding.ActivitySplashBinding;
 
 import java.util.concurrent.Executor;
@@ -42,7 +41,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
-
 
 
 
