@@ -73,12 +73,13 @@ public class PickImageFromGallery extends AppCompatActivity {
             public void onClick(View v) {
                 final boolean[] toStore = new boolean[1];
                 final boolean[] method = new boolean[1];
-                Dialog dialog1 = new Dialog(PickImageFromGallery.this);
-                dialog1.setContentView(R.layout.dialog_resource);
-                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
-                CheckBox checkBox = (CheckBox) dialog1.findViewById(R.id.checkBox);
-                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
-                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
+//                Dialog dialog1 = new Dialog(PickImageFromGallery.this);
+//                dialog1.setContentView(R.layout.dialog_resource);
+//                Button doneBtn = (Button) dialog1.findViewById(R.id.doneBtn);
+                CheckBox checkBox = (CheckBox) binding.checkBox;
+//                RadioButton radioButton1 = (RadioButton) dialog1.findViewById(R.id.radioButton);
+//                RadioButton radioButton2 = (RadioButton) dialog1.findViewById(R.id.radioButton2);
+                String textToDecode = binding.editText.getText().toString();
                 if (checkBox.isChecked()) {
                     toStore[0] = true;
 
@@ -86,32 +87,42 @@ public class PickImageFromGallery extends AppCompatActivity {
                     toStore[0] = false;
 
                 }
-                if (radioButton1.isChecked()) {
-                    method[0] = true;
-                }
+                Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
 
-                if (radioButton2.isChecked()) {
-                    method[0] = true;
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("textToDecode", textToDecode);
+                bundle1.putBoolean("toStore", toStore[0]);
+                bundle1.putBoolean("method", false);
+                intent.putExtras(bundle1);
+                finish();
+                startActivity(intent);
 
-                } else {
-                    Toast.makeText(PickImageFromGallery.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-                }
-                dialog1.show();
-                doneBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog1.dismiss();
-                        String textToDecode = binding.editText.getText().toString();
-                        Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
-                        finish();
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putString("textToDecode", textToDecode);
-                        bundle1.putBoolean("toStore", toStore[0]);
-                        bundle1.putBoolean("method", method[0]);
-                        intent.putExtras(bundle1);
-                        startActivity(intent);
-                    }
-                });
+//                if (radioButton1.isChecked()) {
+//                    method[0] = true;
+//                }
+//
+//                if (radioButton2.isChecked()) {
+//                    method[0] = true;
+//
+//                } else {
+//                    Toast.makeText(PickImageFromGallery.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
+//                }
+//                dialog1.show();
+//                doneBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog1.dismiss();
+//                        String textToDecode = binding.editText.getText().toString();
+//                        Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
+//                        finish();
+//                        Bundle bundle1 = new Bundle();
+//                        bundle1.putString("textToDecode", textToDecode);
+//                        bundle1.putBoolean("toStore", toStore[0]);
+//                        bundle1.putBoolean("method", method[0]);
+//                        intent.putExtras(bundle1);
+//                        startActivity(intent);
+//                    }
+//                });
             }
         });
     }
