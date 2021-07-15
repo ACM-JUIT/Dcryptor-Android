@@ -25,6 +25,7 @@ public class EnterTextToDecode extends AppCompatActivity {
         binding = ActivityEnterTextToDecodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.decodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
