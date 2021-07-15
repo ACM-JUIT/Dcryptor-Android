@@ -26,16 +26,17 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Activities.DecodeActivity" />
         <activity android:name=".Activities.DashboardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.CameraActivity" />
         <activity
             android:name=".Activities.SplashActivity"
-            android:noHistory="true" />
+            android:noHistory="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity
             android:name=".Activities.MainActivity"
             android:windowSoftInputMode="adjustPan" />
