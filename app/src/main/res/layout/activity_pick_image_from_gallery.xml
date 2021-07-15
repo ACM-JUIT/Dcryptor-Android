@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/cardBg5"
     android:layout_height="match_parent"
+    android:background="@color/cardBg5"
     tools:context=".Activities.PickImageFromGallery">
 
     <ImageView
@@ -16,35 +16,36 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/croppedImage"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/login_signup_til1"
         android:fadeScrollbars="false"
         android:fontFamily="@font/lato_bold"
-        android:hint="Enter Cipher Text here"
-        android:layout_marginTop="50dp"
         android:gravity="center"
-        android:layout_below="@id/croppedImage"
-        android:textSize="20dp"
+        android:hint="Scanned Text"
         android:maxHeight="250dp"
         android:minHeight="100dp"
         android:outlineProvider="none"
         android:scrollbars="vertical"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:textSize="20dp" />
 
 
     <TextView
         android:id="@+id/decodeButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="600dp"
         android:background="@drawable/login_signup_btn_rounded"
         android:fontFamily="@font/lato_bold"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Decode !"
         android:textColor="@color/white"
         android:textSize="25dp" />
+
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"

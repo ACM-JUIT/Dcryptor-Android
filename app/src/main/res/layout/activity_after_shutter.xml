@@ -2,65 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/cardBg5"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/dashBg"
     tools:context=".Activities.PickImageFromGallery">
 
     <ImageView
         android:id="@+id/croppedImage"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usernameTIL"
-        android:layout_centerInParent="true"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/gilroy_bold"
-        android:textColorHint="@color/white"
-        app:hintTextColor="@color/white">
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/login_signup_til1"
+        android:fadeScrollbars="false"
+        android:fontFamily="@font/lato_bold"
+        android:hint="Scanned Text"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_below="@id/croppedImage"
+        android:textSize="20dp"
+        android:maxHeight="250dp"
+        android:minHeight="100dp"
+        android:outlineProvider="none"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:minLines="10"
-            android:layout_height="wrap_content"
-            android:maxHeight="300dp"
-            android:background="@drawable/login_signup_til"
-            android:drawableBottom="@color/white"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="false"
-            android:drawablePadding="12dp"
-            android:drawableTint="@color/white"
-            android:fontFamily="@font/gilroy_bold"
-            android:hint="Scanned Text"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/editText"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:minHeight="100dp" />-->
-
-    <Button
+    <TextView
         android:id="@+id/decodeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/usernameTIL"
-        android:backgroundTint="@color/cardBg2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/login_signup_btn_rounded"
+        android:fontFamily="@font/lato_bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="@string/decodeText"
-        android:textColor="@color/white" />
+        android:gravity="center"
+        android:text="Decode !"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
