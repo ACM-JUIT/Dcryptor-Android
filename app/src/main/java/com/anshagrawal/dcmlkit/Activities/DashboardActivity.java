@@ -176,7 +176,7 @@ public class DashboardActivity extends AppCompatActivity  {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         dialog.dismiss();
-                        Log.i("historyapi", "error" + error.getMessage());
+                        //Log.i("historyapi", "error" + error.getMessage());
                         Toast.makeText(DashboardActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
@@ -241,8 +241,6 @@ public class DashboardActivity extends AppCompatActivity  {
                 intent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(intent, "Share via"));
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
