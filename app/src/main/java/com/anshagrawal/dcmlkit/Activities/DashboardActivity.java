@@ -155,7 +155,7 @@ public class DashboardActivity extends AppCompatActivity  {
 
                             adapter = new CypherAdapter(DashboardActivity.this, arrayList);
                             binding.cypherRecycler.setAdapter(adapter);
-
+                            adapter.notifyDataSetChanged();
 
                         }
                     }
