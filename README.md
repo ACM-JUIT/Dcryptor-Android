@@ -1,13 +1,13 @@
 # ⚡ **Dcryptor** ⚡
 
 ## Images
-<img src = "https://user-images.githubusercontent.com/72314518/125781836-610d1d57-9455-4eed-96e5-76cf16311236.jpg" width = "270px" height = "480px"> 
-<img src = "https://user-images.githubusercontent.com/72314518/125781860-30e49b76-462f-4a32-8202-108bf74256c9.jpg" width = "270px" height = "480px"> 
-<img src = "https://user-images.githubusercontent.com/72314518/125781977-529be48d-0b18-4fdd-aadc-997870a1acda.jpg" width = "270px" height = "480px"> 
-<img src = "https://user-images.githubusercontent.com/72314518/125781985-4771204b-0caf-44bc-b781-a276f9c86ad2.jpg" width = "270px" height = "480px"> 
-
-<img src = "https://user-images.githubusercontent.com/72314518/125782064-0de4d5cc-bd63-46f2-a496-a20fcb6e0d7f.jpg" width = "270px" height = "480px"> 
-
+<div style="display:flex;">
+<img src = "https://user-images.githubusercontent.com/72314518/125781836-610d1d57-9455-4eed-96e5-76cf16311236.jpg" width = "180px" height = "320px"> 
+<img src = "https://user-images.githubusercontent.com/72314518/125781977-529be48d-0b18-4fdd-aadc-997870a1acda.jpg" width = "180px" height = "320px"> 
+<img src = "https://user-images.githubusercontent.com/72314518/125782064-0de4d5cc-bd63-46f2-a496-a20fcb6e0d7f.jpg" width = "180px" height = "320px"> 
+<img src = "https://user-images.githubusercontent.com/72314518/125781985-4771204b-0caf-44bc-b781-a276f9c86ad2.jpg" width = "180px" height = "320px"> 
+<img src = "https://user-images.githubusercontent.com/72314518/125781860-30e49b76-462f-4a32-8202-108bf74256c9.jpg" width = "180px" height = "320px"> 
+</div>
 
 ## 🏁 Overview
 
