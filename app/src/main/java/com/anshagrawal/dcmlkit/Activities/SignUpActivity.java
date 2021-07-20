@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.UtilsService.SharedPreferencesClass;
 import com.anshagrawal.dcmlkit.UtilsService.UtilService;
 import com.anshagrawal.dcmlkit.databinding.ActivitySignUpBinding;
@@ -98,9 +99,8 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
 
-        String url = "https://acm-dcryptor.herokuapp.com/api/v1/signup";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BuildConfig.SIGNUPLINK, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {

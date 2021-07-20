@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.anshagrawal.dcmlkit.Adapters.CypherAdapter;
+import com.anshagrawal.dcmlkit.BuildConfig;
 import com.anshagrawal.dcmlkit.Models.CypherModel;
 import com.anshagrawal.dcmlkit.MySingleton;
 import com.anshagrawal.dcmlkit.R;
@@ -118,8 +119,8 @@ public class DashboardActivity extends AppCompatActivity {
     //Api for fetching the data of a particular user
     private void getTask() {
         arrayList = new ArrayList<>();
-        String url = "https://acm-dcryptor.herokuapp.com/api/v2/history";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, BuildConfig.HISTORYLINK, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
