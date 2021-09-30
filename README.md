@@ -1,13 +1,8 @@
 # ⚡ **Dcryptor** ⚡
 
-###Images
+## Images
 
-![Screenshot_2021-07-15-17-03-32-579_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125781836-610d1d57-9455-4eed-96e5-76cf16311236.jpg) 
-![Screenshot_2021-07-15-17-05-52-505_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125781860-30e49b76-462f-4a32-8202-108bf74256c9.jpg)
-![Screenshot_2021-07-15-17-03-38-114_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125781977-529be48d-0b18-4fdd-aadc-997870a1acda.jpg)
-![Screenshot_2021-07-15-17-05-36-942_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125781985-4771204b-0caf-44bc-b781-a276f9c86ad2.jpg)
-![Screenshot_2021-07-15-17-05-36-942_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125782000-05344339-37e4-4350-bb1a-0c33e153d388.jpg)
-![Screenshot_2021-07-15-17-03-35-678_com anshagrawal dcmlkit](https://user-images.githubusercontent.com/72314518/125782064-0de4d5cc-bd63-46f2-a496-a20fcb6e0d7f.jpg)
+<img src="https://user-images.githubusercontent.com/72314518/125781836-610d1d57-9455-4eed-96e5-76cf16311236.jpg" width="250"> <img src="https://user-images.githubusercontent.com/72314518/125781860-30e49b76-462f-4a32-8202-108bf74256c9.jpg" width="250"> <img src="https://user-images.githubusercontent.com/72314518/125781977-529be48d-0b18-4fdd-aadc-997870a1acda.jpg" width="250"> <img src="https://user-images.githubusercontent.com/72314518/125781985-4771204b-0caf-44bc-b781-a276f9c86ad2.jpg" width="250"> <img src="https://user-images.githubusercontent.com/72314518/125782000-05344339-37e4-4350-bb1a-0c33e153d388.jpg" width="250"> <img src="https://user-images.githubusercontent.com/72314518/125782064-0de4d5cc-bd63-46f2-a496-a20fcb6e0d7f.jpg" width="250">
 
 
 ## 🏁 Overview
@@ -52,6 +47,3 @@ __*You can also access your previously decrypted results and share them too!*__
 [__*Utsav Jhamb*__](https://github.com/utsavjhamb)<br>
 [__*Moulik Chaturvedi*__](https://github.com/moulikchaturvedi)
 
-
-
-###Images
