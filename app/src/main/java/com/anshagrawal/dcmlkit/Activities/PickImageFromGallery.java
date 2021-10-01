@@ -91,33 +91,6 @@ public class PickImageFromGallery extends AppCompatActivity {
                 intent.putExtras(bundle1);
                 finish();
                 startActivity(intent);
-
-//                if (radioButton1.isChecked()) {
-//                    method[0] = true;
-//                }
-//
-//                if (radioButton2.isChecked()) {
-//                    method[0] = true;
-//
-//                } else {
-//                    Toast.makeText(PickImageFromGallery.this, "Please check at least one method to decode", Toast.LENGTH_SHORT).show();
-//                }
-//                dialog1.show();
-//                doneBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog1.dismiss();
-//                        String textToDecode = binding.editText.getText().toString();
-//                        Intent intent = new Intent(PickImageFromGallery.this, DecodeActivity.class);
-//                        finish();
-//                        Bundle bundle1 = new Bundle();
-//                        bundle1.putString("textToDecode", textToDecode);
-//                        bundle1.putBoolean("toStore", toStore[0]);
-//                        bundle1.putBoolean("method", method[0]);
-//                        intent.putExtras(bundle1);
-//                        startActivity(intent);
-//                    }
-//                });
             }
         });
     }
